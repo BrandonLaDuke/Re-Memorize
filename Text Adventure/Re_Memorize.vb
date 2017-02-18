@@ -1,6 +1,7 @@
 ﻿Module Re_Memorize
     Dim playerName As String
     Dim genRef As String
+    Dim genRef1 As String
     Dim year As Integer = 2086
     Dim cWhile As Boolean = True
     Dim memoryHunter As Boolean = False
@@ -80,8 +81,10 @@
         genSwitch = Console.ReadLine
         If genSwitch = "1" Then
             genRef = "him"
+            genRef1 = "bro"
         Else
             genRef = "her"
+            genRef1 = "sis"
         End If
         Threading.Thread.Sleep(1000)
         Console.WriteLine("I will now tell you how to play.")

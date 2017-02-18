@@ -8,3 +8,13 @@ C:\Users\Brandon\Documents\GitHub\VisualBasicClass\Final Project\Re_Memorize\Tex
 C:\Users\Brandon\Documents\GitHub\VisualBasicClass\Final Project\Re_Memorize\Text Adventure\obj\Debug\Re_Memorize.vbprojResolveAssemblyReference.cache
 C:\Users\Brandon\Documents\GitHub\VisualBasicClass\Final Project\Re_Memorize\Text Adventure\obj\Debug\Text_Adventure.Resources.resources
 C:\Users\Brandon\Documents\GitHub\VisualBasicClass\Final Project\Re_Memorize\Text Adventure\obj\Debug\Re_Memorize.vbproj.GenerateResource.Cache
+C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\bin\Debug\Text Adventure.exe.config
+C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\obj\Debug\Text Adventure.exe
+C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\obj\Debug\Text Adventure.xml
+C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\obj\Debug\Text Adventure.pdb
+C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\bin\Debug\Text Adventure.exe
+C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\bin\Debug\Text Adventure.pdb
+C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\bin\Debug\Text Adventure.xml
+C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\obj\Debug\Re_Memorize.vbprojResolveAssemblyReference.cache
+C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\obj\Debug\Text_Adventure.Resources.resources
+C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\obj\Debug\Re_Memorize.vbproj.GenerateResource.Cache
