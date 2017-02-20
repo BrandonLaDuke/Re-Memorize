@@ -11,7 +11,9 @@
     '
     Sub Main()
         Dim quitGame As Boolean = 0
-
+        Console.WriteLine("Please go Full Screen.")
+        Console.WriteLine("After you have done so press Enter.")
+        Console.ReadLine()
         Console.WriteLine("")
         Console.WriteLine("   A friend once said,")
         Console.WriteLine("")
@@ -32,8 +34,14 @@
         Console.Clear()
         Dim play As Boolean = 0
         While play = 0
+            Console.WriteLine("")
+            Console.WriteLine("")
+            Console.WriteLine("")
+            Console.WriteLine("")
+            Logo()
             Console.WriteLine()
-            Console.WriteLine("Welcome to Re:Memorize")
+            Console.WriteLine()
+            Console.WriteLine("Welcome to Re: Memorize")
             Threading.Thread.Sleep(1000)
             Console.WriteLine()
             Console.WriteLine("[1] Start  [2] Credits [3] Exit")
@@ -41,6 +49,7 @@
             Dim start As String = Console.ReadLine()
             If start = "1" Then
                 Console.WriteLine("GameStart")
+                Initialize() 'Init variables
                 GameStart()
             ElseIf start = "2" Then
                 Credits()
@@ -53,6 +62,15 @@
             End If
         End While 'Game Start Loop
 
+    End Sub
+
+    Sub Initialize()
+        playerName = ""
+        genRef = ""
+        genRef1 = ""
+        cWhile = True
+        memoryHunter = False
+        leaper = False
     End Sub
 
     Sub GameStart()
@@ -182,6 +200,9 @@
     Sub MainGame()
         'Start Chapter 0
         Chapter0()
+        If leaper = True Then
+            Exit Sub
+        End If
 
     End Sub
 
@@ -313,6 +334,10 @@
         End If
         Chapter0_1()
         Chapter0_2()
+        If leaper = True Then
+            Exit Sub
+        End If
+        Chapter0_3()
     End Sub
 
     Sub Chapter0_1()
@@ -459,10 +484,15 @@
                         Else
                             Console.WriteLine("Invalid command")
                         End If
+
                     End While
                 End If
             End If
         Next
+    End Sub
+
+    Sub Chapter0_3()
+
     End Sub
 
     Sub Credits()
@@ -495,5 +525,26 @@
             creditTimer = creditTimer - 1
         End While
         Console.Clear()
+    End Sub
+
+    Sub Logo()
+        Console.WriteLine("                                   0000                ")
+        Console.WriteLine("                                   00000000            ")
+        Console.WriteLine("           0\                      000000000000        RRRRRR    EEEEEEEE")
+        Console.WriteLine("          00\,.                        000000000       RR RRRR   EE        ::")
+        Console.WriteLine("         0000000        1OOOOOOOOO      000000000      RR   RRR  EE        ::")
+        Console.WriteLine("        0000000        11OOOOOOOOOO       00000000     RR RRRR   EEEEEE")
+        Console.WriteLine("       0000000        11111OOOOOOOOO      000000000    RRRR      EE        ::")
+        Console.WriteLine("       0000000       1111111OOOOOOOOO      000000000   RR  RR    EE        ::")
+        Console.WriteLine("                     11111111000000000      ~00000000  RR    RR  EEEEEEEE   ")
+        Console.WriteLine("        .,,//0        111111100000000     000000000")
+        Console.WriteLine("       00000000        1111100000000      0000000000   MMM       MMM  EEEEEEEE  MMM       MMM      OOOOOO      RRRRRR    II  ZZZZZZZ  EEEEEEEE")
+        Console.WriteLine("        00000000        .1000000000       0000000000   MMMM     MMMM  EE        MMMM     MMMM    OOO    OOO    RR RRRR   II       ZZ  EE")
+        Console.WriteLine("         00000000                          00000000    MM MM   MM MM  EE        MM MM   MM MM   OO        OO   RR   RRR  II      ZZ   EE")
+        Console.WriteLine("          00000    00000\        /00000000    0000     MM  MM MM  MM  EEEEEE    MM  MM MM  MM  OO          OO  RR RRRR   II     ZZ    EEEEEE")
+        Console.WriteLine("            00   000000000\\   //00000000000   0       MM   MMM   MM  EE        MM   MMM   MM   OO        OO   RRRR      II    ZZ     EE")
+        Console.WriteLine("                0000000000000000000000000000           MM         MM  EE        MM         MM    OOO    OO0    RR  RR    II   ZZ      EE")
+        Console.WriteLine("                  00000000000000000000000              MM         MM  EEEEEEEE  MM         MM      OOOOOO      RR    RR  II  ZZZZZZZ  EEEEEEEE")
+        Console.WriteLine("                       00000000000000")
     End Sub
 End Module
