@@ -503,6 +503,10 @@
         Dim battleChoice As String
         Dim inBattle As Boolean = True
         Dim leaperHealth As Double = 100
+        Dim loose As Boolean = False
+        Dim win As Boolean = False
+        Dim round As Integer = 1
+
         While inBattle = True
 
             Dim damageValue As Integer = CInt(Int(Rnd() + 1))
@@ -535,6 +539,18 @@
                 'You deal masive damage to enemy
             Else
                 'Write invaild command and repeat loop
+            End If
+            If playerHealth < 0 And leaperHealth > 0 Then
+                loose = True
+            ElseIf leaperHealth < 0 And playerHealth > 0 Then
+                win = True
+            ElseIf leaperHealth < 0 And playerHealth < 0 Then
+                loose = True
+            Else
+                round = round + 1
+            End If
+            If loose = True Or win = True Then
+                inBattle = False
             End If
         End While 'In battle
     End Sub
