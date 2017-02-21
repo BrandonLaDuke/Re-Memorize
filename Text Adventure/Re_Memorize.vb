@@ -506,53 +506,139 @@
         Dim loose As Boolean = False
         Dim win As Boolean = False
         Dim round As Integer = 1
+        Dim sensenFury = 0
 
-        While inBattle = True
+        While win = False
+            inBattle = True
+            win = False
+            loose = False
+            round = 1
+            sensenFury = 0
+            playerHealth = 100
+            leaperHealth = 100
+
+            While inBattle = True
+
+                'Get leaper move (Randon True, False)
 
 
+                Console.WriteLine()
+                Console.WriteLine("[1] Power  [2] Regen  [3] Cooldown  [4] Evade  [5] S-Presen")
+                Console.Write("$ ")
+                battleChoice = Console.ReadLine()
+                Console.WriteLine()
 
-            Console.WriteLine()
-            Console.WriteLine("[1] Power  [2] Regen  [3] Cooldown  [4] Evade  [5] S-Presen")
-            Console.Write(">> ")
-            battleChoice = Console.ReadLine()
-            Console.WriteLine()
+                If enemyFight = True And battleChoice = "1" Then
+                    'Deal damage to player and enemy
+                    Console.WriteLine()
+                    Console.WriteLine("You did damage to the leaper. But you also took damage")
+                    Console.WriteLine(playerName + ": -5       Leaper: -5")
+                    playerHealth = playerHealth - 5
+                    leaperHealth = leaperHealth - 5
+                ElseIf enemyFight = True And battleChoice = "2" Then
+                    'deal damage to enemy and player and heal some playerHealth
+                    Console.WriteLine()
+                    Console.WriteLine("You did damage to the leaper. But you also took damage but you regained health.")
+                    Console.WriteLine(playerName + ": -5       Leaper: -4")
+                    Threading.Thread.Sleep(500)
+                    Console.WriteLine("You regained some health: +10")
+                    playerHealth = playerHealth - 5
+                    leaperHealth = leaperHealth - 4
+                    'Regain some health
+                    playerHealth = playerHealth + 10
+                ElseIf enemyFight = True And battleChoice = "3" Then
+                    'you deal damage and little damage to enemy
+                    Console.WriteLine()
+                    Console.WriteLine("You took damage. And did some to leaper.")
+                    Console.WriteLine(playerName + ": -7       Leaper: -2")
+                    playerHealth = playerHealth - 7
+                    leaperHealth = leaperHealth - 2
+                    'Cooldown on s presen
+                    sensenFury = sensenFury - 1
+                ElseIf enemyFight = True And battleChoice = "4" Then
+                    'You evade no damage delt
+                    Console.WriteLine()
+                    Console.WriteLine("You evaded the leapers attack")
+                    Console.WriteLine()
+                ElseIf enemyFight = True And battleChoice = "5" Then
+                    'You do double damage and you don't get hurt
+                    Console.WriteLine()
+                    Console.WriteLine("You did massive damage!")
+                    Console.WriteLine("Leaper: -20")
+                    leaperHealth = leaperHealth - 20
+                    sensenFury = 5
+                ElseIf enemyFight = False And battleChoice = "1" Then
+                    'deal damage to enemy
+                    Console.WriteLine()
+                    Console.WriteLine("You did damage to the leaper")
+                    Console.WriteLine("Leaper: -8")
+                    leaperHealth = leaperHealth - 8
+                ElseIf enemyFight = False And battleChoice = "2" Then
+                    'deal damage to enemy and regain 10 health
+                    Console.WriteLine()
+                    Console.WriteLine("You did some damage to the leaper and regained health")
+                    Console.WriteLine(playerName + ": +20       Leaper: -5")
+                    leaperHealth = leaperHealth - 5
+                    playerHealth = playerHealth + 20
+                ElseIf enemyFight = False And battleChoice = "3" Then
+                    'deal damage to enemy
+                    Console.WriteLine()
+                    Console.WriteLine("You did damage to the Leaper and accelerated cooldown")
+                    Console.WriteLine("Leaper: -4")
+                    Console.WriteLine("")
+                    Console.WriteLine("S-Presen Cooldown: -2")
+                    leaperHealth = leaperHealth - 4
+                    'cooldown on s-presen
+                    sensenFury = sensenFury - 2
+                ElseIf enemyFight = False And battleChoice = "4" Then
+                    'nothing happens
+                    Console.WriteLine()
+                    Console.WriteLine("You evaded but the leaper did not attack")
+                    Console.WriteLine()
+                ElseIf enemyFight = False And battleChoice = "5" Then
+                    'You deal masive damage to enemy
+                    Console.WriteLine()
+                    Console.WriteLine("You did massive damage to the Leaper")
+                    Console.WriteLine("Leaper: -30")
+                    leaperHealth = leaperHealth - 30
+                Else
+                    'Write invaild command and repeat loop
+                    Console.WriteLine("-Invalid Command-")
+                    Console.WriteLine()
+                End If
 
-            If enemyFight = True And battleChoice = "1" Then
-                'Deal damage to player and enemy
-            ElseIf enemyFight = True And battleChoice = "2" Then
-                'deal damage to enemy and player and heal some playerHealth
-            ElseIf enemyFight = True And battleChoice = "3" Then
-                'you deal damage
-            ElseIf enemyFight = True And battleChoice = "4" Then
-                'You evade no damage delt
-            ElseIf enemyFight = True And battleChoice = "5" Then
-                'You do double damage and you don't get hurt
-            ElseIf enemyFight = False And battleChoice = "1" Then
-                'deal damage to enemy
-            ElseIf enemyFight = False And battleChoice = "2" Then
-                'deal damage to enemy and regain 10 health
-            ElseIf enemyFight = False And battleChoice = "3" Then
-                'deal damage to enemy and s presen coolsdown faster
-            ElseIf enemyFight = False And battleChoice = "4" Then
-                'nothing happens
-            ElseIf enemyFight = False And battleChoice = "5" Then
-                'You deal masive damage to enemy
-            Else
-                'Write invaild command and repeat loop
-            End If
-            If playerHealth < 0 And leaperHealth > 0 Then
-                loose = True
-            ElseIf leaperHealth < 0 And playerHealth > 0 Then
-                win = True
-            ElseIf leaperHealth < 0 And playerHealth < 0 Then
-                loose = True
-            Else
-                round = round + 1
-            End If
-            If loose = True Or win = True Then
-                inBattle = False
-            End If
-        End While 'In battle
+                If playerHealth < 0 And leaperHealth > 0 Then
+                    loose = True
+                ElseIf leaperHealth < 0 And playerHealth > 0 Then
+                    win = True
+                ElseIf leaperHealth < 0 And playerHealth < 0 Then
+                    loose = True
+                Else
+                    round = round + 1
+                End If
+
+                If sensenFury > 0 Then
+                    sensenFury = sensenFury - 1
+                ElseIf sensenFury < 0 Then
+                    sensenFury = 0
+                End If
+
+                If loose = True Or win = True Then
+                    inBattle = False
+                End If
+                If inBattle = True Then
+                    Console.WriteLine()
+                    Console.WriteLine("Your health: " + playerHealth + "           Enemy Health: " + leaperHealth)
+                    If sensenFury > 0 Then
+                        Console.WriteLine("S-Presen Cooldown: " + sensenFury + " turns left")
+                    Else
+                        Console.WriteLine("S-Presen is ready.")
+                    End If
+                End If
+            End While 'In battle
+
+        End While ' Win
+        playerHealth = 100
     End Sub
 
     Sub Credits()
