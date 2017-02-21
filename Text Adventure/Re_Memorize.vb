@@ -509,7 +509,7 @@
 
         While inBattle = True
 
-            Dim damageValue As Integer = CInt(Int(Rnd() + 1))
+
 
             Console.WriteLine()
             Console.WriteLine("[1] Power  [2] Regen  [3] Cooldown  [4] Evade  [5] S-Presen")
