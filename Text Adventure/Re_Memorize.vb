@@ -1,5 +1,6 @@
 ﻿Module Re_Memorize
     Dim playerName As String
+    Dim playerHealth As Double = 100
     Dim genRef As String
     Dim genRef1 As String
     Dim year As Integer = 2086
@@ -497,6 +498,47 @@
 
     End Sub
 
+    Sub Battle1()
+        Dim enemyFight As Boolean
+        Dim battleChoice As String
+        Dim inBattle As Boolean = True
+        Dim leaperHealth As Double = 100
+        While inBattle = True
+
+            Dim damageValue As Integer = CInt(Int(Rnd() + 1))
+
+            Console.WriteLine()
+            Console.WriteLine("[1] Power  [2] Regen  [3] Cooldown  [4] Evade  [5] S-Presen")
+            Console.Write(">> ")
+            battleChoice = Console.ReadLine()
+            Console.WriteLine()
+
+            If enemyFight = True And battleChoice = "1" Then
+                'Deal damage to player and enemy
+            ElseIf enemyFight = True And battleChoice = "2" Then
+                'deal damage to enemy and player and heal some playerHealth
+            ElseIf enemyFight = True And battleChoice = "3" Then
+                'you deal damage
+            ElseIf enemyFight = True And battleChoice = "4" Then
+                'You evade no damage delt
+            ElseIf enemyFight = True And battleChoice = "5" Then
+                'You do double damage and you don't get hurt
+            ElseIf enemyFight = False And battleChoice = "1" Then
+                'deal damage to enemy
+            ElseIf enemyFight = False And battleChoice = "2" Then
+                'deal damage to enemy and regain 10 health
+            ElseIf enemyFight = False And battleChoice = "3" Then
+                'deal damage to enemy and s presen coolsdown faster
+            ElseIf enemyFight = False And battleChoice = "4" Then
+                'nothing happens
+            ElseIf enemyFight = False And battleChoice = "5" Then
+                'You deal masive damage to enemy
+            Else
+                'Write invaild command and repeat loop
+            End If
+        End While 'In battle
+    End Sub
+
     Sub Credits()
         Console.WriteLine("--------Credits--------")
         Console.WriteLine()
@@ -545,7 +587,7 @@
         Console.WriteLine("   00000000        .1000000000       0000000000   MMMM     MMMM  EE        MMMM     MMMM    OOO    OOO    RR RRRR   II       ZZ  EE")
         Console.WriteLine("    00000000                          00000000    MM MM   MM MM  EE        MM MM   MM MM   OO        OO   RR   RRR  II      ZZ   EE")
         Console.WriteLine("     00000    00000\        /00000000    0000     MM  MM MM  MM  EEEEEE    MM  MM MM  MM  OO          OO  RR RRRR   II     ZZ    EEEEEE")
-        Console.WriteLine("       00   000000000\\._.//00000000000   0       MM   MMM   MM  EE        MM   MMM   MM   OO        OO   RRRR      II    ZZ     EE")
+        Console.WriteLine("       00   000000000\\000//00000000000   0       MM   MMM   MM  EE        MM   MMM   MM   OO        OO   RRRR      II    ZZ     EE")
         Console.WriteLine("           0000000000000000000000000000           MM         MM  EE        MM         MM    OOO    OO0    RR  RR    II   ZZ      EE")
         Console.WriteLine("             00000000000000000000000              MM         MM  EEEEEEEE  MM         MM      OOOOOO      RR    RR  II  ZZZZZZZ  EEEEEEEE")
         Console.WriteLine("                 00000000000000")
