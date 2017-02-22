@@ -146,6 +146,7 @@
                     Console.Clear()
                     Threading.Thread.Sleep(1000)
                     MainGame()
+                    Credits()
                     Exit Select
                 Case "2"
                     'Re-explain instructions
@@ -202,9 +203,9 @@
 
     Sub MainGame()
         'Start Chapter 0
-        Battle1()
         Chapter0()
         If leaper = True Then
+            Console.WriteLine("You got you're memory fully wiped. Try again...")
             Exit Sub
         End If
         'Start Chapter 1
@@ -364,11 +365,11 @@
             Console.WriteLine("")
             Console.WriteLine("[1] Walk Forward  [2] Look around  [3] Do nothing")
             Console.Write(">> ")
-            Dim pathChoice1 As Integer = 0
+            Dim pathChoice1 As String = ""
             pathChoice1 = Console.ReadLine()
-            If pathChoice1 = 1 Then
+            If pathChoice1 = "1" Then
                 forRobot = True
-            ElseIf pathChoice1 = 2 Then
+            ElseIf pathChoice1 = "2" Then
                 'Look Around
                 Console.WriteLine("You look around,")
                 Console.Write("*")
@@ -393,7 +394,7 @@
                 Console.ReadLine()
                 Console.WriteLine("To your right, you see through a pane of glass some people in the same uniform that the other guy was in.")
                 Console.WriteLine("They appear to be talking about something.")
-            ElseIf pathChoice1 = 3 Then
+            ElseIf pathChoice1 = "3" Then
                 Console.WriteLine("You just stared at the robot...")
                 Console.Write("*")
                 Console.ReadLine()
@@ -483,9 +484,13 @@
                         hear = Console.ReadLine()
                         If hear = "1" Then
                             Console.WriteLine("Unknown: Because you will cease to exist.")
+                            Console.WriteLine("[1] Okay I'll trust you.  [2] Just get me out of here.")
+                            memoryHunter = True
+                            hearL = True
                         ElseIf hear = "2" Then
                             Console.WriteLine("Unknown: Guess your too far gone to help. This was your decision.")
                             leaper = True
+                            hearL = True
                         Else
                             Console.WriteLine("Invalid command")
                         End If
@@ -497,7 +502,7 @@
     End Sub
 
     Sub Chapter0_3()
-
+        Battle1()
     End Sub
 
     Sub Battle1()
@@ -518,13 +523,17 @@
             sensenFury = 0
             playerHealth = 100
             leaperHealth = 100
+            Console.WriteLine()
+            Console.WriteLine("Battle Start!")
+            Console.WriteLine()
+            Console.WriteLine()
 
             While inBattle = True
 
                 'Get leaper move (Randon True, False)
                 enemyFight = CInt(Math.Floor((1 - 0 + 1) * Rnd())) + 0
 
-
+                Threading.Thread.Sleep(1000)
                 Console.WriteLine()
                 Console.WriteLine("[1] Power  [2] Regen  [3] Cooldown  [4] Evade  [5] S-Presen")
                 Console.Write("$ ")
@@ -535,6 +544,7 @@
                     'Deal damage to player and enemy
                     Console.WriteLine()
                     Console.WriteLine("You did damage to the leaper. But you also took damage")
+                    Threading.Thread.Sleep(500)
                     Console.WriteLine(playerName + ": -5       Leaper: -5")
                     playerHealth = playerHealth - 5
                     leaperHealth = leaperHealth - 5
@@ -542,7 +552,9 @@
                     'deal damage to enemy and player and heal some playerHealth
                     Console.WriteLine()
                     Console.WriteLine("You did damage to the leaper. But you also took damage but you regained health.")
+                    Threading.Thread.Sleep(500)
                     Console.WriteLine(playerName + ": -5       Leaper: -2")
+                    Threading.Thread.Sleep(500)
                     Threading.Thread.Sleep(500)
                     Console.WriteLine("You regained some health: +10")
                     playerHealth = playerHealth - 5
@@ -553,6 +565,7 @@
                     'you deal damage and little damage to enemy
                     Console.WriteLine()
                     Console.WriteLine("You took damage. And did some to leaper.")
+                    Threading.Thread.Sleep(500)
                     Console.WriteLine(playerName + ": -8       Leaper: -2")
                     playerHealth = playerHealth - 8
                     leaperHealth = leaperHealth - 2
@@ -562,24 +575,34 @@
                     'You evade no damage delt
                     Console.WriteLine()
                     Console.WriteLine("You evaded the leapers attack")
+                    Threading.Thread.Sleep(500)
                     Console.WriteLine()
-                ElseIf enemyFight = True And battleChoice = "5" Then
+                ElseIf enemyFight = True And battleChoice = "5" And sensenFury = 0 Then
                     'You do double damage and you don't get hurt
                     Console.WriteLine()
                     Console.WriteLine("You did massive damage!")
+                    Threading.Thread.Sleep(500)
                     Console.WriteLine("Leaper: -20")
                     leaperHealth = leaperHealth - 20
                     sensenFury = 5
+                ElseIf enemyFight = True And battleChoice = "5" And sensenFury > 0 Then
+                    Console.WriteLine()
+                    Console.WriteLine("You took damage. Unable to use SenSen Fury right now. Your Focus is to Low.")
+                    Threading.Thread.Sleep(500)
+                    Console.WriteLine("You: -10")
+                    playerHealth = playerHealth - 10
                 ElseIf enemyFight = False And battleChoice = "1" Then
                     'deal damage to enemy
                     Console.WriteLine()
                     Console.WriteLine("You did damage to the leaper")
+                    Threading.Thread.Sleep(500)
                     Console.WriteLine("Leaper: -8")
                     leaperHealth = leaperHealth - 8
                 ElseIf enemyFight = False And battleChoice = "2" Then
                     'deal damage to enemy and regain 10 health
                     Console.WriteLine()
                     Console.WriteLine("You did some damage to the leaper and regained health")
+                    Threading.Thread.Sleep(500)
                     Console.WriteLine(playerName + ": +20       Leaper: -5")
                     leaperHealth = leaperHealth - 5
                     playerHealth = playerHealth + 20
@@ -587,8 +610,10 @@
                     'deal damage to enemy
                     Console.WriteLine()
                     Console.WriteLine("You did damage to the Leaper and accelerated cooldown")
+                    Threading.Thread.Sleep(500)
                     Console.WriteLine("Leaper: -4")
-                    Console.WriteLine("")
+                    Console.WriteLine()
+                    Threading.Thread.Sleep(500)
                     Console.WriteLine("S-Presen Cooldown: -2")
                     leaperHealth = leaperHealth - 4
                     'cooldown on s-presen
@@ -597,16 +622,23 @@
                     'nothing happens
                     Console.WriteLine()
                     Console.WriteLine("You evaded but the leaper did not attack")
+                    Threading.Thread.Sleep(500)
                     Console.WriteLine()
-                ElseIf enemyFight = False And battleChoice = "5" Then
+                ElseIf enemyFight = False And battleChoice = "5" And sensenFury = 0 Then
                     'You deal masive damage to enemy
                     Console.WriteLine()
                     Console.WriteLine("You did massive damage to the Leaper")
+                    Threading.Thread.Sleep(500)
                     Console.WriteLine("Leaper: -30")
                     leaperHealth = leaperHealth - 30
+                ElseIf enemyFight = False And battleChoice = "5" And sensenFury > 0 Then
+                    Console.WriteLine()
+                    Console.WriteLine("Unable to use SenSen Fury right now. Your Focus is to Low. Leaper did not attack.")
+                    Threading.Thread.Sleep(500)
                 Else
                     'Write invaild command and repeat loop
                     Console.WriteLine("-Invalid Command-")
+                    Threading.Thread.Sleep(500)
                     Console.WriteLine()
                 End If
                 If playerHealth > 100 Then
@@ -615,9 +647,9 @@
 
                 If playerHealth < 0 And leaperHealth > 0 Then
                     loose = True
-                ElseIf leaperHealth < 0 And playerHealth > 0 Then
+                ElseIf leaperHealth < 1 And playerHealth > 0 Then
                     win = True
-                ElseIf leaperHealth < 0 And playerHealth < 0 Then
+                ElseIf leaperHealth < 1 And playerHealth < 1 Then
                     loose = True
                 Else
                     round = round + 1
@@ -634,6 +666,7 @@
                 End If
                 If loose = True And win = False Then
                     Console.WriteLine("")
+                    Threading.Thread.Sleep(1000)
                     Console.WriteLine("You died... Try again.")
                     Console.WriteLine("")
                     Threading.Thread.Sleep(1000)
@@ -641,7 +674,12 @@
                 End If
                 If inBattle = True Then
                     Console.WriteLine()
+                    Console.WriteLine()
+                    Console.WriteLine("--------------------------------------------------------")
+                    Console.WriteLine()
+                    Console.WriteLine()
                     Console.WriteLine("Your health: " & playerHealth & "           Enemy Health: " & leaperHealth)
+                    Threading.Thread.Sleep(1000)
                     If sensenFury > 0 Then
                         Console.WriteLine("S-Presen Cooldown: " & sensenFury & " turns left")
                     Else
@@ -688,22 +726,24 @@
     End Sub
 
     Sub Logo()
-        Console.WriteLine("                              0000                ")
-        Console.WriteLine("                              00000000            ")
-        Console.WriteLine("      0\                      000000000000        RRRRRR    EEEEEEEE")
-        Console.WriteLine("     00\,.                        000000000       RR RRRR   EE        ::")
-        Console.WriteLine("    0000000        1OOOOOOOOO      000000000      RR   RRR  EE        ::")
-        Console.WriteLine("   0000000        11OOOOOOOOOO       00000000     RR RRRR   EEEEEE")
-        Console.WriteLine("  0000000        11111OOOOOOOOO      000000000    RRRR      EE        ::")
-        Console.WriteLine("  0000000       1111111OOOOOOOOO      000000000   RR  RR    EE        ::")
-        Console.WriteLine("                11111111000000000      000000000  RR    RR  EEEEEEEE   ")
-        Console.WriteLine("   .,,//0        111111100000000      00000000")
-        Console.WriteLine("  00000000        1111100000000      0000000000   MMM       MMM  EEEEEEEE  MMM       MMM      OOOOOO      RRRRRR    II  ZZZZZZZ  EEEEEEEE")
-        Console.WriteLine("   00000000        .1000000000       0000000000   MMMM     MMMM  EE        MMMM     MMMM    OOO    OOO    RR RRRR   II       ZZ  EE")
-        Console.WriteLine("    00000000                          00000000    MM MM   MM MM  EE        MM MM   MM MM   OO        OO   RR   RRR  II      ZZ   EE")
-        Console.WriteLine("     00000    00000\        /00000000    0000     MM  MM MM  MM  EEEEEE    MM  MM MM  MM  OO          OO  RR RRRR   II     ZZ    EEEEEE")
-        Console.WriteLine("       00   000000000\\000//00000000000   0       MM   MMM   MM  EE        MM   MMM   MM   OO        OO   RRRR      II    ZZ     EE")
-        Console.WriteLine("           0000000000000000000000000000           MM         MM  EE        MM         MM    OOO    OO0    RR  RR    II   ZZ      EE")
+        Console.WriteLine("                           0")
+        Console.WriteLine("                           00000000")
+        Console.WriteLine("                           0000000000")
+        Console.WriteLine("                             00000000000")
+        Console.WriteLine("      00                          00000000        RRRRRR    EEEEEEEE")
+        Console.WriteLine("     00000                          00000000      RR RRRR   EE        ::")
+        Console.WriteLine("    0000000       1OOOOOOOOOO         0000000     RR   RRR  EE        ::")
+        Console.WriteLine("   0000000       11OOOOOOOOOOO         0000000    RR RRRR   EEEEEE")
+        Console.WriteLine("  0000000       11111OOOOOOOOOO         0000000   RRRR      EE        ::")
+        Console.WriteLine("  0000000      1111111OOOOOOOOOO        0000000   RR  RR    EE        ::")
+        Console.WriteLine("               111111110000000000        0000000  RR    RR  EEEEEEEE")
+        Console.WriteLine(" 00000000       1111111000000000        000000")
+        Console.WriteLine("  00000000       11111000000000         0000000   MMM       MMM  EEEEEEEE  MMM       MMM      OOOOOO      RRRRRR    II  ZZZZZZZ  EEEEEEEE")
+        Console.WriteLine("   00000000       110000000000         00000000   MMMM     MMMM  EE        MMMM     MMMM    OOO    OOO    RR RRRR   II       ZZ  EE")
+        Console.WriteLine("    0000000                           00000000    MM MM   MM MM  EE        MM MM   MM MM   OO        OO   RR   RRR  II      ZZ   EE")
+        Console.WriteLine("     00000   0                         000000     MM  MM MM  MM  EEEEEE    MM  MM MM  MM  OO          OO  RR RRRR   II     ZZ    EEEEEE")
+        Console.WriteLine("       00   000000             000000      0      MM   MMM   MM  EE        MM   MMM   MM   OO        OO   RRRR      II    ZZ     EE")
+        Console.WriteLine("           0000000000000 000000000000000          MM         MM  EE        MM         MM    OOO    OO0    RR  RR    II   ZZ      EE")
         Console.WriteLine("             00000000000000000000000              MM         MM  EEEEEEEE  MM         MM      OOOOOO      RR    RR  II  ZZZZZZZ  EEEEEEEE")
         Console.WriteLine("                 00000000000000")
     End Sub
