@@ -27,9 +27,9 @@
         Threading.Thread.Sleep(2000)
         Console.WriteLine("              We invented a key for that fortress.")
         Console.WriteLine()
-        Threading.Thread.Sleep(2000)
+        Threading.Thread.Sleep(1000)
         Console.WriteLine("")
-        Threading.Thread.Sleep(3000)
+        Threading.Thread.Sleep(1000)
         Console.WriteLine("Press Any Key to continue.")
         Console.ReadLine()
         Console.Clear()
@@ -202,10 +202,12 @@
 
     Sub MainGame()
         'Start Chapter 0
+        Battle1()
         Chapter0()
         If leaper = True Then
             Exit Sub
         End If
+        'Start Chapter 1
 
     End Sub
 
@@ -520,6 +522,7 @@
             While inBattle = True
 
                 'Get leaper move (Randon True, False)
+                enemyFight = CInt(Math.Floor((1 - 0 + 1) * Rnd())) + 0
 
 
                 Console.WriteLine()
@@ -539,19 +542,19 @@
                     'deal damage to enemy and player and heal some playerHealth
                     Console.WriteLine()
                     Console.WriteLine("You did damage to the leaper. But you also took damage but you regained health.")
-                    Console.WriteLine(playerName + ": -5       Leaper: -4")
+                    Console.WriteLine(playerName + ": -5       Leaper: -2")
                     Threading.Thread.Sleep(500)
                     Console.WriteLine("You regained some health: +10")
                     playerHealth = playerHealth - 5
-                    leaperHealth = leaperHealth - 4
+                    leaperHealth = leaperHealth - 2
                     'Regain some health
                     playerHealth = playerHealth + 10
                 ElseIf enemyFight = True And battleChoice = "3" Then
                     'you deal damage and little damage to enemy
                     Console.WriteLine()
                     Console.WriteLine("You took damage. And did some to leaper.")
-                    Console.WriteLine(playerName + ": -7       Leaper: -2")
-                    playerHealth = playerHealth - 7
+                    Console.WriteLine(playerName + ": -8       Leaper: -2")
+                    playerHealth = playerHealth - 8
                     leaperHealth = leaperHealth - 2
                     'Cooldown on s presen
                     sensenFury = sensenFury - 1
@@ -606,6 +609,9 @@
                     Console.WriteLine("-Invalid Command-")
                     Console.WriteLine()
                 End If
+                If playerHealth > 100 Then
+                    playerHealth = 100
+                End If
 
                 If playerHealth < 0 And leaperHealth > 0 Then
                     loose = True
@@ -626,11 +632,18 @@
                 If loose = True Or win = True Then
                     inBattle = False
                 End If
+                If loose = True And win = False Then
+                    Console.WriteLine("")
+                    Console.WriteLine("You died... Try again.")
+                    Console.WriteLine("")
+                    Threading.Thread.Sleep(1000)
+                    inBattle = False
+                End If
                 If inBattle = True Then
                     Console.WriteLine()
-                    Console.WriteLine("Your health: " + playerHealth + "           Enemy Health: " + leaperHealth)
+                    Console.WriteLine("Your health: " & playerHealth & "           Enemy Health: " & leaperHealth)
                     If sensenFury > 0 Then
-                        Console.WriteLine("S-Presen Cooldown: " + sensenFury + " turns left")
+                        Console.WriteLine("S-Presen Cooldown: " & sensenFury & " turns left")
                     Else
                         Console.WriteLine("S-Presen is ready.")
                     End If
