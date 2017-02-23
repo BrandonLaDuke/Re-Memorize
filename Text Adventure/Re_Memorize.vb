@@ -3,15 +3,18 @@
     Dim playerHealth As Double = 100
     Dim genRef As String
     Dim genRef1 As String
-    Dim year As Integer = 2086
+    Dim genRef2 As String
+    Dim year As String = "2086"
     Dim cWhile As Boolean = True
     Dim memoryHunter As Boolean = False
     Dim leaper As Boolean = False
+
     'Ferdinan - Doctor
     'Johnny
     '
     Sub Main()
         Dim quitGame As Boolean = 0
+
         Console.WriteLine("Please go Full Screen.")
         Console.WriteLine("After you have done so press Enter.")
         Console.ReadLine()
@@ -71,6 +74,7 @@
         playerName = ""
         genRef = ""
         genRef1 = ""
+        genRef2 = ""
         cWhile = True
         memoryHunter = False
         leaper = False
@@ -79,6 +83,8 @@
     Sub GameStart()
         Console.WriteLine()
         Console.WriteLine("Hello, stranger. What's your name?")
+        Console.Write("Hello ")
+
         Console.Write(">>")
         Dim nameCor As Boolean = False
         Dim nameChk As String = ""
@@ -114,9 +120,11 @@
         If genSwitch = "1" Then
             genRef = "him"
             genRef1 = "bro"
+            genRef2 = "he's"
         Else
             genRef = "her"
             genRef1 = "sis"
+            genRef2 = "she's"
         End If
         Threading.Thread.Sleep(1000)
         Console.WriteLine("I will now tell you how to play.")
@@ -225,16 +233,9 @@
         Console.ReadLine()
         Console.Clear()
         Threading.Thread.Sleep(200)
-        Console.WriteLine("Voice: " + playerName + " Run! You got to get out of there! Quick!")
+        Console.WriteLine("Voice: " + playerName + " Get out of there! Quick! I’ll be fine, I’m almost there. (You run around a corner)")
         Console.Write("*")
         Console.ReadLine()
-        Console.WriteLine(playerName + ": Don't worry, I'll be fine. I'm almost there.")
-        Console.WriteLine()
-        Console.Write("*")
-        Console.ReadLine()
-        Console.WriteLine("You run around a corner and get hit by a S.A.B.R.E. Force Agent")
-        Console.WriteLine()
-        Threading.Thread.Sleep(2000)
         Console.WriteLine("You blacked out...")
         Console.Write("*")
         Console.ReadLine()
@@ -246,19 +247,19 @@
         Console.Write("*")
         Console.ReadLine()
         Console.Clear()
-        Console.WriteLine("Machine shuts off...")
+        Console.WriteLine("(Machine shuts off...)")
         Console.Write("*")
         Console.ReadLine()
-        Console.WriteLine("Robotic Voice: Memory Erase complete.")
+        Console.WriteLine("Robotic Voice: Memory Erase Complete.")
         Console.Write("*")
         Console.ReadLine()
-        Console.WriteLine(playerName + ": (breathing heavy)")
+        Console.WriteLine(playerName + ": (Breathing heavy)")
         Console.Write("*")
         Console.ReadLine()
-        Console.WriteLine("You realize you are laying in the center of a room.")
+        Console.WriteLine("You realize that you are laying in the center of a small room...")
         Console.Write("*")
         Console.ReadLine()
-        Console.WriteLine("A person approches you holding some files. There dressed in a doctor uniform maybe?")
+        Console.WriteLine("Someone is approaching you dressed in a doctor uniform?")
         Console.Write("*")
         Console.ReadLine()
         Console.WriteLine("Stranger: What is your name?")
@@ -287,19 +288,19 @@
         Console.WriteLine()
         Console.WriteLine("Stranger: What year is it?")
         Console.Write(">> ")
-        Dim vYear As Integer
+        Dim vYear As String
         vYear = Console.ReadLine()
         If vYear = year Then
-            Console.WriteLine("Stranger: Huh..., Dr Ferdnan this paicent is showing resistance.")
+            Console.WriteLine("Stranger: Huh..., Dr. Ferdinand, this patient... " + genRef2 + " showing resistance.")
             Console.WriteLine("*")
             Console.ReadLine()
             Console.WriteLine("Dr. Ferdnan: Okay, send " + genRef + " to me. I'll take care of " + genRef + " myself.")
             Console.WriteLine("*")
             Console.ReadLine()
-            Console.WriteLine("Stranger: Alright. As you wish.")
+            Console.WriteLine("Stranger: As you wish.")
             Console.WriteLine("*")
             Console.ReadLine()
-            Console.WriteLine("Stranger wallks away leaving you alone.")
+            Console.WriteLine("(The stranger wallks away leaving you alone.)")
             Console.Write("*")
             Console.WriteLine()
             Console.ReadLine()
@@ -353,9 +354,18 @@
         Console.WriteLine("A flying robot approches you,")
         Console.Write("*")
         Console.ReadLine()
-        Console.WriteLine("and scans you with some sort of laser.")
-        Console.Write("*")
-        Console.ReadLine()
+        Dim confirm As Boolean = False
+        Do Until confirm = True
+            Console.WriteLine("Please look up.")
+            Console.WriteLine("[1] Look at the robot")
+            Dim look As String = ""
+            Console.Write("$ ")
+            look = Console.ReadLine()
+            If look = "1" Then
+                confirm = True
+            End If
+        Loop
+        Console.WriteLine()
         Dim forRobot As Boolean = False
         While forRobot = False
             Console.WriteLine("Robot: Please step forward.")
