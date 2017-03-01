@@ -651,7 +651,7 @@
     End Sub
 
     Sub Chapter1()
-
+        Console.WriteLine("Hello from Chapter 1!")
     End Sub
 
     Sub Battle1()
