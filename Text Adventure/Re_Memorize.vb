@@ -8,6 +8,9 @@
     Dim cWhile As Boolean = True
     Dim memoryHunter As Boolean = False
     Dim leaper As Boolean = False
+    Dim userInput As String = ""
+    Dim selectLoop1 As Boolean = True
+    Dim selectLoop2 As Boolean = True
 
     'Ferdinan - Doctor
     'Johnny
@@ -344,7 +347,6 @@
         If leaper = True Then
             Exit Sub
         End If
-        Chapter0_3()
     End Sub
 
     Sub Chapter0_1()
@@ -495,24 +497,113 @@
                         If hear = "1" Then
                             Console.WriteLine("Unknown: Because you will cease to exist.")
                             Console.WriteLine("[1] Okay I'll trust you.  [2] Just get me out of here.")
+                            Console.Write("$ ")
+                            Console.ReadLine()
                             memoryHunter = True
                             hearL = True
                         ElseIf hear = "2" Then
                             Console.WriteLine("Unknown: Guess your too far gone to help. This was your decision.")
+                            memoryHunter = True
                             leaper = True
                             hearL = True
                         Else
                             Console.WriteLine("Invalid command")
                         End If
-
                     End While
+                End If
+                If leaper = True And memoryHunter = True Then
+                    memoryHunter = False
                 End If
             End If
         Next
+        If memoryHunter = True Then
+            Chapter0_3_MemoryHunter()
+        Else
+            Chapter0_3_Leaper()
+        End If
     End Sub
 
-    Sub Chapter0_3()
-        Battle1()
+    Sub Chapter0_3_MemoryHunter()
+        Console.WriteLine()
+        Console.WriteLine("Unknown: Okay this is what you need to do. Look to your left, do you see a steel door?")
+        userInput = ""
+        While selectLoop1 = True
+            Console.WriteLine("[1] Look forward  [2] Look to your left  [3] Look to your right  [4] Look behind you")
+            Console.Write("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Then
+                'look forward
+                Console.WriteLine("")
+            ElseIf userInput = "2" Then
+                Console.WriteLine(playerName & ": Yes, I see the door.")
+                'Look left (continue)
+                selectLoop1 = False
+            ElseIf userInput = "3" Then
+                'Look right
+            ElseIf userInput = "4" Then
+                'look behind you
+            Else
+                Console.WriteLine("Invalid command.")
+            End If
+        End While
+        userInput = ""
+        selectLoop1 = True
+        Console.WriteLine("[Power shuts off]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Loud Speaker: Network annomly has appeared. Please stay in line.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Unknown: Okay, that should buy you some time. The door will open a bit, Go run to the door and slide under it.")
+        While selectLoop1 = True
+            Console.WriteLine("[1] Run to the door and slide under.")
+            Console.Write("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Then
+                selectLoop1 = False
+            Else
+                Console.WriteLine("Invalid command.")
+            End If
+        End While
+        Console.WriteLine("[You slid to the other side.]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("[You see a giant robot. Doesn't seem like it's active...]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Okay now run and slide down the vent before the security robot wakes up.")
+        selectLoop1 = True
+        userInput = ""
+        While selectLoop1 = True
+            Console.WriteLine("[1] Run")
+            Console.Write("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Then
+                'Continue
+                selectLoop1 = False
+            Else
+                Console.WriteLine("Invaild command.")
+            End If
+        End While
+        Console.WriteLine("[You take off running for the vent.]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Loud speaker: ALERT: UNAUTHORIZED PATIENT IN RESTRICTED AREA")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Unknown: Don't look back!")
+        Console.Write("*")
+        Console.ReadLine()
+        selectLoop1 = True
+        userInput = ""
+        Console.WriteLine("Unknown: Quick! Jump into the vent!")
+        Console.WriteLine("[1] Jump into the vent")
+        Console.Write("$ ")
+        userInput = Console.ReadLine()
+    End Sub
+
+    Sub Chapter0_3_Leaper()
+        'Game over before it started.
     End Sub
 
     Sub Battle1()
@@ -542,6 +633,10 @@
 
                 'Get leaper move (Randon True, False)
                 enemyFight = CInt(Math.Floor((1 - 0 + 1) * Rnd())) + 0
+
+
+
+
 
                 Threading.Thread.Sleep(1000)
                 Console.WriteLine()
@@ -745,9 +840,9 @@
         Console.WriteLine("    0000000       1OOOOOOOOOO         0000000     RR   RRR  EE        ::")
         Console.WriteLine("   0000000       11OOOOOOOOOOO         0000000    RR RRRR   EEEEEE")
         Console.WriteLine("  0000000       11111OOOOOOOOOO         0000000   RRRR      EE        ::")
-        Console.WriteLine("  0000000      1111111OOOOOOOOOO        0000000   RR  RR    EE        ::")
+        Console.WriteLine(" 0000000       1111111OOOOOOOOOO        0000000   RR  RR    EE        ::")
         Console.WriteLine("               111111110000000000        0000000  RR    RR  EEEEEEEE")
-        Console.WriteLine(" 00000000       1111111000000000        000000")
+        Console.WriteLine(" 00000000       1111111000000000         000000")
         Console.WriteLine("  00000000       11111000000000         0000000   MMM       MMM  EEEEEEEE  MMM       MMM      OOOOOO      RRRRRR    II  ZZZZZZZ  EEEEEEEE")
         Console.WriteLine("   00000000       110000000000         00000000   MMMM     MMMM  EE        MMMM     MMMM    OOO    OOO    RR RRRR   II       ZZ  EE")
         Console.WriteLine("    0000000                           00000000    MM MM   MM MM  EE        MM MM   MM MM   OO        OO   RR   RRR  II      ZZ   EE")
