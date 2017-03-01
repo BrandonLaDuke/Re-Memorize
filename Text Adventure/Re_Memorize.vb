@@ -220,7 +220,7 @@
             Exit Sub
         End If
         'Start Chapter 1
-
+        Chapter1()
     End Sub
 
     Sub Chapter0()
@@ -597,13 +597,61 @@
         selectLoop1 = True
         userInput = ""
         Console.WriteLine("Unknown: Quick! Jump into the vent!")
-        Console.WriteLine("[1] Jump into the vent")
-        Console.Write("$ ")
-        userInput = Console.ReadLine()
+        selectLoop1 = True
+        userInput = ""
+        While selectLoop1 = True
+            Console.WriteLine("[1] Jump into the vent")
+            Console.Write("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Then
+                'Continue
+                selectLoop1 = False
+            Else
+                Console.WriteLine("Invaild command.")
+            End If
+        End While
+        Console.WriteLine("[You jump into the vent falling rapidly.]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("You break out into a open room.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Unknown: Quick jump into a casket")
+        selectLoop1 = True
+        userInput = ""
+        While selectLoop1 = True
+            Console.WriteLine("[1] Jump into the casket [2] What!! why!?")
+            Console.Write("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Then
+                'continue
+            ElseIf userInput = "2" Then
+                Console.WriteLine(playerName & " Jump in a casket!? Are you crazy!?")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("Unknown: Just do it " & playerName & "! It's the only way out! There is not much time!")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine(playerName & ": Please let this be a nightmare.")
+            End If
+        End While
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("[You pull a body out of one of the caskets and jump in it.]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("[closes and seals shut and now you're in pure darkness...")
+        Console.WriteLine("*")
+        Console.ReadLine()
+        Console.Clear()
     End Sub
 
     Sub Chapter0_3_Leaper()
         'Game over before it started.
+    End Sub
+
+    Sub Chapter1()
+
     End Sub
 
     Sub Battle1()
