@@ -654,8 +654,30 @@
     End Sub
 
     Sub Chapter1()
-        Console.WriteLine("Hello from Ch 1")
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          ------------------ Chapter 1 ------------------")
+        Console.WriteLine("          ------------- People Just Like Us -------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.ReadLine()
+        Console.Clear()
+        Threading.Thread.Sleep(200)
+        Chapter1_1()
+    End Sub
 
+    Sub Chapter1_1()
+        Console.WriteLine("[You feel Lots of movement like your going down a river]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine(playerName & ": (Breathing heavy)")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine(playerName & ": Alright now what!?")
+        Console.Write("*")
         Console.ReadLine()
     End Sub
 
@@ -703,7 +725,7 @@
                     Console.WriteLine()
                     Console.WriteLine("You did damage to the leaper. But you also took damage")
                     Threading.Thread.Sleep(500)
-                    Console.WriteLine(playerName + ": -5       Leaper: -5")
+                    Console.WriteLine(playerName + ":  -5       Leaper: -5")
                     playerHealth = playerHealth - 5
                     leaperHealth = leaperHealth - 5
                 ElseIf enemyFight = True And battleChoice = "2" Then
