@@ -654,6 +654,7 @@
     End Sub
 
     Sub Chapter1()
+        Console.WriteLine("Hello from Ch 1")
 
         Console.ReadLine()
     End Sub
