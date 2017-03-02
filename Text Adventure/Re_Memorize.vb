@@ -463,7 +463,7 @@
                 Console.WriteLine("Unknown: Good, listen.")
                 Console.Write("*")
                 Console.ReadLine()
-                Console.WriteLine("Unknown: Their about to wipe your brain. If you want to live, you need to listen to me.")
+                Console.WriteLine("Unknown: They're about to wipe your brain. If you want to live, you need to listen to me.")
                 'Start first story arc choice
                 Console.Write("*")
                 Console.ReadLine()
@@ -625,6 +625,7 @@
             userInput = Console.ReadLine()
             If userInput = "1" Then
                 'continue
+                selectLoop1 = False
             ElseIf userInput = "2" Then
                 Console.WriteLine(playerName & " Jump in a casket!? Are you crazy!?")
                 Console.Write("*")
@@ -633,6 +634,7 @@
                 Console.Write("*")
                 Console.ReadLine()
                 Console.WriteLine(playerName & ": Please let this be a nightmare.")
+                selectLoop1 = False
             End If
         End While
         Console.Write("*")
