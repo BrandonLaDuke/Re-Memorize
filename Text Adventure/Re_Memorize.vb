@@ -212,6 +212,25 @@
         Console.WriteLine("Do you understand this " + playerName + "?")
         Console.Write("$")
     End Sub
+    'Add Battle instructions
+    Sub BattleInstructions()
+        Console.WriteLine()
+        Console.WriteLine("------------Battle Instructions------------")
+        Console.WriteLine()
+        Console.WriteLine("This game is played by answering questions by selecting a number option from the menu,")
+        Console.WriteLine("and then pressing enter.")
+        Console.WriteLine("There will also ocasionaly be open ended questions.")
+        Console.WriteLine()
+        Console.WriteLine("Symbols you will find that you will need to know about:")
+        Console.WriteLine("   >>   Is a open ended responce marker. When you see this you can type a responce.")
+        Console.WriteLine()
+        Console.WriteLine("   $    Is a simple question marker. Here you select a responce from the prompt.")
+        Console.WriteLine()
+        Console.WriteLine("   *    If you see this marker you press the Enter button to continue.")
+        Console.WriteLine()
+        Console.WriteLine("Do you understand this " + playerName + "?")
+        Console.Write("$")
+    End Sub
 
     Sub MainGame()
         'Start Chapter 0
@@ -679,6 +698,104 @@
         Console.WriteLine(playerName & ": Alright now what!?")
         Console.Write("*")
         Console.ReadLine()
+        Console.WriteLine("Unknown: " & playerName & " you must calm down and listen to me. The company known as memorize has created this tech called the Sensation Engine or SenSen.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Unknown: SenSen tech is not all bad but with anything it can be when used by the wrong individuals.")
+        userInput = ""
+        selectLoop1 = True
+        While selectLoop1 = True
+            Console.WriteLine("[1] I really need to get out of this coffin.  [2] What does this have to do with me?")
+            Console.Write("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Then
+                Console.WriteLine(playerName & ": Yeah, yeah that sounds very interesting but I really have to get out of this coffin NOW.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("Relax " & playerName & ", first I have to prepare you for what is waiting outside.")
+                selectLoop1 = False
+            ElseIf userInput = "2" Then
+                Console.WriteLine(playerName & ": Yeah yeah, but what's this got to do with me?")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("Unknown: You were a memory hunter, " & playerName & ". You fought alongside me And the other memory hunters.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("It was our job to make sure that no one company was able to become a monopoly on human consciousness. But we failed. But there Is still hope.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("We must band together once more And take down the idiots at memorize.")
+                selectLoop1 = False
+            Else
+                Console.WriteLine("Invalid command")
+            End If
+        End While
+        userInput = ""
+        selectLoop1 = True
+        While selectLoop1 = True
+            Console.WriteLine("[1] How do you know my name?  [2] Who are you?")
+            Console.Write("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Or userInput = "2" Then
+                Console.WriteLine("Unknown: My name is Nilin. I'm a friend and the leader of the errorist cause. I have been through the exact thing you are going through right now. So just listen to me and you will be okay.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine(playerName & ":  just listened to you, Nilin, and now I am trapped in this coffin!")
+                selectLoop1 = False
+            Else
+                Console.WriteLine("Invalid command")
+            End If
+        End While
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Nilin: The currents will take you to Slum 404 once there you will have to be on guard immediately.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("[You hear knocking on the coffin you are in...]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("[The coffin opens]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine(playerName & ": [Gasping for air]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("[You see deformed humans that are so messed up. Strange to say the least.]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("[They back away and stare at you.]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("[They are looking at you like they are ready to attack.]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("[You stand up and get out of the coffin]")
+        userInput = ""
+        selectLoop1 = True
+        While selectLoop1 = True
+            Console.WriteLine("[1] I come in peace. [2] I'm not going to hurt you.  [3] not part of tribe.")
+            Console.Write("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Then
+                Console.WriteLine("I come in peace.")
+                selectLoop1 = False
+            ElseIf userInput = "2" Then
+                Console.WriteLine("Don't worry, I'm not going to hurt you.")
+                selectLoop1 = False
+            ElseIf userInput = "3" Then
+                Console.WriteLine("What's wrong? I'm not part of your tribe, is that it?")
+                selectLoop1 = False
+            Else
+                Console.WriteLine("Invalid command")
+            End If
+        End While
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Nilin: " & playerName & " those things will kill you you have to stay on your feet. Use your pressens to attack.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.Clear()
+        BattleInstructions()
     End Sub
 
     Sub Battle1()
@@ -725,7 +842,7 @@
                     Console.WriteLine()
                     Console.WriteLine("You did damage to the leaper. But you also took damage")
                     Threading.Thread.Sleep(500)
-                    Console.WriteLine(playerName + ":  -5       Leaper: -5")
+                    Console.WriteLine(playerName + ":   -5       Leaper: -5")
                     playerHealth = playerHealth - 5
                     leaperHealth = leaperHealth - 5
                 ElseIf enemyFight = True And battleChoice = "2" Then
