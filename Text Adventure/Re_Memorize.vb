@@ -36,7 +36,7 @@
         Threading.Thread.Sleep(1000)
         Console.WriteLine("")
         Threading.Thread.Sleep(1000)
-        Console.WriteLine("Press Any Key to continue.")
+        Console.WriteLine("Press the ""Enter"" or ""Return"" key to continue.")
         Console.ReadLine()
         Console.Clear()
         Dim play As Boolean = 0
