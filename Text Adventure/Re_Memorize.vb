@@ -15,6 +15,7 @@
     'Ferdinan - Doctor
     'Johnny
     '
+
     Sub Main()
         Dim quitGame As Boolean = 0
 
@@ -653,7 +654,8 @@
     End Sub
 
     Sub Chapter1()
-        Console.WriteLine("Hello from Chapter 1!")
+
+        Console.ReadLine()
     End Sub
 
     Sub Battle1()
