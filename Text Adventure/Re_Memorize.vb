@@ -830,7 +830,40 @@
         Console.WriteLine("Nilin: You need to get to the top of Slum 404. There you will meet with Bailey.")
         Console.Write("*")
         Console.ReadLine()
-        Console.WriteLine("")
+        userInput = ""
+        selectLoop1 = True
+        While selectLoop1 = True
+            Console.WriteLine("[1] Okay.  [2] Who is Bailey?")
+            Console.Write("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "2" Then
+                Console.WriteLine(playerName & ": Who is Bailey?")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("Nilin: Bailey is your best friend. A fellow memory hunter. I’ve let her know that you're back in the game. She will be delighted to see you.")
+                Console.Write("*")
+                Console.ReadLine()
+                selectLoop1 = False
+            ElseIf userInput = "1" Then
+                'continue
+                selectLoop1 = False
+            Else
+                Console.WriteLine("Invalid command")
+            End If
+        End While
+        Console.WriteLine("[You're walking through the run down city to get to Bailey...]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine(playerName & "Are there anymore leapers in the area?")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Nilin: This is the safest route but be careful more of those leapers could be lurking around.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Walking up to meet with Bailey will take some time so let me fill you in on as much as I can to maybe help your memory recover.")
+        'Start while
+        Console.WriteLine("[1] Okay.  [2] Go on.  [3] How exactly am I connected to all of this?")
+
     End Sub
 
     Sub Battle1()
