@@ -799,6 +799,37 @@
         Console.Clear()
         BattleInstructions()
         Battle1() 'First Battle
+        Chapter1_2()
+    End Sub
+
+    Sub Chapter1_2()
+        Console.Clear()
+        userInput = ""
+        selectLoop1 = True
+        While selectLoop1 = True
+            Console.WriteLine("[1] What were those things?  [2] Now what do I need to do?")
+            Console.Write("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Then
+                Console.WriteLine(playerName & ": Nilin, what were those things?")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("Nilin: Their Leapers caused by experiments by Memorize that corrupted their memory and have caused these mutations from the SenSen Tech. They have been around before, just a couple of years ago actually.")
+                Console.WriteLine("*")
+                Console.ReadLine()
+                selectLoop1 = False
+            ElseIf userInput = "2" Then
+                Console.WriteLine(playerName & ": Nilin, Now what do I need to do?")
+                Console.Write("*")
+                Console.ReadLine()
+                selectLoop1 = False
+            Else
+                Console.WriteLine("Invalid command")
+            End If
+        End While
+        Console.WriteLine("Nilin: You need to get to the top of Slum 404. There you will meet with Bailey.")
+        Console.Write("*")
+        Console.ReadLine()
         Console.WriteLine("")
     End Sub
 
@@ -987,6 +1018,9 @@
 
         End While ' Win
         playerHealth = 100
+        Threading.Thread.Sleep(500)
+        Console.Write("*")
+        Console.ReadLine()
     End Sub
 
     Sub Credits()
