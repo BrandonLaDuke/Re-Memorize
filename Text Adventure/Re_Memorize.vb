@@ -212,13 +212,14 @@
         Console.WriteLine("Do you understand this " + playerName + "?")
         Console.Write("$")
     End Sub
+
     'Add Battle instructions
     Sub BattleInstructions()
         Console.WriteLine()
         Console.WriteLine("------------Battle Instructions------------")
         Console.WriteLine()
-        Console.WriteLine("This game is played by answering questions by selecting a number option from the menu,")
-        Console.WriteLine("and then pressing enter.")
+        Console.WriteLine("Combat Battle")
+        Console.WriteLine("Attack types")
         Console.WriteLine("There will also ocasionaly be open ended questions.")
         Console.WriteLine()
         Console.WriteLine("Symbols you will find that you will need to know about:")
@@ -228,6 +229,7 @@
         Console.WriteLine()
         Console.WriteLine("   *    If you see this marker you press the Enter button to continue.")
         Console.WriteLine()
+        Console.WriteLine("   Cool down explain")
         Console.WriteLine("Do you understand this " + playerName + "?")
         Console.Write("$")
     End Sub
@@ -740,7 +742,7 @@
                 Console.WriteLine("Unknown: My name is Nilin. I'm a friend and the leader of the errorist cause. I have been through the exact thing you are going through right now. So just listen to me and you will be okay.")
                 Console.Write("*")
                 Console.ReadLine()
-                Console.WriteLine(playerName & ":  just listened to you, Nilin, and now I am trapped in this coffin!")
+                Console.WriteLine(playerName & ": I just listened to you, Nilin, and now I am trapped in this coffin!")
                 selectLoop1 = False
             Else
                 Console.WriteLine("Invalid command")
@@ -796,6 +798,8 @@
         Console.ReadLine()
         Console.Clear()
         BattleInstructions()
+        Battle1() 'First Battle
+        Console.WriteLine("")
     End Sub
 
     Sub Battle1()
@@ -825,10 +829,6 @@
 
                 'Get leaper move (Randon True, False)
                 enemyFight = CInt(Math.Floor((1 - 0 + 1) * Rnd())) + 0
-
-
-
-
 
                 Threading.Thread.Sleep(1000)
                 Console.WriteLine()
