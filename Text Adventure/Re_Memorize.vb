@@ -4,6 +4,7 @@
     Dim genRef As String
     Dim genRef1 As String
     Dim genRef2 As String
+    Dim genRef3 As String
     Dim year As String = "2086"
     Dim cWhile As Boolean = True
     Dim memoryHunter As Boolean = False
@@ -79,6 +80,7 @@
         genRef = ""
         genRef1 = ""
         genRef2 = ""
+        genRef3 = ""
         cWhile = True
         memoryHunter = False
         leaper = False
@@ -125,10 +127,12 @@
             genRef = "him"
             genRef1 = "bro"
             genRef2 = "he's"
+            genRef3 = "brother"
         Else
             genRef = "her"
             genRef1 = "sis"
             genRef2 = "she's"
+            genRef3 = "sister"
         End If
         Threading.Thread.Sleep(1000)
         Console.WriteLine("I will now tell you how to play.")
@@ -811,17 +815,11 @@
             Console.Write("$ ")
             userInput = Console.ReadLine()
             If userInput = "1" Then
-                Console.WriteLine(playerName & ": Nilin, what were those things?")
-                Console.Write("*")
-                Console.ReadLine()
                 Console.WriteLine("Nilin: Their Leapers caused by experiments by Memorize that corrupted their memory and have caused these mutations from the SenSen Tech. They have been around before, just a couple of years ago actually.")
                 Console.WriteLine("*")
                 Console.ReadLine()
                 selectLoop1 = False
             ElseIf userInput = "2" Then
-                Console.WriteLine(playerName & ": Nilin, Now what do I need to do?")
-                Console.Write("*")
-                Console.ReadLine()
                 selectLoop1 = False
             Else
                 Console.WriteLine("Invalid command")
@@ -837,9 +835,6 @@
             Console.Write("$ ")
             userInput = Console.ReadLine()
             If userInput = "2" Then
-                Console.WriteLine(playerName & ": Who is Bailey?")
-                Console.Write("*")
-                Console.ReadLine()
                 Console.WriteLine("Nilin: Bailey is your best friend. A fellow memory hunter. I’ve let her know that you're back in the game. She will be delighted to see you.")
                 Console.Write("*")
                 Console.ReadLine()
@@ -861,12 +856,198 @@
         Console.Write("*")
         Console.ReadLine()
         Console.WriteLine("Walking up to meet with Bailey will take some time so let me fill you in on as much as I can to maybe help your memory recover.")
-        'Start while
-        Console.WriteLine("[1] Okay.  [2] Go on.  [3] How exactly am I connected to all of this?")
+        userInput = ""
+        selectLoop1 = True
+        While selectLoop1 = True
+            Console.WriteLine("[1] Okay.  [2] Go on.  [3] How exactly am I connected to all of this?")
+            Console.Write("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Or userInput = "2" Then
 
+                selectLoop1 = False
+            ElseIf userInput = "3" Then
+                selectLoop1 = False
+            Else
+                Console.WriteLine("Invalid command.")
+            End If
+        End While
     End Sub
 
     Sub Battle1()
+        Dim enemyFight As Boolean
+        Dim battleChoice As String
+        Dim inBattle As Boolean = True
+        Dim leaperHealth As Double = 100
+        Dim loose As Boolean = False
+        Dim win As Boolean = False
+        Dim round As Integer = 1
+        Dim sensenFury = 0
+
+        While win = False
+            inBattle = True
+            win = False
+            loose = False
+            round = 1
+            sensenFury = 0
+            playerHealth = 100
+            leaperHealth = 100
+            Console.WriteLine()
+            Console.WriteLine("Battle Start!")
+            Console.WriteLine()
+            Console.WriteLine()
+
+            While inBattle = True
+
+                'Get leaper move (Randon True, False)
+                enemyFight = CInt(Math.Floor((1 - 0 + 1) * Rnd())) + 0
+
+                Console.WriteLine()
+                Console.WriteLine("[1] Power  [2] Regen  [3] Cooldown  [4] Evade  [5] S-Presen")
+                Console.Write("$ ")
+                battleChoice = Console.ReadLine()
+                Console.Clear()
+                Console.WriteLine()
+
+                If enemyFight = True And battleChoice = "1" Then
+                    'Deal damage to player and enemy
+                    Console.WriteLine()
+                    Console.WriteLine("You did damage to the leaper. But you also took damage")
+                    Console.WriteLine(playerName + ":   -5       Leaper: -5")
+                    playerHealth = playerHealth - 5
+                    leaperHealth = leaperHealth - 5
+                ElseIf enemyFight = True And battleChoice = "2" Then
+                    'deal damage to enemy and player and heal some playerHealth
+                    Console.WriteLine()
+                    Console.WriteLine("You did damage to the leaper. But you also took damage but you regained health.")
+                    Console.WriteLine(playerName + ": -5       Leaper: -2")
+                    Console.WriteLine("You regained some health: +10")
+                    playerHealth = playerHealth - 5
+                    leaperHealth = leaperHealth - 2
+                    'Regain some health
+                    playerHealth = playerHealth + 10
+                ElseIf enemyFight = True And battleChoice = "3" Then
+                    'you deal damage and little damage to enemy
+                    Console.WriteLine()
+                    Console.WriteLine("You took damage. And did some to leaper.")
+                    Console.WriteLine(playerName + ": -8       Leaper: -2")
+                    playerHealth = playerHealth - 8
+                    leaperHealth = leaperHealth - 2
+                    'Cooldown on s presen
+                    sensenFury = sensenFury - 1
+                ElseIf enemyFight = True And battleChoice = "4" Then
+                    'You evade no damage delt
+                    Console.WriteLine()
+                    Console.WriteLine("You evaded the leapers attack")
+                    Console.WriteLine()
+                ElseIf enemyFight = True And battleChoice = "5" And sensenFury = 0 Then
+                    'You do double damage and you don't get hurt
+                    Console.WriteLine()
+                    Console.WriteLine("You did massive damage!")
+                    Console.WriteLine("Leaper: -20")
+                    leaperHealth = leaperHealth - 20
+                    sensenFury = 5
+                ElseIf enemyFight = True And battleChoice = "5" And sensenFury > 0 Then
+                    Console.WriteLine()
+                    Console.WriteLine("You took damage. Unable to use SenSen Fury right now. Your Focus is to Low.")
+                    Console.WriteLine("You: -10")
+                    playerHealth = playerHealth - 10
+                ElseIf enemyFight = False And battleChoice = "1" Then
+                    'deal damage to enemy
+                    Console.WriteLine()
+                    Console.WriteLine("You did damage to the leaper")
+                    Console.WriteLine("Leaper: -8")
+                    leaperHealth = leaperHealth - 8
+                ElseIf enemyFight = False And battleChoice = "2" Then
+                    'deal damage to enemy and regain 10 health
+                    Console.WriteLine()
+                    Console.WriteLine("You did some damage to the leaper and regained health")
+                    Console.WriteLine(playerName + ": +20       Leaper: -5")
+                    leaperHealth = leaperHealth - 5
+                    playerHealth = playerHealth + 20
+                ElseIf enemyFight = False And battleChoice = "3" Then
+                    'deal damage to enemy
+                    Console.WriteLine()
+                    Console.WriteLine("You did damage to the Leaper and accelerated cooldown")
+                    Console.WriteLine("Leaper: -4")
+                    Console.WriteLine()
+                    Console.WriteLine("S-Presen Cooldown: -2")
+                    leaperHealth = leaperHealth - 4
+                    'cooldown on s-presen
+                    sensenFury = sensenFury - 2
+                ElseIf enemyFight = False And battleChoice = "4" Then
+                    'nothing happens
+                    Console.WriteLine()
+                    Console.WriteLine("You evaded but the leaper did not attack")
+                    Console.WriteLine()
+                ElseIf enemyFight = False And battleChoice = "5" And sensenFury = 0 Then
+                    'You deal masive damage to enemy
+                    Console.WriteLine()
+                    Console.WriteLine("You did massive damage to the Leaper")
+                    Console.WriteLine("Leaper: -30")
+                    leaperHealth = leaperHealth - 30
+                ElseIf enemyFight = False And battleChoice = "5" And sensenFury > 0 Then
+                    Console.WriteLine()
+                    Console.WriteLine("Unable to use SenSen Fury right now. Your Focus is to Low. Leaper did not attack.")
+                Else
+                    'Write invaild command and repeat loop
+                    Console.WriteLine("-Invalid Command-")
+                    Console.WriteLine()
+                End If
+                If playerHealth > 100 Then
+                    playerHealth = 100
+                End If
+
+                If playerHealth < 0 And leaperHealth > 0 Then
+                    loose = True
+                ElseIf leaperHealth < 1 And playerHealth > 0 Then
+                    win = True
+                ElseIf leaperHealth < 1 And playerHealth < 1 Then
+                    loose = True
+                Else
+                    round = round + 1
+                End If
+
+                If sensenFury > 0 Then
+                    sensenFury = sensenFury - 1
+                ElseIf sensenFury < 0 Then
+                    sensenFury = 0
+                End If
+
+                If loose = True Or win = True Then
+                    inBattle = False
+                End If
+                If loose = True And win = False Then
+                    Console.WriteLine("")
+                    Threading.Thread.Sleep(1000)
+                    Console.WriteLine("You died... Try again.")
+                    Console.WriteLine("")
+                    Threading.Thread.Sleep(1000)
+                    inBattle = False
+                End If
+                If inBattle = True Then
+                    Console.WriteLine()
+                    Console.WriteLine()
+                    Console.WriteLine("--------------------------------------------------------")
+                    Console.WriteLine()
+                    Console.WriteLine()
+                    Console.WriteLine("Your health: " & playerHealth & "           Enemy Health: " & leaperHealth)
+                    Threading.Thread.Sleep(1000)
+                    If sensenFury > 0 Then
+                        Console.WriteLine("S-Presen Cooldown: " & sensenFury & " turns left")
+                    Else
+                        Console.WriteLine("S-Presen is ready.")
+                    End If
+                End If
+            End While 'In battle
+
+        End While ' Win
+        playerHealth = 100
+        Threading.Thread.Sleep(500)
+        Console.Write("*")
+        Console.ReadLine()
+    End Sub
+
+    Sub Battle2()
         Dim enemyFight As Boolean
         Dim battleChoice As String
         Dim inBattle As Boolean = True
