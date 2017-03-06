@@ -902,6 +902,33 @@
         Console.WriteLine("*")
         Console.ReadLine()
         Battle2()
+        playerHealth = 100
+        Console.WriteLine(playerName & ": Nilin, these things are everywhere!")
+        Console.WriteLine("*")
+        Console.ReadLine()
+        Console.WriteLine("Nilin: Just get out here as fast as you can, Bailey will be there soon to pick you up in her helicopter.")
+        Console.WriteLine("*")
+        Console.ReadLine()
+        Console.WriteLine("[You continue walking...]")
+        Console.WriteLine("*")
+        Console.ReadLine()
+        userInput = ""
+        selectLoop1 = True
+        While selectLoop1 = True
+            Console.WriteLine("[1] Who's Bailey  [2] Okay, I'll be glad to get out of this place!")
+            Console.WriteLine("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Then
+                Console.WriteLine("Nilin: ")
+            ElseIf userInput = "2" Then
+                '2
+            Else
+                Console.WriteLine("Invalid command.")
+            End If
+        End While
+
+
+
     End Sub
 
     Sub Battle1()
@@ -1288,7 +1315,6 @@
             End While 'In battle
 
         End While ' Win
-        playerHealth = 100
         Threading.Thread.Sleep(500)
         Console.Write("*")
         Console.ReadLine()
