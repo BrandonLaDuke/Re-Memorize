@@ -855,22 +855,53 @@
         Console.WriteLine("Nilin: This is the safest route but be careful more of those leapers could be lurking around.")
         Console.Write("*")
         Console.ReadLine()
-        Console.WriteLine("Walking up to meet with Bailey will take some time so let me fill you in on as much as I can to maybe help your memory recover.")
+        Console.WriteLine("Nilin: Walking up to meet with Bailey will take some time so let me fill you in on as much as I can to maybe help your memory recover.")
         userInput = ""
         selectLoop1 = True
         While selectLoop1 = True
-            Console.WriteLine("[1] Okay.  [2] Go on.  [3] How exactly am I connected to all of this?")
+            Console.WriteLine("[1] Okay.  [2] Go on.")
             Console.Write("$ ")
             userInput = Console.ReadLine()
             If userInput = "1" Or userInput = "2" Then
-
-                selectLoop1 = False
-            ElseIf userInput = "3" Then
                 selectLoop1 = False
             Else
                 Console.WriteLine("Invalid command.")
             End If
         End While
+        Console.WriteLine("Nilin: Okay, well after taking down Memorizes' central servers everything went back to normal. Everyone's memory should have went back to whom they belonged.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Nilin: There does seem to be some kind of anomaly that appeared.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine(playerName & ": What kind of anomaly?")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Nilin: What that is, we still haven’t figured that out yet. But someone is behind these new leapers appearing. We believe that it’s Dr. Ferdinand.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine(playerName & ": Ferdinand. I remember that name.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine(playerName & ":  I believe that's who that guy was talking to a bit before you contacted me.")
+        Console.WriteLine("*")
+        Console.ReadLine()
+        Console.WriteLine("Nilin: That makes sense. So he’s hiding out somewhere in that vacini--")
+        Threading.Thread.Sleep(500)
+        Console.WriteLine("[Leaper jumps and attacks you from behind]")
+        playerHealth = 50
+        Threading.Thread.Sleep(500)
+        Console.WriteLine("Your Health: " & playerHealth & "%")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Leaper: Found us “ & genRef3 & “ pain is shared now!")
+        Console.Write("*")
+        Console.ReadLine()
+        Battle2()
+        Console.WriteLine("[A second leaper jumps out and attacks]")
+        Console.WriteLine("*")
+        Console.ReadLine()
+        Battle2()
     End Sub
 
     Sub Battle1()
@@ -1052,6 +1083,8 @@
         Dim battleChoice As String
         Dim inBattle As Boolean = True
         Dim leaperHealth As Double = 100
+        Dim leaperDamage As Integer
+        Dim playerDamage As Integer
         Dim loose As Boolean = False
         Dim win As Boolean = False
         Dim round As Integer = 1
@@ -1063,7 +1096,7 @@
             loose = False
             round = 1
             sensenFury = 0
-            playerHealth = 100
+            'player health relys on previous fight
             leaperHealth = 100
             Console.WriteLine()
             Console.WriteLine("Battle Start!")
@@ -1075,42 +1108,53 @@
                 'Get leaper move (Randon True, False)
                 enemyFight = CInt(Math.Floor((1 - 0 + 1) * Rnd())) + 0
 
-                Threading.Thread.Sleep(1000)
                 Console.WriteLine()
                 Console.WriteLine("[1] Power  [2] Regen  [3] Cooldown  [4] Evade  [5] S-Presen")
                 Console.Write("$ ")
                 battleChoice = Console.ReadLine()
+                Console.Clear()
                 Console.WriteLine()
 
                 If enemyFight = True And battleChoice = "1" Then
+                    'get leaper damage rate
+                    leaperDamage = CInt(Math.Floor((7 - 1 + 1) * Rnd())) + 1
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((7 - 1 + 1) * Rnd())) + 1
                     'Deal damage to player and enemy
                     Console.WriteLine()
                     Console.WriteLine("You did damage to the leaper. But you also took damage")
-                    Threading.Thread.Sleep(500)
-                    Console.WriteLine(playerName + ":   -5       Leaper: -5")
-                    playerHealth = playerHealth - 5
-                    leaperHealth = leaperHealth - 5
+                    Console.WriteLine(playerName + ":   -" & leaperDamage & "       Leaper: -" & playerDamage)
+                    playerHealth = playerHealth - leaperDamage
+                    leaperHealth = leaperHealth - playerDamage
                 ElseIf enemyFight = True And battleChoice = "2" Then
                     'deal damage to enemy and player and heal some playerHealth
+
+                    'get leaper damage rate
+                    leaperDamage = CInt(Math.Floor((8 - 1 + 1) * Rnd())) + 1
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((5 - 1 + 1) * Rnd())) + 1
+
                     Console.WriteLine()
                     Console.WriteLine("You did damage to the leaper. But you also took damage but you regained health.")
-                    Threading.Thread.Sleep(500)
-                    Console.WriteLine(playerName + ": -5       Leaper: -2")
-                    Threading.Thread.Sleep(500)
-                    Threading.Thread.Sleep(500)
+                    Console.WriteLine(playerName + ":  -" & leaperDamage & "       Leaper: -" & playerDamage)
                     Console.WriteLine("You regained some health: +10")
-                    playerHealth = playerHealth - 5
-                    leaperHealth = leaperHealth - 2
+                    playerHealth = playerHealth - leaperDamage
+                    leaperHealth = leaperHealth - playerDamage
                     'Regain some health
                     playerHealth = playerHealth + 10
                 ElseIf enemyFight = True And battleChoice = "3" Then
                     'you deal damage and little damage to enemy
+
+                    'get leaper damage rate
+                    leaperDamage = CInt(Math.Floor((8 - 1 + 1) * Rnd())) + 1
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((2 - 1 + 1) * Rnd())) + 1
+
                     Console.WriteLine()
                     Console.WriteLine("You took damage. And did some to leaper.")
-                    Threading.Thread.Sleep(500)
-                    Console.WriteLine(playerName + ": -8       Leaper: -2")
-                    playerHealth = playerHealth - 8
-                    leaperHealth = leaperHealth - 2
+                    Console.WriteLine(playerName + ": -" & leaperDamage & "       Leaper: -" & playerDamage)
+                    playerHealth = playerHealth - leaperDamage
+                    leaperHealth = leaperHealth - playerDamage
                     'Cooldown on s presen
                     sensenFury = sensenFury - 1
                 ElseIf enemyFight = True And battleChoice = "4" Then
@@ -1121,66 +1165,79 @@
                     Console.WriteLine()
                 ElseIf enemyFight = True And battleChoice = "5" And sensenFury = 0 Then
                     'You do double damage and you don't get hurt
+
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((20 - 10 + 1) * Rnd())) + 10
+
                     Console.WriteLine()
                     Console.WriteLine("You did massive damage!")
-                    Threading.Thread.Sleep(500)
-                    Console.WriteLine("Leaper: -20")
-                    leaperHealth = leaperHealth - 20
-                    sensenFury = 5
+                    Console.WriteLine("Leaper: -" & playerDamage)
+                    leaperHealth = leaperHealth - playerDamage
+                    sensenFury = 10
                 ElseIf enemyFight = True And battleChoice = "5" And sensenFury > 0 Then
+
+                    'get leaper damage rate
+                    leaperDamage = CInt(Math.Floor((10 - 3 + 1) * Rnd())) + 3
+
                     Console.WriteLine()
                     Console.WriteLine("You took damage. Unable to use SenSen Fury right now. Your Focus is to Low.")
-                    Threading.Thread.Sleep(500)
-                    Console.WriteLine("You: -10")
-                    playerHealth = playerHealth - 10
+                    Console.WriteLine("You: -" & leaperDamage)
+                    playerHealth = playerHealth - leaperDamage
                 ElseIf enemyFight = False And battleChoice = "1" Then
                     'deal damage to enemy
+
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((9 - 3 + 1) * Rnd())) + 3
+
                     Console.WriteLine()
                     Console.WriteLine("You did damage to the leaper")
-                    Threading.Thread.Sleep(500)
-                    Console.WriteLine("Leaper: -8")
-                    leaperHealth = leaperHealth - 8
+                    Console.WriteLine("Leaper: -" & playerDamage)
+                    leaperHealth = leaperHealth - playerDamage
                 ElseIf enemyFight = False And battleChoice = "2" Then
                     'deal damage to enemy and regain 10 health
+
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((7 - 1 + 1) * Rnd())) + 1
+
                     Console.WriteLine()
                     Console.WriteLine("You did some damage to the leaper and regained health")
-                    Threading.Thread.Sleep(500)
-                    Console.WriteLine(playerName + ": +20       Leaper: -5")
-                    leaperHealth = leaperHealth - 5
+                    Console.WriteLine(playerName + ": +20       Leaper: -" & playerDamage)
+                    leaperHealth = leaperHealth - playerDamage
                     playerHealth = playerHealth + 20
                 ElseIf enemyFight = False And battleChoice = "3" Then
                     'deal damage to enemy
+
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((5 - 1 + 1) * Rnd())) + 1
+
                     Console.WriteLine()
                     Console.WriteLine("You did damage to the Leaper and accelerated cooldown")
-                    Threading.Thread.Sleep(500)
-                    Console.WriteLine("Leaper: -4")
+                    Console.WriteLine("Leaper: -" & playerDamage)
                     Console.WriteLine()
-                    Threading.Thread.Sleep(500)
-                    Console.WriteLine("S-Presen Cooldown: -2")
-                    leaperHealth = leaperHealth - 4
+                    Console.WriteLine("S-Presen Cooldown: -3")
+                    leaperHealth = leaperHealth - playerDamage
                     'cooldown on s-presen
-                    sensenFury = sensenFury - 2
+                    sensenFury = sensenFury - 3
                 ElseIf enemyFight = False And battleChoice = "4" Then
                     'nothing happens
                     Console.WriteLine()
                     Console.WriteLine("You evaded but the leaper did not attack")
-                    Threading.Thread.Sleep(500)
                     Console.WriteLine()
                 ElseIf enemyFight = False And battleChoice = "5" And sensenFury = 0 Then
                     'You deal masive damage to enemy
+
+                    playerDamage = CInt(Math.Floor((30 - 10 + 1) * Rnd())) + 10
+
                     Console.WriteLine()
                     Console.WriteLine("You did massive damage to the Leaper")
-                    Threading.Thread.Sleep(500)
-                    Console.WriteLine("Leaper: -30")
-                    leaperHealth = leaperHealth - 30
+                    Console.WriteLine("Leaper: -" & playerDamage)
+                    leaperHealth = leaperHealth - playerDamage
                 ElseIf enemyFight = False And battleChoice = "5" And sensenFury > 0 Then
                     Console.WriteLine()
                     Console.WriteLine("Unable to use SenSen Fury right now. Your Focus is to Low. Leaper did not attack.")
-                    Threading.Thread.Sleep(500)
                 Else
                     'Write invaild command and repeat loop
                     Console.WriteLine("-Invalid Command-")
-                    Threading.Thread.Sleep(500)
                     Console.WriteLine()
                 End If
                 If playerHealth > 100 Then
@@ -1210,6 +1267,7 @@
                     Console.WriteLine("")
                     Threading.Thread.Sleep(1000)
                     Console.WriteLine("You died... Try again.")
+                    playerHealth = 100
                     Console.WriteLine("")
                     Threading.Thread.Sleep(1000)
                     inBattle = False
@@ -1217,11 +1275,10 @@
                 If inBattle = True Then
                     Console.WriteLine()
                     Console.WriteLine()
-                    Console.WriteLine("--------------------------------------------------------")
+                    Console.WriteLine("-----------------------------------------------------------")
                     Console.WriteLine()
                     Console.WriteLine()
                     Console.WriteLine("Your health: " & playerHealth & "           Enemy Health: " & leaperHealth)
-                    Threading.Thread.Sleep(1000)
                     If sensenFury > 0 Then
                         Console.WriteLine("S-Presen Cooldown: " & sensenFury & " turns left")
                     Else
@@ -1250,12 +1307,11 @@
         Console.WriteLine("        Programed by Brandon LaDuke")
         Console.WriteLine()
         Threading.Thread.Sleep(200)
-        Console.WriteLine("        Based on the Game 'Remember Me' by DontNod Entertainment. Published by Capcom")
-        Console.WriteLine()
+        Console.WriteLine("        Based on the 2013 Game 'Remember Me' by DontNod Entertainment. Published by Capcom")
+        Console.WriteLine("        Remember Me is available for the PS3, Xbox 360 and PC")
+        Console.WriteLine("        Some concepts based on Triangle Staff's ""Serial Experiments Lain"" from 1998")
         Threading.Thread.Sleep(200)
-        Console.WriteLine("        Available for the PS3, Xbox 360 and PC")
         Console.WriteLine()
-        Threading.Thread.Sleep(200)
         Console.WriteLine("        You can check out more of my work at: BrandonLaDuke.com")
         Console.WriteLine()
         Console.Write("*")
