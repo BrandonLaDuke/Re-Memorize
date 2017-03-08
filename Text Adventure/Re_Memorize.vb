@@ -13,6 +13,9 @@
     Dim userInput As String = ""
     Dim selectLoop1 As Boolean = True
     Dim selectLoop2 As Boolean = True
+
+
+
     Dim passcode As String = ""
 
     'Ferdinan - Doctor
@@ -67,7 +70,9 @@
                 Console.WriteLine("--------------------------------------------")
                 Console.Write("Enter passcode: ")
                 passcode = Console.ReadLine()
-                If passcode = "AD4H7R" Then
+                If passcode = "AD4H7R" Or passcode = "F65H7D" Then
+                    Console.WriteLine(" > Access Granted < ")
+                    Threading.Thread.Sleep(1000)
                     GameStart()
                 Else
                     Console.WriteLine("Not a vaild Passcode.")
@@ -147,9 +152,6 @@
             genRef1 = "sis"
             genRef2 = "she's"
             genRef3 = "sister"
-        End If
-        If passcode = "2AG576" Then
-
         End If
         Threading.Thread.Sleep(1000)
         Console.WriteLine("I will now tell you how to play.")
@@ -255,19 +257,25 @@
         Console.Write("$")
     End Sub
 
+    'Access Chapters and passcode entry
     Sub MainGame()
         If passcode = "AD4H7R" Then
             Chapter1()
+            Chapter2()
+        ElseIf passcode = "F65H7D" Then
+            Chapter2()
+        ElseIf passcode = "" Then
+            Chapter0()
+            If leaper = True Then
+                Console.WriteLine("You got you're memory fully wiped. Try again...")
+                Exit Sub
+            End If
+            'First Passcode
+            'Start Chapter 1
+            Chapter1()
+            Chapter2()
         End If
-        'Start Chapter 0
-        Chapter0()
-        If leaper = True Then
-            Console.WriteLine("You got you're memory fully wiped. Try again...")
-            Exit Sub
-        End If
-        'First Passcode
-        'Start Chapter 1
-        Chapter1()
+
 
     End Sub
 
@@ -693,6 +701,13 @@
         Console.WriteLine("*")
         Console.ReadLine()
         Console.Clear()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          -------------- Password: AD4H7R ---------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.ReadLine()
     End Sub
 
     Sub Chapter0_3_Leaper()
@@ -920,18 +935,18 @@
         Console.ReadLine()
         Battle2()
         Console.WriteLine("[A second leaper jumps out and attacks]")
-        Console.WriteLine("*")
+        Console.Write("*")
         Console.ReadLine()
         Battle2()
         playerHealth = 100
         Console.WriteLine(playerName & ": Nilin, these things are everywhere!")
-        Console.WriteLine("*")
+        Console.Write("*")
         Console.ReadLine()
-        Console.WriteLine("Nilin: Just get out here as fast as you can, Bailey will be there soon to pick you up in her helicopter.")
-        Console.WriteLine("*")
+        Console.Write("Nilin: Just get out here as fast as you can, Bailey will be there soon to pick you up in her helicopter.")
+        Console.Write("*")
         Console.ReadLine()
         Console.WriteLine("[You continue walking...]")
-        Console.WriteLine("*")
+        Console.Write("*")
         Console.ReadLine()
         userInput = ""
         selectLoop1 = True
@@ -940,16 +955,52 @@
             Console.WriteLine("$ ")
             userInput = Console.ReadLine()
             If userInput = "1" Then
-                Console.WriteLine("Nilin: Bailey is the person who recritued you as a memory hunter. You became one because you have a special connection to the Memorize Network. Neither Bailey or I knows what is though.")
+                Console.WriteLine("Nilin: Bailey is the person who recritued you as a memory hunter. You became one because you have a special connection to the Memorize Network. Neither Bailey or I knows what that is though.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("Nilin: You and I are the only ones who has the power to remix the memories of anyone who gets in our way. You though because of your special connection can without any physcial device.")
+                Console.Write("*")
+                Console.ReadLine()
+                selectLoop1 = False
             ElseIf userInput = "2" Then
-                '2
+                Console.WriteLine("Nilin: Bailey should be ariving shortly")
+                Console.WriteLine("*")
+                Console.ReadLine()
+                selectLoop1 = False
             Else
                 Console.WriteLine("Invalid command.")
             End If
         End While
+        Console.WriteLine("[Helicopter flies near against a dark raining sky.]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Bailey: What's up " & playerName & "! Glad to see that you are alright!")
+        Console.Write("*")
+        Console.ReadLine()
+        Threading.Thread.Sleep(500)
+        Console.Clear()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          -------------- Password: F65H7D ---------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.ReadLine()
+    End Sub
 
-
-
+    Sub Chapter2()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          ------------------ Chapter 2 ------------------")
+        Console.WriteLine("          ------------------- Friends -------------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.ReadLine()
+        Console.Clear()
+        Threading.Thread.Sleep(200)
     End Sub
 
     Sub Battle1()
