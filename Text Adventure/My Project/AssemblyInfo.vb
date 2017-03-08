@@ -9,9 +9,9 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("Text Adventure")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("Text Adventure")>
+<Assembly: AssemblyDescription("Re: Memorize is a Text-based cyberpunk adventure game. Featuring a complex story line, turn based battles, and decision making.")>
+<Assembly: AssemblyCompany("Brandon LaDuke")>
+<Assembly: AssemblyProduct("Re: Memorize")>
 <Assembly: AssemblyCopyright("Copyright ©  2017")>
 <Assembly: AssemblyTrademark("")>
 

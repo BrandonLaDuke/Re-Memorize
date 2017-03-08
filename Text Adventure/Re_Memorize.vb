@@ -6,12 +6,14 @@
     Dim genRef2 As String
     Dim genRef3 As String
     Dim year As String = "2086"
+    Dim vYear As String
     Dim cWhile As Boolean = True
     Dim memoryHunter As Boolean = False
     Dim leaper As Boolean = False
     Dim userInput As String = ""
     Dim selectLoop1 As Boolean = True
     Dim selectLoop2 As Boolean = True
+    Dim passcode As String = ""
 
     'Ferdinan - Doctor
     'Johnny
@@ -53,7 +55,7 @@
             Console.WriteLine("Welcome to Re: Memorize")
             Threading.Thread.Sleep(1000)
             Console.WriteLine()
-            Console.WriteLine("[1] Start  [2] Credits [3] Exit")
+            Console.WriteLine("[1] Start  [2] Passcode  [3] Credits  [4] Exit")
             Console.Write("$")
             Dim start As String = Console.ReadLine()
             If start = "1" Then
@@ -61,8 +63,21 @@
                 Initialize() 'Init variables
                 GameStart()
             ElseIf start = "2" Then
-                Credits()
+                Console.Clear()
+                Console.WriteLine("--------------------------------------------")
+                Console.Write("Enter passcode: ")
+                passcode = Console.ReadLine()
+                If passcode = "AD4H7R" Then
+                    GameStart()
+                Else
+                    Console.WriteLine("Not a vaild Passcode.")
+                    Console.Write("*")
+                    Console.ReadLine()
+                End If
+
             ElseIf start = "3" Then
+                Credits()
+            ElseIf start = "4" Then
                 Console.WriteLine("Thank's for playing! Please comeback and visit!")
                 Threading.Thread.Sleep(3000)
                 Exit Sub
@@ -89,9 +104,8 @@
     Sub GameStart()
         Console.WriteLine()
         Console.WriteLine("Hello, stranger. What's your name?")
-        Console.Write("Hello ")
 
-        Console.Write(">>")
+        Console.Write(">> ")
         Dim nameCor As Boolean = False
         Dim nameChk As String = ""
         playerName = Console.ReadLine()
@@ -133,6 +147,9 @@
             genRef1 = "sis"
             genRef2 = "she's"
             genRef3 = "sister"
+        End If
+        If passcode = "2AG576" Then
+
         End If
         Threading.Thread.Sleep(1000)
         Console.WriteLine("I will now tell you how to play.")
@@ -239,14 +256,19 @@
     End Sub
 
     Sub MainGame()
+        If passcode = "AD4H7R" Then
+            Chapter1()
+        End If
         'Start Chapter 0
         Chapter0()
         If leaper = True Then
             Console.WriteLine("You got you're memory fully wiped. Try again...")
             Exit Sub
         End If
+        'First Passcode
         'Start Chapter 1
         Chapter1()
+
     End Sub
 
     Sub Chapter0()
@@ -317,7 +339,6 @@
         Console.WriteLine()
         Console.WriteLine("Stranger: What year is it?")
         Console.Write(">> ")
-        Dim vYear As String
         vYear = Console.ReadLine()
         If vYear = year Then
             Console.WriteLine("Stranger: Huh..., Dr. Ferdinand, this patient... " + genRef2 + " showing resistance.")
@@ -919,7 +940,7 @@
             Console.WriteLine("$ ")
             userInput = Console.ReadLine()
             If userInput = "1" Then
-                Console.WriteLine("Nilin: ")
+                Console.WriteLine("Nilin: Bailey is the person who recritued you as a memory hunter. You became one because you have a special connection to the Memorize Network. Neither Bailey or I knows what is though.")
             ElseIf userInput = "2" Then
                 '2
             Else
