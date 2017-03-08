@@ -13,8 +13,9 @@
     Dim userInput As String = ""
     Dim selectLoop1 As Boolean = True
     Dim selectLoop2 As Boolean = True
+    Dim selectLoop3 As Boolean = True
 
-
+    Dim rememberBailey As Boolean
 
     Dim passcode As String = ""
 
@@ -1001,6 +1002,80 @@
         Console.ReadLine()
         Console.Clear()
         Threading.Thread.Sleep(200)
+        Chapter2_1()
+    End Sub
+
+    Sub Chapter2_1()
+        Console.WriteLine("Bailey: It's great to see you again " & playerName & ".")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Bailey: Nilin has informed me that you have escaped and arranged for me to find you here.")
+        Console.WriteLine("[Bailey hugs you")
+        userInput = ""
+        selectLoop1 = True
+        While selectLoop1 = True
+            Console.WriteLine("[1] Go along with it  [2] Hug her back  [3] Push her away")
+            Console.Write("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Then
+                Console.WriteLine("Bailey: Are you okay? You're acting strange.")
+                userInput = ""
+                selectLoop2 = True
+                While selectLoop2 = True
+                    Console.WriteLine("[1] I don't remember you...  [2] Yeah I'm fine.  [3] So we're friends?")
+                    Console.Write("$ ")
+                    userInput = Console.ReadLine()
+                    If userInput = "1" Then
+                        Console.WriteLine("You don't remember me? Not at all?")
+                        userInput = ""
+                        selectLoop3 = True
+                        While selectLoop3 = True
+                            Console.WriteLine("[1] No I don't  [2] Of course I remember you I was just messing with you!")
+                            Console.Write("$ ")
+                            userInput = Console.ReadLine()
+                            If userInput = "1" Then
+                                Console.WriteLine("Bailey: Really? They must have really wiped youre memories. At least your back with us now.")
+                                Console.Write("*")
+                                Console.ReadLine()
+                                rememberBailey = False
+                                selectLoop3 = False
+                            ElseIf userInput = "2" Then
+                                Console.WriteLine("Bailey: Haha you had me going there for a minute! Don't do that!")
+                                Console.Write("*")
+                                Console.ReadLine()
+                                rememberBailey = True
+                                selectLoop3 = False
+                            Else
+                                Console.WriteLine("Invalid command.")
+                            End If
+                        End While
+                        selectLoop2 = False
+                    ElseIf userInput = "2" Then
+                        Console.WriteLine("Bailey: Okay, I guess you have been through a lot back there. Let's get you cleaned up and then well make our plans to get your memmory back and get to the bottom of all this.")
+                        Console.Write("*")
+                        Console.ReadLine()
+                        rememberBailey = True
+                        selectLoop2 = False
+                    ElseIf userInput = "3" Then
+                        Console.WriteLine("Bailey: What kind of question is that silly? You know we're friends!")
+                        Console.Write("*")
+                        Console.ReadLine()
+                        rememberBailey = False
+                        selectLoop2 = False
+                    Else
+                        Console.WriteLine("Invalid command.")
+                    End If
+                End While
+                selectLoop1 = False
+            ElseIf userInput = "2" Then
+                Console.WriteLine("Glad to see you too!")
+                Console.Write("*")
+                Console.ReadLine()
+                rememberBailey = True
+                selectLoop1 = False
+            End If
+        End While
+
     End Sub
 
     Sub Battle1()
