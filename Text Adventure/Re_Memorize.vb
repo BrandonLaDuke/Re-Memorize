@@ -1,6 +1,7 @@
 ﻿Module Re_Memorize
     Dim playerName As String
-    Dim playerHealth As Double = 100
+    Dim maxHealth As Double = 100
+    Dim playerHealth As Double = maxHealth
     Dim genRef As String
     Dim genRef1 As String
     Dim genRef2 As String
@@ -939,7 +940,7 @@
         Console.Write("*")
         Console.ReadLine()
         Battle2()
-        playerHealth = 100
+        playerHealth = maxHealth
         Console.WriteLine(playerName & ": Nilin, these things are everywhere!")
         Console.Write("*")
         Console.ReadLine()
@@ -1159,7 +1160,11 @@
             Console.WriteLine()
         Next
         Console.WriteLine("You are not who you think you are...")
-        Threading.Thread.Sleep(1000)
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine()
+        Threading.Thread.Sleep(1500)
         counter = 1
         For counter = 1 To 130
             Threading.Thread.Sleep(10)
@@ -1168,7 +1173,91 @@
         Next
         Console.Clear()
         'Continue from first memory glitch
-
+        userInput = ""
+        selectLoop1 = True
+        While selectLoop1 = True
+            Console.WriteLine("[1] Who am I?  [2] Did you just say something?")
+            Console.Write("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Then
+                Console.WriteLine(playerName & ": (mumbling under breath) I'm not who I think I am?")
+                Console.WriteLine("*")
+                Console.ReadLine()
+                Console.WriteLine("Bailey: What's that " & playerName & "?")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine(playerName & ": Huh? Oh... nothing.")
+                Console.Write("*")
+                Console.ReadLine()
+                selectLoop1 = False
+            ElseIf userInput = "2" Then
+                Console.WriteLine(playerName & ": Huh? Did you just say something?")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("Bailey: No why?")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine(playerName & ": Nevermind, it's nothing.")
+                Console.Write("*")
+                Console.ReadLine()
+                selectLoop1 = False
+            End If
+        End While
+        If rememberBailey = True Then
+            Console.WriteLine("Bailey: " & playerName & ", you know that if something is bothering you. You can always talk to me about it.")
+        ElseIf rememberBailey = False Then
+            Console.WriteLine("Bailey: Okay.")
+        End If
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("[You turn back to looking out the window.]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("[Watching the city from above.]")
+        Console.Write("*")
+        Console.ReadLine()
+        'Memory Glitch
+        counter = 1
+        For counter = 1 To 130
+            Threading.Thread.Sleep(10)
+            Console.Write("cjtfj6bkuyaw4567t(&^BT&6bvbi7ngO*&9o875n3o8&YNvp$(*YUb(*&ynBVO874WBTV3P&YIp8[y9]0)_(q(*Yup(*!p(~*yP9384957BV9327T65O87YCL78675^%&98UB&tu%^4&$w@463E68% FOyg o^e%43@^$#we^%^tbfuteQQAY466cr$h543jz4H435z54#5n")
+            counter = counter + 1
+        Next
+        counter = 1
+        Console.Clear()
+        Console.WriteLine("[You're in a white void.]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("You see yourself looking back at you. Staring with your eyes locked and an ominios grin.")
+        userInput = ""
+        selectLoop1 = True
+        While selectLoop1 = True
+            Console.WriteLine("[1] Who are you?  [2] Examine")
+            Console.WriteLine("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Then
+                Console.WriteLine(playerName & ": Who are you?")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("Other " & playerName & ": I am you.")
+                userInput = ""
+                selectLoop2 = True
+                While selectLoop2 = True
+                    Console.WriteLine("[1] Deny  [2] Question")
+                    Console.Write("$ ")
+                    userInput = Console.ReadLine()
+                    If userInput = "1" Then
+                        Console.WriteLine(playerName & ": You're not me. I'm me.")
+                        selectLoop2 = False
+                    ElseIf userInput = "2" Then
+                        Console.WriteLine("Who are you really?")
+                        selectLoop2 = False
+                    Else
+                        Console.WriteLine("Invalid command.")
+                    End If
+                End While
+            End If
+        End While
     End Sub
 
     Sub Battle1()
@@ -1187,7 +1276,7 @@
             loose = False
             round = 1
             sensenFury = 0
-            playerHealth = 100
+            playerHealth = maxHealth
             leaperHealth = 100
             Console.WriteLine()
             Console.WriteLine("Battle Start!")
@@ -1291,11 +1380,11 @@
                     Console.WriteLine("-Invalid Command-")
                     Console.WriteLine()
                 End If
-                If playerHealth > 100 Then
-                    playerHealth = 100
+                If playerHealth > maxHealth Then
+                    playerHealth = maxHealth
                 End If
 
-                If playerHealth < 0 And leaperHealth > 0 Then
+                If playerHealth <= 0 And leaperHealth > 0 Then
                     loose = True
                 ElseIf leaperHealth < 1 And playerHealth > 0 Then
                     win = True
@@ -1339,7 +1428,7 @@
             End While 'In battle
 
         End While ' Win
-        playerHealth = 100
+        playerHealth = maxHealth
         Threading.Thread.Sleep(500)
         Console.Write("*")
         Console.ReadLine()
@@ -1507,11 +1596,11 @@
                     Console.WriteLine("-Invalid Command-")
                     Console.WriteLine()
                 End If
-                If playerHealth > 100 Then
-                    playerHealth = 100
+                If playerHealth > maxHealth Then
+                    playerHealth = maxHealth
                 End If
 
-                If playerHealth < 0 And leaperHealth > 0 Then
+                If playerHealth <= 0 And leaperHealth > 0 Then
                     loose = True
                 ElseIf leaperHealth < 1 And playerHealth > 0 Then
                     win = True
@@ -1534,7 +1623,7 @@
                     Console.WriteLine("")
                     Threading.Thread.Sleep(1000)
                     Console.WriteLine("You died... Try again.")
-                    playerHealth = 100
+                    playerHealth = maxHealth
                     Console.WriteLine("")
                     Threading.Thread.Sleep(1000)
                     inBattle = False
@@ -1610,7 +1699,7 @@
         Console.WriteLine("    0000000                           00000000    MM MM   MM MM  EE        MM MM   MM MM   OO        OO   RR   RRR  II      ZZ   EE")
         Console.WriteLine("     00000   0                         000000     MM  MM MM  MM  EEEEEE    MM  MM MM  MM  OO          OO  RR RRRR   II     ZZ    EEEEEE")
         Console.WriteLine("       00   000000             000000      0      MM   MMM   MM  EE        MM   MMM   MM   OO        OO   RRRR      II    ZZ     EE")
-        Console.WriteLine("           0000000000000 000000000000000          MM         MM  EE        MM         MM    OOO    OO0    RR  RR    II   ZZ      EE")
+        Console.WriteLine("           0000000000000 000000000000000          MM         MM  EE        MM         MM    OOO    OOO    RR  RR    II   ZZ      EE")
         Console.WriteLine("             00000000000000000000000              MM         MM  EEEEEEEE  MM         MM      OOOOOO      RR    RR  II  ZZZZZZZ  EEEEEEEE")
         Console.WriteLine("                 00000000000000")
     End Sub
