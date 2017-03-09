@@ -1010,7 +1010,7 @@
         Console.Write("*")
         Console.ReadLine()
         Console.WriteLine("Bailey: Nilin has informed me that you have escaped and arranged for me to find you here.")
-        Console.WriteLine("[Bailey hugs you")
+        Console.WriteLine("[Bailey hugs you]")
         userInput = ""
         selectLoop1 = True
         While selectLoop1 = True
@@ -1068,14 +1068,90 @@
                 End While
                 selectLoop1 = False
             ElseIf userInput = "2" Then
-                Console.WriteLine("Glad to see you too!")
+                Console.WriteLine(playerName & ": Glad to see you too!")
                 Console.Write("*")
                 Console.ReadLine()
                 rememberBailey = True
                 selectLoop1 = False
+            ElseIf userInput = "3" Then
+                Console.WriteLine(playerName & ": Don't touch me!")
+                Console.WriteLine("*")
+                Console.ReadLine()
+                Console.WriteLine("Bailey: Sorry I'm just glad to see you.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine(playerName & ": I don't know you.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("Bailey: I, I, I'm sorry. You don't remember me???")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine(playerName & "Of course I don't remember you.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("Bailey: But we're friends, don't worry we'll get your memory back. Right now you have to trust us. We just saved your life.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine(playerName & "Okay, fine.")
+                Console.Write("*")
+                Console.ReadLine()
+                rememberBailey = False
+                selectLoop1 = False
+            Else
+                Console.WriteLine("Invalid command.")
             End If
         End While
-
+        Console.WriteLine("...")
+        Console.WriteLine("[Some time passes]")
+        Console.WriteLine("*")
+        Console.ReadLine()
+        Console.WriteLine("Bailey: Okay, so based on the information that we were able to gather, we need to get over to Unixie Solutions. Get inside and find the passcode to the servers.")
+        userInput = ""
+        selectLoop1 = True
+        While selectLoop1 = True
+            Console.WriteLine("[1] What is Unixie?  [2] Got it")
+            Console.Write("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Then
+                Console.WriteLine("Bailey: Unixie is a server solutions corperation. Memorize has used them as legacy servers that are now holding old data that they don't want the public to see.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("Bailey: You might be able to find some of your memories might be stored there.")
+                Console.Write("*")
+                Console.ReadLine()
+                selectLoop1 = False
+            ElseIf userInput = "2" Then
+                selectLoop1 = False
+            Else
+                Console.WriteLine("Invalid command.")
+            End If
+        End While
+        Console.WriteLine("Bailey: Now I won't be able to come with you.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Bailey: Unixie security is very strong. But with your abilities and special connection to the Memorize Network this is a special task just for you.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine(playerName & ": I don't have much of a choice so I guess I'm in.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Then it's settled! Welcome back " & playerName & "!")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Bailey: And don't get captured this time. (Wink)")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("[Flying over to unixie solutions]")
+        Threading.Thread.Sleep(500)
+        Console.WriteLine("[Seeing lots of buildings and other structures going across the horizon...]")
+        Console.Write("*")
+        Console.ReadLine()
+        Dim counter As Integer
+        For counter = 1 To 130
+            Threading.Thread.Sleep(10)
+            Console.Write("cjtfj6ti76i6v5ey3q62c75i7bn;[[-0[09'-0990ubv896p08d7;[9y7z5%$^l8cvvl8;y8v7rz4W466cr$h543jz4H435z54#5n")
+            counter = counter + 1
+        Next
     End Sub
 
     Sub Battle1()
@@ -1117,7 +1193,7 @@
                     'Deal damage to player and enemy
                     Console.WriteLine()
                     Console.WriteLine("You did damage to the leaper. But you also took damage")
-                    Console.WriteLine(playerName + ":   -5       Leaper: -5")
+                    Console.WriteLine(playerName + ":    -5       Leaper: -5")
                     playerHealth = playerHealth - 5
                     leaperHealth = leaperHealth - 5
                 ElseIf enemyFight = True And battleChoice = "2" Then
