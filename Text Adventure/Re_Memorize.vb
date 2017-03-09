@@ -1152,6 +1152,23 @@
             Console.Write("cjtfj6ti76i6v5ey3q62c75i7bn;[[-0[09'-0990ubv896p08d7;[9y7z5%$^l8cvvl8;y8v7rz4W466cr$h543jz4H435z54#5n")
             counter = counter + 1
         Next
+
+        counter = 1
+        Console.Clear()
+        For counter = 1 To 10
+            Console.WriteLine()
+        Next
+        Console.WriteLine("You are not who you think you are...")
+        Threading.Thread.Sleep(1000)
+        counter = 1
+        For counter = 1 To 130
+            Threading.Thread.Sleep(10)
+            Console.Write("cjtfj6ti76i6v5ey3q62c75i7bn;[[-0[09'-0990ubv896p08d7;[9y7z5%$^l8cvvl8;y8v7rz4W466cr$h543jz4H435z54#5n")
+            counter = counter + 1
+        Next
+        Console.Clear()
+        'Continue from first memory glitch
+
     End Sub
 
     Sub Battle1()
@@ -1193,7 +1210,7 @@
                     'Deal damage to player and enemy
                     Console.WriteLine()
                     Console.WriteLine("You did damage to the leaper. But you also took damage")
-                    Console.WriteLine(playerName + ":    -5       Leaper: -5")
+                    Console.WriteLine(playerName + ":     -5       Leaper: -5")
                     playerHealth = playerHealth - 5
                     leaperHealth = leaperHealth - 5
                 ElseIf enemyFight = True And battleChoice = "2" Then
