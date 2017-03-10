@@ -264,8 +264,10 @@
         If passcode = "AD4H7R" Then
             Chapter1()
             Chapter2()
+            Chapter3()
         ElseIf passcode = "F65H7D" Then
             Chapter2()
+            Chapter3()
         ElseIf passcode = "D612HQ" Then
             rememberBailey = True
             Chapter3()
@@ -278,10 +280,10 @@
                 Console.WriteLine("You got you're memory fully wiped. Try again...")
                 Exit Sub
             End If
-            'First Passcode
             'Start Chapter 1
             Chapter1()
             Chapter2()
+            Chapter3()
             passcode = ""
         End If
 
