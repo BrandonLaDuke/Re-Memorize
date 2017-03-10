@@ -266,6 +266,12 @@
             Chapter2()
         ElseIf passcode = "F65H7D" Then
             Chapter2()
+        ElseIf passcode = "D612HQ" Then
+            rememberBailey = True
+            Chapter3()
+        ElseIf passcode = "FQN26B" Then
+            rememberBailey = False
+            Chapter3()
         ElseIf passcode = "" Then
             Chapter0()
             If leaper = True Then
@@ -276,6 +282,7 @@
             'Start Chapter 1
             Chapter1()
             Chapter2()
+            passcode = ""
         End If
 
 
@@ -988,6 +995,7 @@
         Console.WriteLine("          -------------- Password: F65H7D ---------------")
         Console.WriteLine("          -----------------------------------------------")
         Console.ReadLine()
+        Console.Clear()
     End Sub
 
     Sub Chapter2()
@@ -1231,6 +1239,7 @@
         Console.WriteLine("You see yourself looking back at you. Staring with your eyes locked and an ominios grin.")
         userInput = ""
         selectLoop1 = True
+        Dim dqSelect As Integer = 1
         While selectLoop1 = True
             Console.WriteLine("[1] Who are you?  [2] Examine")
             Console.WriteLine("$ ")
@@ -1248,16 +1257,98 @@
                     userInput = Console.ReadLine()
                     If userInput = "1" Then
                         Console.WriteLine(playerName & ": You're not me. I'm me.")
-                        selectLoop2 = False
+                        Console.Write("*")
+                        selectLoop2 = 1
                     ElseIf userInput = "2" Then
                         Console.WriteLine("Who are you really?")
-                        selectLoop2 = False
+                        Console.Write("*")
+                        Console.ReadLine()
+                        selectLoop2 = 2
                     Else
                         Console.WriteLine("Invalid command.")
                     End If
+                    dqSelect = 3
                 End While
+                selectLoop1 = False
+            ElseIf userInput = "2" Then
+                Console.WriteLine("[You stare into your own eyes studing...]")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("[The other you disapears...]")
+                Console.WriteLine("*")
+                Console.ReadLine()
+                selectLoop1 = False
+                dqSelect = False
+            Else
+                Console.WriteLine("Invalid command.")
             End If
         End While
+        counter = 1
+        For counter = 1 To 130
+            Threading.Thread.Sleep(10)
+            Console.Write("cjtfj6bkuyaw4567t(&^BT&6bvbi7ngO*&9o875n3o8&YNvp$(*YUb(*&ynBVO874WBTV3P&YIp8[y9]0)_(q(*Yup(*!p(~*yP9384957BV9327T65O87YCL78675^%&98UB&tu%^4&$w@463E68% FOyg o^e%43@^$#we^%^tbfuteQQAY466cr$h543jz4H435z54#5n")
+            counter = counter + 1
+        Next
+        Console.Clear()
+        If dqSelect = 1 Then
+            Console.WriteLine("Bailey: Of course your you. What's wrong with you?")
+            Console.WriteLine("*")
+            Console.ReadLine()
+            Console.WriteLine(playerName & ": It's nothing")
+            Console.Write("*")
+            Console.ReadLine()
+        ElseIf dqSelect = 2 Then
+            Console.WriteLine("Bailey: You know that already silly.")
+            Console.WriteLine("*")
+            Console.ReadLine()
+        End If
+        Console.WriteLine("Bailey: We're almost there. Once inside you will need to be cautious. There will be gards and SABRE Units staffed inside. So be careful.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("[Landing across the street a few blocks away]")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Bailey: " & playerName & ", you got this.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Bailey: Now go see if you can find a way into the building...")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.Clear()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine("          -----------------------------------------------")
+        If rememberBailey = True Then
+            Console.WriteLine("          -------------- Password: D612HQ ---------------")
+        ElseIf rememberBailey = False Then
+            Console.WriteLine("          -------------- Password: FQN26B ---------------")
+        Else
+            Console.WriteLine("Congradulations! You found a way to break the game please send a report by commenting on the games page at http://www.BrandonLaDuke.com/games/rememorize")
+        End If
+        Console.WriteLine("          -----------------------------------------------")
+        Console.ReadLine()
+        Console.Clear()
+    End Sub
+
+    Sub Chapter3()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          ------------------ Chapter 3 ------------------")
+        Console.WriteLine("          ------------- It's my memory now. -------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.ReadLine()
+        Console.Clear()
+        Threading.Thread.Sleep(200)
+        Chapter3_1()
+    End Sub
+
+    Sub Chapter3_1()
+        Console.WriteLine("Hello from Chapter 3")
     End Sub
 
     Sub Battle1()
