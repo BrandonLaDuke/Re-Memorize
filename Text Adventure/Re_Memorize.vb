@@ -15,6 +15,7 @@
     Dim selectLoop1 As Boolean = True
     Dim selectLoop2 As Boolean = True
     Dim selectLoop3 As Boolean = True
+    Dim sPressen As String
 
     Dim rememberBailey As Boolean
 
@@ -72,8 +73,8 @@
                 Console.WriteLine("--------------------------------------------")
                 Console.Write("Enter passcode: ")
                 passcode = Console.ReadLine()
-                If passcode = "AD4H7R" Or passcode = "F65H7D" Then
-                    Console.WriteLine(" > Access Granted < ")
+                If passcode = "AD4H7R" Or passcode = "F65H7D" Or passcode = "D612HQ" Or passcode = "FQN26B" Then
+                    Console.WriteLine(" > Access Then Granted < ")
                     Threading.Thread.Sleep(1000)
                     GameStart()
                 Else
@@ -87,9 +88,9 @@
             ElseIf start = "4" Then
                 Console.WriteLine("Thank's for playing! Please comeback and visit!")
                 Threading.Thread.Sleep(3000)
-                Exit Sub
-            Else
-                Console.WriteLine("I don't understand what you want me to do.")
+                    Exit Sub
+                Else
+                    Console.WriteLine("I don't understand what you want me to do.")
                 Threading.Thread.Sleep(1500)
                 Console.Clear()
             End If
@@ -146,12 +147,12 @@
         genSwitch = Console.ReadLine
         If genSwitch = "1" Then
             genRef = "him"
-            genRef1 = "bro"
+            genRef1 = "mister"
             genRef2 = "he's"
             genRef3 = "brother"
         Else
             genRef = "her"
-            genRef1 = "sis"
+            genRef1 = "miss"
             genRef2 = "she's"
             genRef3 = "sister"
         End If
@@ -277,7 +278,10 @@
         ElseIf passcode = "" Then
             Chapter0()
             If leaper = True Then
+                Console.Clear()
+                Console.WriteLine()
                 Console.WriteLine("You got you're memory fully wiped. Try again...")
+                Console.ReadLine()
                 Exit Sub
             End If
             'Start Chapter 1
@@ -585,7 +589,7 @@
         If memoryHunter = True Then
             Chapter0_3_MemoryHunter()
         Else
-            Chapter0_3_Leaper()
+            Exit Sub
         End If
     End Sub
 
@@ -1350,7 +1354,68 @@
     End Sub
 
     Sub Chapter3_1()
-        Console.WriteLine("Hello from Chapter 3")
+        Console.WriteLine(playerName & ": Okay I'm in position.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("Bailey: Great now look around for a way in. You should be able to sneak around back.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine(playerName & ": On it.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("You walk towards a large building with large blue letters reading ""Unixie Solutions"".")
+        userInput = ""
+        selectLoop1 = True
+        Dim unixieKey As Boolean = False
+        While selectLoop1 = True
+            Console.WriteLine("[1] Walk into the building  [2] Walk by the left side of the building  [3] Walk by the right side of the building")
+            Console.Write("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Then
+                Console.WriteLine("You walk towards the building.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.Write("You go to open the door but its locked.")
+                Console.Write("*")
+                Console.ReadLine()
+            ElseIf userInput = "2" And unixieKey = False Then
+                Console.WriteLine("You walk down the left side of the building.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("You reach a door. It seems to need some sort of passcode.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine(playerName & ": I can't get in. The door is secured by a 4 digit passcode.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("Nilin: Okay try to find another way in. I'll see if I can dig up something on my end.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine(playerName & ": Got it.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine(playerName & ": You walk back to the front.")
+                Console.Write("*")
+                Console.ReadLine()
+            ElseIf userInput = "2" And unixieKey = True Then
+                'Enter building
+            ElseIf userInput = "3" Then
+                Console.WriteLine("You walk down the right side of the building.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("[There are two S.A.B.R.E. Enforcers]")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("S.A.B.R.E. Enforcer 1: Hey are you lost?")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("S.A.B.R.E. Enforcer 2: That's the escaped prisoner! Get " & genRef & "!")
+                Console.Write("*")
+                Console.ReadLine()
+                SabreBattle1x2()
+            End If
+        End While
+
     End Sub
 
     Sub Battle1()
@@ -1419,13 +1484,20 @@
                     Console.WriteLine()
                     Console.WriteLine("You evaded the leapers attack")
                     Console.WriteLine()
-                ElseIf enemyFight = True And battleChoice = "5" And sensenFury = 0 Then
-                    'You do double damage and you don't get hurt
+                ElseIf enemyFight = True And battleChoice = "5" Then
                     Console.WriteLine()
-                    Console.WriteLine("You did massive damage!")
-                    Console.WriteLine("Leaper: -20")
-                    leaperHealth = leaperHealth - 20
-                    sensenFury = 5
+                    Console.Write("S-Pressen: ")
+                    sPressen = Console.ReadLine()
+                    If sPressen = "Sensen Fury" And sensenFury = 0 Then
+                        Console.WriteLine()
+                        Console.WriteLine("You did massive damage!")
+                        Console.WriteLine("Leaper: -20")
+                        leaperHealth = leaperHealth - 20
+                        sensenFury = 5
+                    Else
+                        Console.WriteLine("Type ""help"" for help with S-Pressen's.")
+                    End If
+                    sPressen = ""
                 ElseIf enemyFight = True And battleChoice = "5" And sensenFury > 0 Then
                     Console.WriteLine()
                     Console.WriteLine("You took damage. Unable to use SenSen Fury right now. Your Focus is to Low.")
@@ -1468,6 +1540,9 @@
                 ElseIf enemyFight = False And battleChoice = "5" And sensenFury > 0 Then
                     Console.WriteLine()
                     Console.WriteLine("Unable to use SenSen Fury right now. Your Focus is to Low. Leaper did not attack.")
+                ElseIf battleChoice = "help" Then
+                    Console.WriteLine("S-Pressens are your special Pressens. Use them wisely.")
+                    Console.WriteLine("Availble: ""Sensen Fury"".")
                 Else
                     'Write invaild command and repeat loop
                     Console.WriteLine("-Invalid Command-")
@@ -1740,6 +1815,10 @@
         Threading.Thread.Sleep(500)
         Console.Write("*")
         Console.ReadLine()
+    End Sub
+
+    Sub SabreBattle1x2()
+
     End Sub
 
     Sub Credits()
