@@ -1484,6 +1484,7 @@
                     Console.WriteLine()
                     Console.WriteLine("You evaded the leapers attack")
                     Console.WriteLine()
+
                 ElseIf enemyFight = True And battleChoice = "5" Then
                     Console.WriteLine()
                     Console.Write("S-Pressen: ")
@@ -1494,15 +1495,16 @@
                         Console.WriteLine("Leaper: -20")
                         leaperHealth = leaperHealth - 20
                         sensenFury = 5
+                    ElseIf sPressen = "Sensen Fury" And sensenFury > 0 Then
+                        Console.WriteLine()
+                        Console.WriteLine("You took damage. Unable to use SenSen Fury right now. Your Focus is to Low.")
+                        Console.WriteLine("You: -10")
+                        playerHealth = playerHealth - 10
                     Else
                         Console.WriteLine("Type ""help"" for help with S-Pressen's.")
                     End If
                     sPressen = ""
-                ElseIf enemyFight = True And battleChoice = "5" And sensenFury > 0 Then
-                    Console.WriteLine()
-                    Console.WriteLine("You took damage. Unable to use SenSen Fury right now. Your Focus is to Low.")
-                    Console.WriteLine("You: -10")
-                    playerHealth = playerHealth - 10
+
                 ElseIf enemyFight = False And battleChoice = "1" Then
                     'deal damage to enemy
                     Console.WriteLine()
@@ -1531,18 +1533,33 @@
                     Console.WriteLine()
                     Console.WriteLine("You evaded but the leaper did not attack")
                     Console.WriteLine()
-                ElseIf enemyFight = False And battleChoice = "5" And sensenFury = 0 Then
-                    'You deal masive damage to enemy
+
+                ElseIf enemyFight = False And battleChoice = "5" Then
                     Console.WriteLine()
-                    Console.WriteLine("You did massive damage to the Leaper")
-                    Console.WriteLine("Leaper: -30")
-                    leaperHealth = leaperHealth - 30
-                ElseIf enemyFight = False And battleChoice = "5" And sensenFury > 0 Then
-                    Console.WriteLine()
-                    Console.WriteLine("Unable to use SenSen Fury right now. Your Focus is to Low. Leaper did not attack.")
+                    Console.Write("S-Pressen: ")
+                    sPressen = Console.ReadLine()
+                    If sPressen = "Sensen Fury" And sensenFury = 0 Then
+                        Console.WriteLine()
+                        Console.WriteLine("You did massive damage!")
+                        Console.WriteLine("Leaper: -20")
+                        leaperHealth = leaperHealth - 20
+                        sensenFury = 5
+                    ElseIf sPressen = "Sensen Fury" And sensenFury > 0 Then
+                        Console.WriteLine()
+                        Console.WriteLine("Unable to use SenSen Fury right now. Your Focus is to Low.")
+                        Console.WriteLine()
+                    Else
+                        Console.WriteLine("Type ""help"" for help with S-Pressen's.")
+                    End If
+                    sPressen = ""
+
                 ElseIf battleChoice = "help" Then
                     Console.WriteLine("S-Pressens are your special Pressens. Use them wisely.")
                     Console.WriteLine("Availble: ""Sensen Fury"".")
+                    Console.WriteLine()
+                    Console.WriteLine("Press ""Enter"" or ""Return"" to Continue")
+                    Console.ReadLine()
+                    Console.Clear()
                 Else
                     'Write invaild command and repeat loop
                     Console.WriteLine("-Invalid Command-")
@@ -1586,7 +1603,6 @@
                     Console.WriteLine()
                     Console.WriteLine()
                     Console.WriteLine("Your health: " & playerHealth & "           Enemy Health: " & leaperHealth)
-                    Threading.Thread.Sleep(1000)
                     If sensenFury > 0 Then
                         Console.WriteLine("S-Presen Cooldown: " & sensenFury & " turns left")
                     Else
@@ -1654,7 +1670,7 @@
                     'deal damage to enemy and player and heal some playerHealth
 
                     'get leaper damage rate
-                    leaperDamage = CInt(Math.Floor((8 - 1 + 1) * Rnd())) + 1
+                    leaperDamage = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
                     'get player damage rate
                     playerDamage = CInt(Math.Floor((5 - 1 + 1) * Rnd())) + 1
 
@@ -1670,7 +1686,7 @@
                     'you deal damage and little damage to enemy
 
                     'get leaper damage rate
-                    leaperDamage = CInt(Math.Floor((8 - 1 + 1) * Rnd())) + 1
+                    leaperDamage = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
                     'get player damage rate
                     playerDamage = CInt(Math.Floor((2 - 1 + 1) * Rnd())) + 1
 
@@ -1687,26 +1703,31 @@
                     Console.WriteLine("You evaded the leapers attack")
                     Threading.Thread.Sleep(500)
                     Console.WriteLine()
-                ElseIf enemyFight = True And battleChoice = "5" And sensenFury = 0 Then
-                    'You do double damage and you don't get hurt
 
-                    'get player damage rate
-                    playerDamage = CInt(Math.Floor((20 - 10 + 1) * Rnd())) + 10
-
-                    Console.WriteLine()
-                    Console.WriteLine("You did massive damage!")
-                    Console.WriteLine("Leaper: -" & playerDamage)
-                    leaperHealth = leaperHealth - playerDamage
-                    sensenFury = 10
-                ElseIf enemyFight = True And battleChoice = "5" And sensenFury > 0 Then
-
+                ElseIf enemyFight = True And battleChoice = "5" Then
                     'get leaper damage rate
-                    leaperDamage = CInt(Math.Floor((10 - 3 + 1) * Rnd())) + 3
-
+                    leaperDamage = CInt(Math.Floor((15 - 1 + 1) * Rnd())) + 1
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((20 - 1 + 1) * Rnd())) + 1
                     Console.WriteLine()
-                    Console.WriteLine("You took damage. Unable to use SenSen Fury right now. Your Focus is to Low.")
-                    Console.WriteLine("You: -" & leaperDamage)
-                    playerHealth = playerHealth - leaperDamage
+                    Console.Write("S-Pressen: ")
+                    sPressen = Console.ReadLine()
+                    If sPressen = "Sensen Fury" And sensenFury = 0 Then
+                        Console.WriteLine()
+                        Console.WriteLine("You did massive damage!")
+                        Console.WriteLine("Leaper: -" & playerDamage)
+                        leaperHealth = leaperHealth - playerDamage
+                        sensenFury = 5
+                    ElseIf sPressen = "Sensen Fury" And sensenFury > 0 Then
+                        Console.WriteLine()
+                        Console.WriteLine("You took damage. Unable to use SenSen Fury right now. Your Focus is to Low.")
+                        Console.WriteLine("You: -" & leaperDamage)
+                        playerHealth = playerHealth - leaperDamage
+                    Else
+                        Console.WriteLine("Type ""help"" for help with S-Pressen's.")
+                    End If
+                    sPressen = ""
+
                 ElseIf enemyFight = False And battleChoice = "1" Then
                     'deal damage to enemy
 
@@ -1732,7 +1753,7 @@
                     'deal damage to enemy
 
                     'get player damage rate
-                    playerDamage = CInt(Math.Floor((5 - 1 + 1) * Rnd())) + 1
+                    playerDamage = CInt(Math.Floor((4 - 1 + 1) * Rnd())) + 1
 
                     Console.WriteLine()
                     Console.WriteLine("You did damage to the Leaper and accelerated cooldown")
@@ -1747,18 +1768,36 @@
                     Console.WriteLine()
                     Console.WriteLine("You evaded but the leaper did not attack")
                     Console.WriteLine()
-                ElseIf enemyFight = False And battleChoice = "5" And sensenFury = 0 Then
-                    'You deal masive damage to enemy
+                ElseIf enemyFight = False And battleChoice = "5" Then
+                    'get leaper damage rate
 
-                    playerDamage = CInt(Math.Floor((30 - 10 + 1) * Rnd())) + 10
-
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((20 - 1 + 1) * Rnd())) + 1
                     Console.WriteLine()
-                    Console.WriteLine("You did massive damage to the Leaper")
-                    Console.WriteLine("Leaper: -" & playerDamage)
-                    leaperHealth = leaperHealth - playerDamage
-                ElseIf enemyFight = False And battleChoice = "5" And sensenFury > 0 Then
+                    Console.Write("S-Pressen: ")
+                    sPressen = Console.ReadLine()
+                    If sPressen = "Sensen Fury" And sensenFury = 0 Then
+                        Console.WriteLine()
+                        Console.WriteLine("You did massive damage!")
+                        Console.WriteLine("Leaper: -" & playerDamage)
+                        leaperHealth = leaperHealth - playerDamage
+                        sensenFury = 5
+                    ElseIf sPressen = "Sensen Fury" And sensenFury > 0 Then
+                        Console.WriteLine()
+                        Console.WriteLine("Leaper did not attack. Unable to use SenSen Fury right now. Your Focus is to Low.")
+                        Console.WriteLine("")
+                        playerHealth = playerHealth
+                    Else
+                        Console.WriteLine("Type ""help"" for help with S-Pressen's.")
+                    End If
+                    sPressen = ""
+                ElseIf battleChoice = "help" Then
+                    Console.WriteLine("S-Pressens are your special Pressens. Use them wisely.")
+                    Console.WriteLine("Availble: ""Sensen Fury"".")
                     Console.WriteLine()
-                    Console.WriteLine("Unable to use SenSen Fury right now. Your Focus is to Low. Leaper did not attack.")
+                    Console.WriteLine("Press ""Enter"" or ""Return"" to Continue")
+                    Console.ReadLine()
+                    Console.Clear()
                 Else
                     'Write invaild command and repeat loop
                     Console.WriteLine("-Invalid Command-")
@@ -1818,7 +1857,275 @@
     End Sub
 
     Sub SabreBattle1x2()
+        'Enemies
+        Dim enemy1 As String = ""
+        Dim enemy2 As String = ""
 
+        Dim targetEnemy As String = ""
+        Dim enemyFight1 As Boolean
+        Dim enemyFight2 As Boolean
+        Dim battleChoice As String
+        Dim inBattle As Boolean = True
+        Dim sabreHealth As Double = 100
+        Dim sabreDamage1 As Integer
+        Dim sabreDamage2 As Integer
+        Dim playerDamage As Integer
+        Dim loose As Boolean = False
+        Dim win As Boolean = False
+        Dim round As Integer = 1
+        Dim sensenFury = 0
+        Dim sensenDOS = 0
+
+        While win = False
+            'create Enemies
+            enemy1 = "S.A.B.R.E Enforcer 1"
+            enemy2 = "S.A.B.R.E. Enforcer 2"
+
+            inBattle = True
+            win = False
+            loose = False
+            round = 1
+            sensenFury = 0
+            'player health relys on previous fight
+            sabreHealth = 125
+
+            Console.WriteLine()
+            Console.WriteLine("Battle Start!")
+            Console.WriteLine()
+            Console.WriteLine()
+
+            While inBattle = True
+
+                'Get enemy move (Randon True, False)
+                enemyFight1 = CInt(Math.Floor((1 - 0 + 1) * Rnd())) + 0
+                enemyFight2 = CInt(Math.Floor((1 - 0 + 1) * Rnd())) + 0
+
+                targetEnemy = ""
+                userInput = ""
+                selectLoop1 = True
+                While selectLoop1 = True
+                    Console.WriteLine("Select target: [1] " & enemy1 & "  [2] " & enemy2)
+                    Console.Write("$ ")
+                    targetEnemy = Console.ReadLine()
+                    If targetEnemy = "1" Or targetEnemy = "2" Then
+                        selectLoop1 = False
+                    Else
+                        Console.WriteLine("Invalid command.")
+                    End If
+                End While
+                Console.WriteLine()
+                Console.WriteLine("[1] Power  [2] Regen  [3] Cooldown  [4] Evade  [5] S-Presen")
+                Console.Write("$ ")
+                battleChoice = Console.ReadLine()
+                Console.Clear()
+                Console.WriteLine()
+
+                If enemyFight1 = True And enemyFight2 = True And battleChoice = "1" Then
+                    'Get Damage Rates
+                    sabreDamage1 = CInt(Math.Floor)
+
+                    If targetEnemy = "1" Then
+
+                    End If
+
+                    'get leaper damage rate
+                    sabreDamage1 = CInt(Math.Floor((7 - 1 + 1) * Rnd())) + 1
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((7 - 1 + 1) * Rnd())) + 1
+                    'Deal damage to player and enemy
+                    Console.WriteLine()
+                    Console.WriteLine("You did damage to the leaper. But you also took damage")
+                    Console.WriteLine(playerName + ":   -" & leaperDamage & "       Leaper: -" & playerDamage)
+                    playerHealth = playerHealth - leaperDamage
+                    leaperHealth = leaperHealth - playerDamage
+                ElseIf enemyFight = True And battleChoice = "2" Then
+                    'deal damage to enemy and player and heal some playerHealth
+
+                    'get leaper damage rate
+                    leaperDamage = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((5 - 1 + 1) * Rnd())) + 1
+
+                    Console.WriteLine()
+                    Console.WriteLine("You did damage to the leaper. But you also took damage but you regained health.")
+                    Console.WriteLine(playerName + ":  -" & leaperDamage & "       Leaper: -" & playerDamage)
+                    Console.WriteLine("You regained some health: +10")
+                    playerHealth = playerHealth - leaperDamage
+                    leaperHealth = leaperHealth - playerDamage
+                    'Regain some health
+                    playerHealth = playerHealth + 10
+                ElseIf enemyFight = True And battleChoice = "3" Then
+                    'you deal damage and little damage to enemy
+
+                    'get leaper damage rate
+                    leaperDamage = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((2 - 1 + 1) * Rnd())) + 1
+
+                    Console.WriteLine()
+                    Console.WriteLine("You took damage. And did some to leaper.")
+                    Console.WriteLine(playerName + ": -" & leaperDamage & "       Leaper: -" & playerDamage)
+                    playerHealth = playerHealth - leaperDamage
+                    leaperHealth = leaperHealth - playerDamage
+                    'Cooldown on s presen
+                    sensenFury = sensenFury - 1
+                ElseIf enemyFight = True And battleChoice = "4" Then
+                    'You evade no damage delt
+                    Console.WriteLine()
+                    Console.WriteLine("You evaded the leapers attack")
+                    Threading.Thread.Sleep(500)
+                    Console.WriteLine()
+
+                ElseIf enemyFight = True And battleChoice = "5" Then
+                    'get leaper damage rate
+                    leaperDamage = CInt(Math.Floor((15 - 1 + 1) * Rnd())) + 1
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((20 - 1 + 1) * Rnd())) + 1
+                    Console.WriteLine()
+                    Console.Write("S-Pressen: ")
+                    sPressen = Console.ReadLine()
+                    If sPressen = "Sensen Fury" And sensenFury = 0 Then
+                        Console.WriteLine()
+                        Console.WriteLine("You did massive damage!")
+                        Console.WriteLine("Leaper: -" & playerDamage)
+                        leaperHealth = leaperHealth - playerDamage
+                        sensenFury = 5
+                    ElseIf sPressen = "Sensen Fury" And sensenFury > 0 Then
+                        Console.WriteLine()
+                        Console.WriteLine("You took damage. Unable to use SenSen Fury right now. Your Focus is to Low.")
+                        Console.WriteLine("You: -" & leaperDamage)
+                        playerHealth = playerHealth - leaperDamage
+                    Else
+                        Console.WriteLine("Type ""help"" for help with S-Pressen's.")
+                    End If
+                    sPressen = ""
+
+                ElseIf enemyFight = False And battleChoice = "1" Then
+                    'deal damage to enemy
+
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((9 - 3 + 1) * Rnd())) + 3
+
+                    Console.WriteLine()
+                    Console.WriteLine("You did damage to the leaper")
+                    Console.WriteLine("Leaper: -" & playerDamage)
+                    leaperHealth = leaperHealth - playerDamage
+                ElseIf enemyFight = False And battleChoice = "2" Then
+                    'deal damage to enemy and regain 10 health
+
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((7 - 1 + 1) * Rnd())) + 1
+
+                    Console.WriteLine()
+                    Console.WriteLine("You did some damage to the leaper and regained health")
+                    Console.WriteLine(playerName + ": +20       Leaper: -" & playerDamage)
+                    leaperHealth = leaperHealth - playerDamage
+                    playerHealth = playerHealth + 20
+                ElseIf enemyFight = False And battleChoice = "3" Then
+                    'deal damage to enemy
+
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((4 - 1 + 1) * Rnd())) + 1
+
+                    Console.WriteLine()
+                    Console.WriteLine("You did damage to the Leaper and accelerated cooldown")
+                    Console.WriteLine("Leaper: -" & playerDamage)
+                    Console.WriteLine()
+                    Console.WriteLine("S-Presen Cooldown: -3")
+                    leaperHealth = leaperHealth - playerDamage
+                    'cooldown on s-presen
+                    sensenFury = sensenFury - 3
+                ElseIf enemyFight = False And battleChoice = "4" Then
+                    'nothing happens
+                    Console.WriteLine()
+                    Console.WriteLine("You evaded but the leaper did not attack")
+                    Console.WriteLine()
+                ElseIf enemyFight = False And battleChoice = "5" Then
+                    'get leaper damage rate
+
+                    'get player damage rate
+                    playerDamage = CInt(Math.Floor((20 - 1 + 1) * Rnd())) + 1
+                    Console.WriteLine()
+                    Console.Write("S-Pressen: ")
+                    sPressen = Console.ReadLine()
+                    If sPressen = "Sensen Fury" And sensenFury = 0 Then
+                        Console.WriteLine()
+                        Console.WriteLine("You did massive damage!")
+                        Console.WriteLine("Leaper: -" & playerDamage)
+                        leaperHealth = leaperHealth - playerDamage
+                        sensenFury = 5
+                    ElseIf sPressen = "Sensen Fury" And sensenFury > 0 Then
+                        Console.WriteLine()
+                        Console.WriteLine("Leaper did not attack. Unable to use SenSen Fury right now. Your Focus is to Low.")
+                        Console.WriteLine("")
+                        playerHealth = playerHealth
+                    Else
+                        Console.WriteLine("Type ""help"" for help with S-Pressen's.")
+                    End If
+                    sPressen = ""
+                ElseIf battleChoice = "help" Then
+                    Console.WriteLine("S-Pressens are your special Pressens. Use them wisely.")
+                    Console.WriteLine("Availble: ""Sensen Fury"".")
+                    Console.WriteLine()
+                    Console.WriteLine("Press ""Enter"" or ""Return"" to Continue")
+                    Console.ReadLine()
+                    Console.Clear()
+                Else
+                    'Write invaild command and repeat loop
+                    Console.WriteLine("-Invalid Command-")
+                    Console.WriteLine()
+                End If
+                If playerHealth > maxHealth Then
+                    playerHealth = maxHealth
+                End If
+
+                If playerHealth <= 0 And leaperHealth > 0 Then
+                    loose = True
+                ElseIf leaperHealth < 1 And playerHealth > 0 Then
+                    win = True
+                ElseIf leaperHealth < 1 And playerHealth < 1 Then
+                    loose = True
+                Else
+                    round = round + 1
+                End If
+
+                If sensenFury > 0 Then
+                    sensenFury = sensenFury - 1
+                ElseIf sensenFury < 0 Then
+                    sensenFury = 0
+                End If
+
+                If loose = True Or win = True Then
+                    inBattle = False
+                End If
+                If loose = True And win = False Then
+                    Console.WriteLine("")
+                    Threading.Thread.Sleep(1000)
+                    Console.WriteLine("You died... Try again.")
+                    playerHealth = maxHealth
+                    Console.WriteLine("")
+                    Threading.Thread.Sleep(1000)
+                    inBattle = False
+                End If
+                If inBattle = True Then
+                    Console.WriteLine()
+                    Console.WriteLine()
+                    Console.WriteLine("-----------------------------------------------------------")
+                    Console.WriteLine()
+                    Console.WriteLine()
+                    Console.WriteLine("Your health: " & playerHealth & "           Enemy Health: " & leaperHealth)
+                    If sensenFury > 0 Then
+                        Console.WriteLine("S-Presen Cooldown: " & sensenFury & " turns left")
+                    Else
+                        Console.WriteLine("S-Presen is ready.")
+                    End If
+                End If
+            End While 'In battle
+
+        End While ' Win
+        Threading.Thread.Sleep(500)
+        Console.Write("*")
+        Console.ReadLine()
     End Sub
 
     Sub Credits()
