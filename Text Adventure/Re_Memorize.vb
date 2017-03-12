@@ -29,34 +29,55 @@
 
     Sub Main()
         Dim quitGame As Boolean = 0
-
         Console.WriteLine("Please go Full Screen.")
-        Console.WriteLine("After you have done so press Enter.")
+        Console.WriteLine("After you have done so press ""Enter"" or ""Return"".")
         Console.ReadLine()
-        Console.WriteLine("")
+        Console.Clear()
+        'Beta Notice Start
+        Console.WriteLine()
+        Console.WriteLine("Thank you for downloading the BETA for Re: Memorize!")
+        Console.WriteLine("If you experience any bugs or any unusual problems please report them in the comments on:")
+        Console.WriteLine("BrandonLaDuke.com/games/rememorize")
+        Console.WriteLine()
+        Console.WriteLine("Stay tuned to my Website or my social media accounts to find out when the full game releases!")
+        Console.WriteLine()
+        Console.WriteLine("My Website:  BrandonLaDuke.com")
+        Console.WriteLine("Google+:     +BrandonLaDuke")
+        Console.WriteLine("Twitter:     @BrandonLaDuke")
+        Console.WriteLine("Facebook:    Brandon LaDuke")
+        Console.WriteLine()
+        Console.WriteLine("   - Brandon LaDuke")
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine("Press ""Enter"" or ""Return"" to start")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.Clear()
+        'Beta Notice End
+        Console.ForegroundColor = ConsoleColor.Green
+        Console.WriteLine()
         Console.WriteLine("   A friend once said,")
-        Console.WriteLine("")
+        Console.WriteLine()
         Threading.Thread.Sleep(1000)
         Console.WriteLine("      the memory of a single man is a fortress,")
-        Console.WriteLine("")
-        Threading.Thread.Sleep(2000)
+        Console.WriteLine()
+        Threading.Thread.Sleep(1000)
         Console.WriteLine("          more complex than the vastest of cities.")
-        Console.WriteLine("")
-        Threading.Thread.Sleep(2000)
+        Console.WriteLine()
+        Threading.Thread.Sleep(1000)
         Console.WriteLine("              We invented a key for that fortress.")
         Console.WriteLine()
         Threading.Thread.Sleep(1000)
-        Console.WriteLine("")
-        Threading.Thread.Sleep(1000)
+        Console.WriteLine()
         Console.WriteLine("Press the ""Enter"" or ""Return"" key to continue.")
         Console.ReadLine()
         Console.Clear()
         Dim play As Boolean = 0
         While play = 0
-            Console.WriteLine("")
-            Console.WriteLine("")
-            Console.WriteLine("")
-            Console.WriteLine("")
+            Console.WriteLine()
+            Console.WriteLine()
+            Console.WriteLine()
+            Console.WriteLine()
             Logo()
             Console.WriteLine()
             Console.WriteLine()
@@ -90,9 +111,9 @@
             ElseIf start = "4" Then
                 Console.WriteLine("Thank's for playing! Please comeback and visit!")
                 Threading.Thread.Sleep(3000)
-                    Exit Sub
-                Else
-                    Console.WriteLine("I don't understand what you want me to do.")
+                Exit Sub
+            Else
+                Console.WriteLine("I don't understand what you want me to do.")
                 Threading.Thread.Sleep(1500)
                 Console.Clear()
             End If
@@ -277,12 +298,15 @@
             Chapter2()
             Chapter3()
         ElseIf passcode = "F65H7D" Then
+            sensenFuryUnlocked = True
             Chapter2()
             Chapter3()
         ElseIf passcode = "D612HQ" Then
+            sensenFuryUnlocked = True
             rememberBailey = True
             Chapter3()
         ElseIf passcode = "FQN26B" Then
+            sensenFuryUnlocked = True
             rememberBailey = False
             Chapter3()
         ElseIf passcode = "" Then
@@ -1565,6 +1589,7 @@
                     sPressen = ""
 
                 ElseIf battleChoice = "help" Then
+                    BattleInstructions()
                     Console.WriteLine("S-Pressens are your special Pressens. Use them wisely.")
                     Console.WriteLine("Availble: ""Sensen Fury"".")
                     Console.WriteLine()
@@ -1606,6 +1631,25 @@
                     Console.WriteLine("")
                     Threading.Thread.Sleep(1000)
                     inBattle = False
+                End If
+                If round = 10 And sensenFuryUnlocked = False Then
+                    Threading.Thread.Sleep(500)
+                    Console.Clear()
+                    Console.WriteLine("Memory Surge!")
+                    Threading.Thread.Sleep(300)
+                    'Memory Glitch
+                    Dim counter As Integer = 1
+                    For counter = 1 To 130
+                        Threading.Thread.Sleep(10)
+                        Console.Write("cjtfj6bkuyaw4567t(&^BT&6bvbi7ngO*&9o875n3o8&YNvp$(*YUb(*&ynBVO874WBTV3P&YIp8[y9]0)_(q(*Yup(*!p(~*yP9384957BV9327T65O87YCL78675^%&98UB&tu%^4&$w@463E68% FOyg o^e%43@^$#we^%^tbfuteQQAY466cr$h543jz4H435z54#5n")
+                        counter = counter + 1
+                    Next
+                    counter = 1
+                    Console.Clear()
+                    sensenDOSUnlocked = True
+                    Console.WriteLine("Sensen Fury is now availble!")
+                    Console.Write("*")
+                    Console.ReadLine()
                 End If
                 If inBattle = True Then
                     Console.WriteLine()
@@ -1943,9 +1987,11 @@
                     If sabreHealth1 = 0 Or sabreHealth1 < 0 Then
                         enemyFight1 = False
                         targetEnemy = "2"
+                        selectLoop1 = False
                     ElseIf sabreHealth2 = 0 Or sabreHealth2 < 0 Then
                         enemyFight2 = False
                         targetEnemy = "1"
+                        selectLoop1 = False
                     Else
                         Console.WriteLine("Select target: [1] " & enemy1 & "  [2] " & enemy2)
                         Console.Write("$ ")
@@ -2274,7 +2320,6 @@
                 ElseIf enemyFight1 = True And enemyFight2 = False And battleChoice = "3" Then
                     'Get Damage Rates
                     sabreDamage1 = CInt(Math.Floor((15 - 5 + 1) * Rnd())) + 5
-                    'sabreDamage2 = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
                     playerDamage = CInt(Math.Floor((10 - 5 + 1) * Rnd())) + 5
 
                     'Get Enemys total damage
@@ -2488,12 +2533,14 @@
 
 
                 ElseIf battleChoice = "help" Then
-                    Console.WriteLine("S-Pressens are your special Pressens. Use them wisely.")
+                    Console.Clear()
+                    BattleInstructions()
+                    Console.WriteLine("S-Pressens Availble:")
                     If sensenFuryUnlocked = True Then
-                        Console.WriteLine("Availble: ""Sensen Fury"".")
+                        Console.WriteLine("      ""Sensen Fury"".")
                     End If
                     If sensenDOSUnlocked = True Then
-                        Console.WriteLine("          ""Sensen DOS"".")
+                        Console.WriteLine("      ""Sensen DOS"".")
                     End If
                     Console.WriteLine()
                     Console.WriteLine("Press ""Enter"" or ""Return"" to Continue")

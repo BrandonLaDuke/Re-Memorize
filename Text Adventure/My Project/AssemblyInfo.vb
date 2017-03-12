@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Re: Memorize is a Text-based cyberpunk adventure game. Featuring a complex story line, turn based battles, and decision making.")>
 <Assembly: AssemblyCompany("Brandon LaDuke")>
 <Assembly: AssemblyProduct("Re: Memorize")>
-<Assembly: AssemblyCopyright("Copyright ©  2017")>
+<Assembly: AssemblyCopyright("Copyright ©  2017 Brandon LaDuke")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
