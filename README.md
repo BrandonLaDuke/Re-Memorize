@@ -17,4 +17,4 @@ Run: Re-Memorize.exe
 
 Remember Me is a cyberpunk action-adventure video game developed by Dontnod Entertainment and published by Capcom in 2013 for PS3, XBox 360 and PC.
 
-Serial Experiments Lain is a 13 Episode avant-garde anime series directed by Ryūtarō Nakamura, with character design 
+Serial Experiments Lain is a 13 Episode avant-garde anime series directed by Ryūtarō Nakamura, with character design by Yoshitoshi ABe, screenplay written by Chiaki J. Konaka, and produced by Yasuyuki Ueda for Triangle Staff in 1998.
