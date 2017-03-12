@@ -1861,14 +1861,17 @@
         Dim enemy1 As String = ""
         Dim enemy2 As String = ""
 
+        Dim regen As Double = 0
         Dim targetEnemy As String = ""
         Dim enemyFight1 As Boolean
         Dim enemyFight2 As Boolean
         Dim battleChoice As String
         Dim inBattle As Boolean = True
-        Dim sabreHealth As Double = 100
+        Dim sabreHealth1 As Double = 100
+        Dim sabreHealth2 As Double = 100
         Dim sabreDamage1 As Integer
         Dim sabreDamage2 As Integer
+        Dim totalDamage As Integer
         Dim playerDamage As Integer
         Dim loose As Boolean = False
         Dim win As Boolean = False
@@ -1887,7 +1890,8 @@
             round = 1
             sensenFury = 0
             'player health relys on previous fight
-            sabreHealth = 125
+            sabreHealth1 = 125
+            sabreHealth2 = 125
 
             Console.WriteLine()
             Console.WriteLine("Battle Start!")
@@ -1914,155 +1918,283 @@
                     End If
                 End While
                 Console.WriteLine()
-                Console.WriteLine("[1] Power  [2] Regen  [3] Cooldown  [4] Evade  [5] S-Presen")
+                Console.WriteLine("[1] Fight  [2] Regen  [3] Cooldown  [4] Evade  [5] S-Presen")
                 Console.Write("$ ")
                 battleChoice = Console.ReadLine()
                 Console.Clear()
                 Console.WriteLine()
 
+                'If player chooses Fight to do a standard attack
                 If enemyFight1 = True And enemyFight2 = True And battleChoice = "1" Then
                     'Get Damage Rates
-                    sabreDamage1 = CInt(Math.Floor)
+                    sabreDamage1 = CInt(Math.Floor((15 - 3 + 1) * Rnd())) + 3
+                    sabreDamage2 = CInt(Math.Floor((15 - 3 + 1) * Rnd())) + 3
+                    playerDamage = CInt(Math.Floor((15 - 3 + 1) * Rnd())) + 3
+
+                    'Get Enemys total damage
+                    totalDamage = sabreDamage1 + sabreDamage2
+
+                    If targetEnemy = "1" Then
+                        'Calculate damages
+                        sabreHealth1 = sabreHealth1 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+                        'print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy1 & ". But you also took damage from both " & enemy1 & " and " & enemy2 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy1 & ": -" & playerDamage)
+
+                    ElseIf targetEnemy = "2" Then
+                        'Calculate damages
+                        sabreHealth2 = sabreHealth2 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+                        'Print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy2 & ". But you also took damage from both " & enemy1 & " and " & enemy2 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy2 & ": -" & playerDamage)
+                    End If
+
+                ElseIf enemyFight1 = True And enemyFight2 = False And battleChoice = "1" Then
+                    'Get Damage Rates
+                    sabreDamage1 = CInt(Math.Floor((15 - 3 + 1) * Rnd())) + 3
+                    'sabreDamage2 = CInt(Math.Floor((15 - 3 + 1) * Rnd())) + 3
+                    playerDamage = CInt(Math.Floor((15 - 3 + 1) * Rnd())) + 3
+
+                    'Get Enemys total damage
+                    totalDamage = sabreDamage1
+
+                    If targetEnemy = "1" Then
+                        'Calculate damages
+                        sabreHealth1 = sabreHealth1 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+                        'print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy1 & ". But you also took damage from " & enemy1 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy1 & ": -" & playerDamage)
+
+                    ElseIf targetEnemy = "2" Then
+                        'Calculate damages
+                        sabreHealth2 = sabreHealth2 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+                        'Print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy2 & ". But you also took damage from " & enemy1 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy2 & ": -" & playerDamage)
+                    End If
+
+                ElseIf enemyFight1 = False And enemyFight2 = True And battleChoice = "1" Then
+                    'Get Damage Rates
+                    'sabreDamage1 = CInt(Math.Floor((15 - 3 + 1) * Rnd())) + 3
+                    sabreDamage2 = CInt(Math.Floor((15 - 3 + 1) * Rnd())) + 3
+                    playerDamage = CInt(Math.Floor((15 - 3 + 1) * Rnd())) + 3
+
+                    'Get Enemys total damage
+                    totalDamage = sabreDamage2
+
+                    If targetEnemy = "1" Then
+                        'Calculate damages
+                        sabreHealth1 = sabreHealth1 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+                        'print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy1 & ". But you also took damage from " & enemy2 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy1 & ": -" & playerDamage)
+
+                    ElseIf targetEnemy = "2" Then
+                        'Calculate damages
+                        sabreHealth2 = sabreHealth2 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+                        'Print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy2 & ". But you also took damage from " & enemy2 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy2 & ": -" & playerDamage)
+                    End If
+
+                ElseIf enemyFight1 = False And enemyFight2 = False And battleChoice = "1" Then
+                    'Get Damage Rates
+                    'sabreDamage1 = CInt(Math.Floor((15 - 3 + 1) * Rnd())) + 3
+                    'sabreDamage2 = CInt(Math.Floor((15 - 3 + 1) * Rnd())) + 3
+                    playerDamage = CInt(Math.Floor((15 - 3 + 1) * Rnd())) + 3
+
+                    'Get Enemys total damage
+                    totalDamage = 0
+
+                    If targetEnemy = "1" Then
+                        'Calculate damages
+                        sabreHealth1 = sabreHealth1 - playerDamage
+                        'playerHealth = playerHealth - totalDamage
+                        'print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy1 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy1 & ": -" & playerDamage)
+
+                    ElseIf targetEnemy = "2" Then
+                        'Calculate damages
+                        sabreHealth2 = sabreHealth2 - playerDamage
+                        'playerHealth = playerHealth - totalDamage
+                        'Print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy2 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy2 & ": -" & playerDamage)
+                    End If
+
+                    'If player chooses Regen to regenrate health
+                ElseIf enemyFight1 = True And enemyFight2 = True And battleChoice = "2" Then
+                    'Get Damage Rates
+                    sabreDamage1 = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
+                    sabreDamage2 = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
+                    playerDamage = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
+
+                    'Get Enemys total damage
+                    totalDamage = sabreDamage1 + sabreDamage2
 
                     If targetEnemy = "1" Then
 
+                        'Calculate damages
+                        sabreHealth1 = sabreHealth1 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+
+                        'print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy1 & ". But you also took damage from both " & enemy1 & " and " & enemy2 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy1 & ": -" & playerDamage)
+
+                        'Regenrate some health (10 to 15 hit points)
+                        regen = CInt(Math.Floor((15 - 10 + 1) * Rnd())) + 10
+                        playerHealth = playerHealth + regen
+                        Console.WriteLine("You regained some health. +" & regen)
+                    ElseIf targetEnemy = "2" Then
+                        'Calculate damages
+                        sabreHealth2 = sabreHealth2 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+                        'Print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy2 & ". But you also took damage from both " & enemy1 & " and " & enemy2 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy2 & ": -" & playerDamage)
+
+                        'Regenrate some health (10 to 15 hit points)
+                        regen = CInt(Math.Floor((15 - 10 + 1) * Rnd())) + 10
+                        playerHealth = playerHealth + regen
+                        Console.WriteLine("You regained some health. +" & regen)
                     End If
 
-                    'get leaper damage rate
-                    sabreDamage1 = CInt(Math.Floor((7 - 1 + 1) * Rnd())) + 1
-                    'get player damage rate
-                    playerDamage = CInt(Math.Floor((7 - 1 + 1) * Rnd())) + 1
-                    'Deal damage to player and enemy
-                    Console.WriteLine()
-                    Console.WriteLine("You did damage to the leaper. But you also took damage")
-                    Console.WriteLine(playerName + ":   -" & leaperDamage & "       Leaper: -" & playerDamage)
-                    playerHealth = playerHealth - leaperDamage
-                    leaperHealth = leaperHealth - playerDamage
-                ElseIf enemyFight = True And battleChoice = "2" Then
-                    'deal damage to enemy and player and heal some playerHealth
+                ElseIf enemyFight1 = True And enemyFight2 = False And battleChoice = "2" Then
+                    'Get Damage Rates
+                    sabreDamage1 = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
+                    'sabreDamage2 = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
+                    playerDamage = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
 
-                    'get leaper damage rate
-                    leaperDamage = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
-                    'get player damage rate
-                    playerDamage = CInt(Math.Floor((5 - 1 + 1) * Rnd())) + 1
+                    'Get Enemys total damage
+                    totalDamage = sabreDamage1
 
-                    Console.WriteLine()
-                    Console.WriteLine("You did damage to the leaper. But you also took damage but you regained health.")
-                    Console.WriteLine(playerName + ":  -" & leaperDamage & "       Leaper: -" & playerDamage)
-                    Console.WriteLine("You regained some health: +10")
-                    playerHealth = playerHealth - leaperDamage
-                    leaperHealth = leaperHealth - playerDamage
-                    'Regain some health
-                    playerHealth = playerHealth + 10
-                ElseIf enemyFight = True And battleChoice = "3" Then
-                    'you deal damage and little damage to enemy
+                    If targetEnemy = "1" Then
 
-                    'get leaper damage rate
-                    leaperDamage = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
-                    'get player damage rate
-                    playerDamage = CInt(Math.Floor((2 - 1 + 1) * Rnd())) + 1
+                        'Calculate damages
+                        sabreHealth1 = sabreHealth1 - playerDamage
+                        playerHealth = playerHealth - totalDamage
 
-                    Console.WriteLine()
-                    Console.WriteLine("You took damage. And did some to leaper.")
-                    Console.WriteLine(playerName + ": -" & leaperDamage & "       Leaper: -" & playerDamage)
-                    playerHealth = playerHealth - leaperDamage
-                    leaperHealth = leaperHealth - playerDamage
-                    'Cooldown on s presen
-                    sensenFury = sensenFury - 1
-                ElseIf enemyFight = True And battleChoice = "4" Then
-                    'You evade no damage delt
-                    Console.WriteLine()
-                    Console.WriteLine("You evaded the leapers attack")
-                    Threading.Thread.Sleep(500)
-                    Console.WriteLine()
-
-                ElseIf enemyFight = True And battleChoice = "5" Then
-                    'get leaper damage rate
-                    leaperDamage = CInt(Math.Floor((15 - 1 + 1) * Rnd())) + 1
-                    'get player damage rate
-                    playerDamage = CInt(Math.Floor((20 - 1 + 1) * Rnd())) + 1
-                    Console.WriteLine()
-                    Console.Write("S-Pressen: ")
-                    sPressen = Console.ReadLine()
-                    If sPressen = "Sensen Fury" And sensenFury = 0 Then
+                        'print results
                         Console.WriteLine()
-                        Console.WriteLine("You did massive damage!")
-                        Console.WriteLine("Leaper: -" & playerDamage)
-                        leaperHealth = leaperHealth - playerDamage
-                        sensenFury = 5
-                    ElseIf sPressen = "Sensen Fury" And sensenFury > 0 Then
+                        Console.WriteLine("You did damage to " & enemy1 & ". But you also took damage from " & enemy1 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy1 & ": -" & playerDamage)
+
+                        'Regenrate some health (10 to 15 hit points)
+                        regen = CInt(Math.Floor((15 - 10 + 1) * Rnd())) + 10
+                        playerHealth = playerHealth + regen
+                        Console.WriteLine("You regained some health. +" & regen)
+                    ElseIf targetEnemy = "2" Then
+                        'Calculate damages
+                        sabreHealth2 = sabreHealth2 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+                        'Print results
                         Console.WriteLine()
-                        Console.WriteLine("You took damage. Unable to use SenSen Fury right now. Your Focus is to Low.")
-                        Console.WriteLine("You: -" & leaperDamage)
-                        playerHealth = playerHealth - leaperDamage
-                    Else
-                        Console.WriteLine("Type ""help"" for help with S-Pressen's.")
+                        Console.WriteLine("You did damage to " & enemy2 & ". But you also took damage from " & enemy1 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy2 & ": -" & playerDamage)
+
+                        'Regenrate some health (10 to 15 hit points)
+                        regen = CInt(Math.Floor((15 - 10 + 1) * Rnd())) + 10
+                        playerHealth = playerHealth + regen
+                        Console.WriteLine("You regained some health. +" & regen)
                     End If
-                    sPressen = ""
 
-                ElseIf enemyFight = False And battleChoice = "1" Then
-                    'deal damage to enemy
+                ElseIf enemyFight1 = False And enemyFight2 = True And battleChoice = "2" Then
+                    'Get Damage Rates
+                    'sabreDamage1 = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
+                    sabreDamage2 = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
+                    playerDamage = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
 
-                    'get player damage rate
-                    playerDamage = CInt(Math.Floor((9 - 3 + 1) * Rnd())) + 3
+                    'Get Enemys total damage
+                    totalDamage = sabreDamage2
 
-                    Console.WriteLine()
-                    Console.WriteLine("You did damage to the leaper")
-                    Console.WriteLine("Leaper: -" & playerDamage)
-                    leaperHealth = leaperHealth - playerDamage
-                ElseIf enemyFight = False And battleChoice = "2" Then
-                    'deal damage to enemy and regain 10 health
+                    If targetEnemy = "1" Then
 
-                    'get player damage rate
-                    playerDamage = CInt(Math.Floor((7 - 1 + 1) * Rnd())) + 1
+                        'Calculate damages
+                        sabreHealth1 = sabreHealth1 - playerDamage
+                        playerHealth = playerHealth - totalDamage
 
-                    Console.WriteLine()
-                    Console.WriteLine("You did some damage to the leaper and regained health")
-                    Console.WriteLine(playerName + ": +20       Leaper: -" & playerDamage)
-                    leaperHealth = leaperHealth - playerDamage
-                    playerHealth = playerHealth + 20
-                ElseIf enemyFight = False And battleChoice = "3" Then
-                    'deal damage to enemy
-
-                    'get player damage rate
-                    playerDamage = CInt(Math.Floor((4 - 1 + 1) * Rnd())) + 1
-
-                    Console.WriteLine()
-                    Console.WriteLine("You did damage to the Leaper and accelerated cooldown")
-                    Console.WriteLine("Leaper: -" & playerDamage)
-                    Console.WriteLine()
-                    Console.WriteLine("S-Presen Cooldown: -3")
-                    leaperHealth = leaperHealth - playerDamage
-                    'cooldown on s-presen
-                    sensenFury = sensenFury - 3
-                ElseIf enemyFight = False And battleChoice = "4" Then
-                    'nothing happens
-                    Console.WriteLine()
-                    Console.WriteLine("You evaded but the leaper did not attack")
-                    Console.WriteLine()
-                ElseIf enemyFight = False And battleChoice = "5" Then
-                    'get leaper damage rate
-
-                    'get player damage rate
-                    playerDamage = CInt(Math.Floor((20 - 1 + 1) * Rnd())) + 1
-                    Console.WriteLine()
-                    Console.Write("S-Pressen: ")
-                    sPressen = Console.ReadLine()
-                    If sPressen = "Sensen Fury" And sensenFury = 0 Then
+                        'print results
                         Console.WriteLine()
-                        Console.WriteLine("You did massive damage!")
-                        Console.WriteLine("Leaper: -" & playerDamage)
-                        leaperHealth = leaperHealth - playerDamage
-                        sensenFury = 5
-                    ElseIf sPressen = "Sensen Fury" And sensenFury > 0 Then
+                        Console.WriteLine("You did damage to " & enemy1 & ". But you also took damage from " & enemy2 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy1 & ": -" & playerDamage)
+
+                        'Regenrate some health (10 to 15 hit points)
+                        regen = CInt(Math.Floor((15 - 10 + 1) * Rnd())) + 10
+                        playerHealth = playerHealth + regen
+                        Console.WriteLine("You regained some health. +" & regen)
+                    ElseIf targetEnemy = "2" Then
+                        'Calculate damages
+                        sabreHealth2 = sabreHealth2 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+                        'Print results
                         Console.WriteLine()
-                        Console.WriteLine("Leaper did not attack. Unable to use SenSen Fury right now. Your Focus is to Low.")
-                        Console.WriteLine("")
-                        playerHealth = playerHealth
-                    Else
-                        Console.WriteLine("Type ""help"" for help with S-Pressen's.")
+                        Console.WriteLine("You did damage to " & enemy2 & ". But you also took damage from " & enemy2 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy2 & ": -" & playerDamage)
+
+                        'Regenrate some health (10 to 15 hit points)
+                        regen = CInt(Math.Floor((15 - 10 + 1) * Rnd())) + 10
+                        playerHealth = playerHealth + regen
+                        Console.WriteLine("You regained some health. +" & regen)
                     End If
-                    sPressen = ""
+
+                ElseIf enemyFight1 = False And enemyFight2 = False And battleChoice = "2" Then
+                    'Get Damage Rates
+                    'sabreDamage1 = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
+                    'sabreDamage2 = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
+                    playerDamage = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
+
+                    'Get Enemys total damage
+                    totalDamage = 0
+
+                    If targetEnemy = "1" Then
+
+                        'Calculate damages
+                        sabreHealth1 = sabreHealth1 - playerDamage
+                        'playerHealth = playerHealth - totalDamage
+
+                        'print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy1 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy1 & ": -" & playerDamage)
+
+                        'Regenrate some health (10 to 15 hit points)
+                        regen = CInt(Math.Floor((15 - 10 + 1) * Rnd())) + 10
+                        playerHealth = playerHealth + regen
+                        Console.WriteLine("You regained some health. +" & regen)
+                    ElseIf targetEnemy = "2" Then
+                        'Calculate damages
+                        sabreHealth2 = sabreHealth2 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+                        'Print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy2 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy2 & ": -" & playerDamage)
+
+                        'Regenrate some health (10 to 15 hit points)
+                        regen = CInt(Math.Floor((15 - 10 + 1) * Rnd())) + 10
+                        playerHealth = playerHealth + regen
+                        Console.WriteLine("You regained some health. +" & regen)
+                    End If
+
+
                 ElseIf battleChoice = "help" Then
                     Console.WriteLine("S-Pressens are your special Pressens. Use them wisely.")
                     Console.WriteLine("Availble: ""Sensen Fury"".")
@@ -2079,11 +2211,11 @@
                     playerHealth = maxHealth
                 End If
 
-                If playerHealth <= 0 And leaperHealth > 0 Then
+                If playerHealth <= 0 And (sabreHealth1 > 0 Or sabreHealth2 > 0) Then
                     loose = True
-                ElseIf leaperHealth < 1 And playerHealth > 0 Then
+                ElseIf (sabreHealth1 < 1 And sabreHealth2 < 1) And playerHealth > 0 Then
                     win = True
-                ElseIf leaperHealth < 1 And playerHealth < 1 Then
+                ElseIf (sabreHealth1 < 1 Or sabreHealth2 < 1) And playerHealth < 1 Then
                     loose = True
                 Else
                     round = round + 1
@@ -2113,7 +2245,7 @@
                     Console.WriteLine("-----------------------------------------------------------")
                     Console.WriteLine()
                     Console.WriteLine()
-                    Console.WriteLine("Your health: " & playerHealth & "           Enemy Health: " & leaperHealth)
+                    Console.WriteLine("Your health: " & playerHealth & "     " & enemy1 & " Health: " & sabreHealth1 & "     " & enemy2 & " Health: " & sabreHealth2)
                     If sensenFury > 0 Then
                         Console.WriteLine("S-Presen Cooldown: " & sensenFury & " turns left")
                     Else
@@ -2122,7 +2254,7 @@
                 End If
             End While 'In battle
 
-        End While ' Win
+        End While 'Win
         Threading.Thread.Sleep(500)
         Console.Write("*")
         Console.ReadLine()
