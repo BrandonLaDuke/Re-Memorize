@@ -3,7 +3,7 @@ Re: Memorize is a Text-based cyberpunk adventure game. Featuring a complex story
 
 Inspired by Dontnod Entertainment's "Remember Me" with some concepts from Triangle Staff's "Serial Experiments Lain".
 
-Re: Memorize puts you in the role of a unique memory hunter who has the power to remix human memories without the need for any type of device. Untill your memory was wiped. Now you have to battle your way into the Memorize HQ and findout what is going on. Following on from a few years after the events of Remember Me, the Leaper threat is back and it's up to you to remember who you were and unravel the secrets behind the Memorize network
+Re: Memorize puts you in the role of a unique memory hunter who has the power to remix human memories without the need for any type of device. Untill your memory was wiped. Now you have to battle your way into the Memorize HQ and find out what is going on. Following on from a few years after the events of Remember Me, the Leaper threat is back and it's up to you to remember who you were and unravel the secrets behind the Memorize network
 
 #Installation Instructions
 
