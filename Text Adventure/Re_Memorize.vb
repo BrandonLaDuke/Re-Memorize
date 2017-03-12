@@ -16,16 +16,13 @@
     Dim selectLoop2 As Boolean = True
     Dim selectLoop3 As Boolean = True
     Dim sPressen As String
+
+    'Passcode dependant varialbles
     Dim sensenFuryUnlocked As Boolean = False
     Dim sensenDOSUnlocked As Boolean = False
-
     Dim rememberBailey As Boolean
 
     Dim passcode As String = ""
-
-    'Ferdinan - Doctor
-    'Johnny
-    '
 
     Sub Main()
         Dim quitGame As Boolean = 0
@@ -121,17 +118,7 @@
 
     End Sub
 
-    Sub Initialize()
-        playerName = ""
-        genRef = ""
-        genRef1 = ""
-        genRef2 = ""
-        genRef3 = ""
-        cWhile = True
-        memoryHunter = False
-        leaper = False
-    End Sub
-
+    'Gamestart
     Sub GameStart()
         Console.WriteLine()
         Console.WriteLine("Hello, stranger. What's your name?")
@@ -233,7 +220,16 @@
 
 
     End Sub
-
+    Sub Initialize()
+        playerName = ""
+        genRef = ""
+        genRef1 = ""
+        genRef2 = ""
+        genRef3 = ""
+        cWhile = True
+        memoryHunter = False
+        leaper = False
+    End Sub
     Sub GetName()
         Dim nameCor As Boolean = False
         Dim nameChk As Integer = 0
@@ -243,6 +239,7 @@
         playerName = Console.ReadLine()
     End Sub
 
+    'Instructions
     Sub Instructions()
         Console.WriteLine()
         Console.WriteLine("------------Instructions------------")
@@ -261,7 +258,6 @@
         Console.WriteLine("Do you understand this " + playerName + "?")
         Console.Write("$")
     End Sub
-
     Sub BattleInstructions()
         Console.WriteLine()
         Console.WriteLine("--------------------------------- Battle Instructions ------------------------------------")
@@ -324,10 +320,13 @@
             Chapter3()
             passcode = ""
         End If
-
-
+        Console.WriteLine()
+        Console.WriteLine("Thank you for playing! You have reached the end of the Beta. More is coming soon.")
+        Console.Write("*")
+        Console.ReadLine()
     End Sub
 
+    'Chapters
     Sub Chapter0()
         Console.WriteLine()
         Console.WriteLine()
@@ -414,7 +413,9 @@
         Else
             nameCheck = ""
             Console.WriteLine("Stranger: What did you say your name was?")
-            Console.Write(">>")
+            Console.Write(">> ")
+            nameCheck = ""
+            nameCheck = Console.ReadLine()
             i = 0
             If nameCheck = playerName Then
                 i = 1
@@ -452,7 +453,53 @@
             Exit Sub
         End If
     End Sub
+    Sub Chapter1()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          ------------------ Chapter 1 ------------------")
+        Console.WriteLine("          ------------- People Just Like Us -------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.ReadLine()
+        Console.Clear()
+        Threading.Thread.Sleep(200)
+        Chapter1_1()
+    End Sub
+    Sub Chapter2()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          ------------------ Chapter 2 ------------------")
+        Console.WriteLine("          ------------------- Friends -------------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.ReadLine()
+        Console.Clear()
+        Threading.Thread.Sleep(200)
+        Chapter2_1()
+    End Sub
+    Sub Chapter3()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          ------------------ Chapter 3 ------------------")
+        Console.WriteLine("          ------------- It's my memory now. -------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.WriteLine("          -----------------------------------------------")
+        Console.ReadLine()
+        Console.Clear()
+        Threading.Thread.Sleep(200)
+        Chapter3_1()
+    End Sub
 
+    'Chapter 0 Helping Chapters
     Sub Chapter0_1()
         Console.WriteLine(playerName + ": Get up " + playerName + ".")
         Console.Write("*")
@@ -520,7 +567,6 @@
         End While
         Console.WriteLine()
     End Sub
-
     Sub Chapter0_2()
         Console.WriteLine("Robot: Right this way")
         Console.WriteLine("*")
@@ -596,7 +642,7 @@
                     Dim hearL As Boolean = False
                     While hearL = False
                         Console.Write("$")
-                        Console.WriteLine("[1] Why should I trust you?  [2] I don't trust you. Leave me alone.")
+                        Console.WriteLine("[1] Why should I trust you?")
                         hear = Console.ReadLine()
                         If hear = "1" Then
                             Console.WriteLine("Unknown: Because you will cease to exist.")
@@ -605,18 +651,10 @@
                             Console.ReadLine()
                             memoryHunter = True
                             hearL = True
-                        ElseIf hear = "2" Then
-                            Console.WriteLine("Unknown: Guess your too far gone to help. This was your decision.")
-                            memoryHunter = True
-                            leaper = True
-                            hearL = True
                         Else
                             Console.WriteLine("Invalid command")
                         End If
                     End While
-                End If
-                If leaper = True And memoryHunter = True Then
-                    memoryHunter = False
                 End If
             End If
         Next
@@ -626,10 +664,9 @@
             Exit Sub
         End If
     End Sub
-
     Sub Chapter0_3_MemoryHunter()
         Console.WriteLine()
-        Console.WriteLine("Unknown: Okay this is what you need to do. Look to your left, do you see a steel door?")
+        Console.WriteLine("Unknown: Okay this is what you need to do. Do you see a large steel door?")
         userInput = ""
         While selectLoop1 = True
             Console.WriteLine("[1] Look forward  [2] Look to your left  [3] Look to your right  [4] Look behind you")
@@ -637,15 +674,17 @@
             userInput = Console.ReadLine()
             If userInput = "1" Then
                 'look forward
-                Console.WriteLine("")
+                Console.WriteLine("You see a huge machene that seems to be putting people through lots of pain.")
             ElseIf userInput = "2" Then
                 Console.WriteLine(playerName & ": Yes, I see the door.")
                 'Look left (continue)
                 selectLoop1 = False
             ElseIf userInput = "3" Then
                 'Look right
+                Console.WriteLine("You see a wall.")
             ElseIf userInput = "4" Then
                 'look behind you
+                Console.WriteLine("There is some guy that dosent seem to know he's standing there.")
             Else
                 Console.WriteLine("Invalid command.")
             End If
@@ -753,32 +792,14 @@
         Console.WriteLine()
         Console.WriteLine()
         Console.WriteLine()
+        Console.WriteLine()
         Console.WriteLine("          -----------------------------------------------")
         Console.WriteLine("          -------------- Password: AD4H7R ---------------")
         Console.WriteLine("          -----------------------------------------------")
         Console.ReadLine()
     End Sub
 
-    Sub Chapter0_3_Leaper()
-        'Game over before it started.
-    End Sub
-
-    Sub Chapter1()
-        Console.WriteLine()
-        Console.WriteLine()
-        Console.WriteLine()
-        Console.WriteLine("          -----------------------------------------------")
-        Console.WriteLine("          -----------------------------------------------")
-        Console.WriteLine("          ------------------ Chapter 1 ------------------")
-        Console.WriteLine("          ------------- People Just Like Us -------------")
-        Console.WriteLine("          -----------------------------------------------")
-        Console.WriteLine("          -----------------------------------------------")
-        Console.ReadLine()
-        Console.Clear()
-        Threading.Thread.Sleep(200)
-        Chapter1_1()
-    End Sub
-
+    'Chapter 1 Helping Chapters
     Sub Chapter1_1()
         Console.WriteLine("[You feel Lots of movement like your going down a river]")
         Console.Write("*")
@@ -890,7 +911,6 @@
         Battle1() 'First Battle
         Chapter1_2()
     End Sub
-
     Sub Chapter1_2()
         Console.Clear()
         userInput = ""
@@ -1031,6 +1051,7 @@
         Console.WriteLine()
         Console.WriteLine()
         Console.WriteLine()
+        Console.WriteLine()
         Console.WriteLine("          -----------------------------------------------")
         Console.WriteLine("          -------------- Password: F65H7D ---------------")
         Console.WriteLine("          -----------------------------------------------")
@@ -1038,22 +1059,7 @@
         Console.Clear()
     End Sub
 
-    Sub Chapter2()
-        Console.WriteLine()
-        Console.WriteLine()
-        Console.WriteLine()
-        Console.WriteLine("          -----------------------------------------------")
-        Console.WriteLine("          -----------------------------------------------")
-        Console.WriteLine("          ------------------ Chapter 2 ------------------")
-        Console.WriteLine("          ------------------- Friends -------------------")
-        Console.WriteLine("          -----------------------------------------------")
-        Console.WriteLine("          -----------------------------------------------")
-        Console.ReadLine()
-        Console.Clear()
-        Threading.Thread.Sleep(200)
-        Chapter2_1()
-    End Sub
-
+    'Chapter 2 Helping Chapters
     Sub Chapter2_1()
         Console.WriteLine("Bailey: It's great to see you again " & playerName & ".")
         Console.Write("*")
@@ -1358,6 +1364,7 @@
         Console.WriteLine()
         Console.WriteLine()
         Console.WriteLine()
+        Console.WriteLine()
         Console.WriteLine("          -----------------------------------------------")
         If rememberBailey = True Then
             Console.WriteLine("          -------------- Password: D612HQ ---------------")
@@ -1371,22 +1378,7 @@
         Console.Clear()
     End Sub
 
-    Sub Chapter3()
-        Console.WriteLine()
-        Console.WriteLine()
-        Console.WriteLine()
-        Console.WriteLine("          -----------------------------------------------")
-        Console.WriteLine("          -----------------------------------------------")
-        Console.WriteLine("          ------------------ Chapter 3 ------------------")
-        Console.WriteLine("          ------------- It's my memory now. -------------")
-        Console.WriteLine("          -----------------------------------------------")
-        Console.WriteLine("          -----------------------------------------------")
-        Console.ReadLine()
-        Console.Clear()
-        Threading.Thread.Sleep(200)
-        Chapter3_1()
-    End Sub
-
+    'Chapter 3 Helping Chapters
     Sub Chapter3_1()
         Console.WriteLine(playerName & ": Okay I'm in position.")
         Console.Write("*")
@@ -1452,6 +1444,7 @@
 
     End Sub
 
+    'Battles
     Sub Battle1()
         Dim enemyFight As Boolean
         Dim battleChoice As String
@@ -1669,10 +1662,10 @@
         End While ' Win
         playerHealth = maxHealth
         Threading.Thread.Sleep(500)
+        Console.WriteLine("Battle Clear")
         Console.Write("*")
         Console.ReadLine()
     End Sub
-
     Sub Battle2()
         Dim enemyFight As Boolean
         Dim battleChoice As String
@@ -1907,10 +1900,10 @@
 
         End While ' Win
         Threading.Thread.Sleep(500)
+        Console.WriteLine("Battle Clear")
         Console.Write("*")
         Console.ReadLine()
     End Sub
-
     Sub SabreBattle1x2()
         'Enemies
         Dim enemy1 As String = ""
@@ -2633,10 +2626,12 @@
 
         End While 'Win
         Threading.Thread.Sleep(500)
+        Console.WriteLine("Battle Clear")
         Console.Write("*")
         Console.ReadLine()
     End Sub
 
+    'Credits
     Sub Credits()
         Console.WriteLine("--------Credits--------")
         Console.WriteLine()
@@ -2669,6 +2664,7 @@
         Console.Clear()
     End Sub
 
+    'Logo
     Sub Logo()
         Console.WriteLine("                           0")
         Console.WriteLine("                           00000000")
