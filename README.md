@@ -1,4 +1,4 @@
-# Re-Memorize
+# Re: Memorize
 Re: Memorize is a Text-based cyberpunk adventure game. Featuring a complex story line, turn based battles, and decision making.
 
 Inspired by Dontnod Entertainment's "Remember Me" with some concepts from Triangle Staff's "Serial Experiments Lain".
