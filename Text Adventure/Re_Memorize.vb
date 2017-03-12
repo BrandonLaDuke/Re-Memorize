@@ -2194,6 +2194,168 @@
                         Console.WriteLine("You regained some health. +" & regen)
                     End If
 
+                    'Attack and cooldown S-Pressens
+                ElseIf enemyFight1 = True And enemyFight2 = True And battleChoice = "3" Then
+                    'Get Damage Rates
+                    sabreDamage1 = CInt(Math.Floor((15 - 5 + 1) * Rnd())) + 5
+                    sabreDamage2 = CInt(Math.Floor((15 - 5 + 1) * Rnd())) + 5
+                    playerDamage = CInt(Math.Floor((10 - 5 + 1) * Rnd())) + 5
+
+                    'Get Enemys total damage
+                    totalDamage = sabreDamage1 + sabreDamage2
+
+                    If targetEnemy = "1" Then
+
+                        'Calculate damages
+                        sabreHealth1 = sabreHealth1 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+
+                        'print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy1 & ". But you also took damage from both " & enemy1 & " and " & enemy2 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy1 & ": -" & playerDamage)
+
+                    ElseIf targetEnemy = "2" Then
+                        'Calculate damages
+                        sabreHealth2 = sabreHealth2 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+                        'Print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy2 & ". But you also took damage from both " & enemy1 & " and " & enemy2 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy2 & ": -" & playerDamage)
+
+                    End If
+
+                    'Cooldown S-Pressen's
+                    sensenFury = sensenFury - 2
+                    sensenDOS = sensenDOS - 2
+                    Console.WriteLine("Cooldown.")
+
+                ElseIf enemyFight1 = True And enemyFight2 = False And battleChoice = "3" Then
+                    'Get Damage Rates
+                    sabreDamage1 = CInt(Math.Floor((15 - 5 + 1) * Rnd())) + 5
+                    'sabreDamage2 = CInt(Math.Floor((10 - 1 + 1) * Rnd())) + 1
+                    playerDamage = CInt(Math.Floor((10 - 5 + 1) * Rnd())) + 5
+
+                    'Get Enemys total damage
+                    totalDamage = sabreDamage1
+
+                    If targetEnemy = "1" Then
+
+                        'Calculate damages
+                        sabreHealth1 = sabreHealth1 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+
+                        'print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy1 & ". But you also took damage from " & enemy1 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy1 & ": -" & playerDamage)
+
+                    ElseIf targetEnemy = "2" Then
+                        'Calculate damages
+                        sabreHealth2 = sabreHealth2 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+                        'Print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy2 & ". But you also took damage from " & enemy1 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy2 & ": -" & playerDamage)
+
+                    End If
+
+                    'Cooldown S-Pressen's
+                    sensenFury = sensenFury - 2
+                    sensenDOS = sensenDOS - 2
+                    Console.WriteLine("Cooldown.")
+
+                ElseIf enemyFight1 = False And enemyFight2 = True And battleChoice = "3" Then
+                    'Get Damage Rates
+                    'sabreDamage1 = CInt(Math.Floor((15 - 5 + 1) * Rnd())) + 5
+                    sabreDamage2 = CInt(Math.Floor((15 - 5 + 1) * Rnd())) + 5
+                    playerDamage = CInt(Math.Floor((10 - 5 + 1) * Rnd())) + 5
+
+                    'Get Enemys total damage
+                    totalDamage = sabreDamage2
+
+                    If targetEnemy = "1" Then
+
+                        'Calculate damages
+                        sabreHealth1 = sabreHealth1 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+
+                        'print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy1 & ". But you also took damage from " & enemy2 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy1 & ": -" & playerDamage)
+
+                    ElseIf targetEnemy = "2" Then
+                        'Calculate damages
+                        sabreHealth2 = sabreHealth2 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+                        'Print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy2 & ". But you also took damage from " & enemy2 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy2 & ": -" & playerDamage)
+
+                    End If
+
+                    'Cooldown S-Pressen's
+                    sensenFury = sensenFury - 2
+                    sensenDOS = sensenDOS - 2
+                    Console.WriteLine("Cooldown.")
+
+                ElseIf enemyFight1 = False And enemyFight2 = False And battleChoice = "3" Then
+                    'Get Damage Rates
+                    'sabreDamage1 = CInt(Math.Floor((15 - 5 + 1) * Rnd())) + 5
+                    'sabreDamage2 = CInt(Math.Floor((15 - 5 + 1) * Rnd())) + 5
+                    playerDamage = CInt(Math.Floor((10 - 5 + 1) * Rnd())) + 5
+
+                    'Get Enemys total damage
+                    totalDamage = 0
+
+                    If targetEnemy = "1" Then
+
+                        'Calculate damages
+                        sabreHealth1 = sabreHealth1 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+
+                        'print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy1 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy1 & ": -" & playerDamage)
+
+                    ElseIf targetEnemy = "2" Then
+                        'Calculate damages
+                        sabreHealth2 = sabreHealth2 - playerDamage
+                        playerHealth = playerHealth - totalDamage
+                        'Print results
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage to " & enemy2 & ".")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy2 & ": -" & playerDamage)
+
+                    End If
+
+                    'Cooldown S-Pressen's
+                    sensenFury = sensenFury - 2
+                    sensenDOS = sensenDOS - 2
+                    Console.WriteLine("Cooldown.")
+
+
+
+
+                    'Now I need to do calculations on what happens when the user evades and uses the S-Pressens
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 ElseIf battleChoice = "help" Then
                     Console.WriteLine("S-Pressens are your special Pressens. Use them wisely.")
