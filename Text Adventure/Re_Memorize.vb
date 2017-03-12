@@ -16,6 +16,8 @@
     Dim selectLoop2 As Boolean = True
     Dim selectLoop3 As Boolean = True
     Dim sPressen As String
+    Dim sensenFuryUnlocked As Boolean = False
+    Dim sensenDOSUnlocked As Boolean = False
 
     Dim rememberBailey As Boolean
 
@@ -239,25 +241,33 @@
         Console.Write("$")
     End Sub
 
-    'Add Battle instructions
     Sub BattleInstructions()
         Console.WriteLine()
-        Console.WriteLine("------------Battle Instructions------------")
+        Console.WriteLine("--------------------------------- Battle Instructions ------------------------------------")
         Console.WriteLine()
-        Console.WriteLine("Combat Battle")
-        Console.WriteLine("Attack types")
-        Console.WriteLine("There will also ocasionaly be open ended questions.")
+        Console.WriteLine("                                     Combat Battle")
         Console.WriteLine()
-        Console.WriteLine("Symbols you will find that you will need to know about:")
-        Console.WriteLine("   >>   Is a open ended responce marker. When you see this you can type a responce.")
+        Console.WriteLine(" You get to choose your target. After you choose your target you may make your next")
+        Console.WriteLine(" desision")
         Console.WriteLine()
-        Console.WriteLine("   $    Is a simple question marker. Here you select a responce from the prompt.")
+        Console.WriteLine(" Attack types:")
         Console.WriteLine()
-        Console.WriteLine("   *    If you see this marker you press the Enter button to continue.")
+        Console.WriteLine("   Attack:     You're standard attack")
         Console.WriteLine()
-        Console.WriteLine("   Cool down explain")
-        Console.WriteLine("Do you understand this " + playerName + "?")
-        Console.Write("$")
+        Console.WriteLine("   Regen:      Deals a smaller amount of damage to your target but allows you to restore")
+        Console.WriteLine("               some health")
+        Console.WriteLine()
+        Console.WriteLine("   Cooldown:   Deals a smaller amount of damage to your target but reduces the ammout of")
+        Console.WriteLine("               turns is needed to cooldown your S-Pressens")
+        Console.WriteLine()
+        Console.WriteLine("   Evade:      Evades incoming enemy attack. No one get's hurt")
+        Console.WriteLine()
+        Console.WriteLine("   S-Pressen:  Special Pressens. Will require cooldown after use. Type the name of the")
+        Console.WriteLine("               S-Pressen that you would like to use")
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine("Press ""Enter"" or ""Return"" to continue.")
+        Console.ReadLine()
     End Sub
 
     'Access Chapters and passcode entry
@@ -1264,12 +1274,12 @@
                     If userInput = "1" Then
                         Console.WriteLine(playerName & ": You're not me. I'm me.")
                         Console.Write("*")
-                        selectLoop2 = 1
+                        selectLoop2 = False
                     ElseIf userInput = "2" Then
                         Console.WriteLine("Who are you really?")
                         Console.Write("*")
                         Console.ReadLine()
-                        selectLoop2 = 2
+                        selectLoop2 = False
                     Else
                         Console.WriteLine("Invalid command.")
                     End If
@@ -1538,6 +1548,7 @@
                     Console.WriteLine()
                     Console.Write("S-Pressen: ")
                     sPressen = Console.ReadLine()
+                    Console.Clear()
                     If sPressen = "Sensen Fury" And sensenFury = 0 Then
                         Console.WriteLine()
                         Console.WriteLine("You did massive damage!")
@@ -1876,6 +1887,7 @@
         Dim loose As Boolean = False
         Dim win As Boolean = False
         Dim round As Integer = 1
+        Dim stun As Integer = 0
         Dim sensenFury = 0
         Dim sensenDOS = 0
 
@@ -1901,20 +1913,48 @@
             While inBattle = True
 
                 'Get enemy move (Randon True, False)
-                enemyFight1 = CInt(Math.Floor((1 - 0 + 1) * Rnd())) + 0
-                enemyFight2 = CInt(Math.Floor((1 - 0 + 1) * Rnd())) + 0
-
+                If stun = 0 Then
+                    If sabreHealth1 > 0 Then
+                        enemyFight1 = CInt(Math.Floor((1 - 0 + 1) * Rnd())) + 0
+                    End If
+                    If sabreHealth2 > 0 Then
+                        enemyFight2 = CInt(Math.Floor((1 - 0 + 1) * Rnd())) + 0
+                    End If
+                    If sabreHealth1 <= 0 Then
+                        enemyFight1 = False
+                    End If
+                    If sabreHealth2 <= 0 Then
+                        enemyFight2 = False
+                    End If
+                Else
+                    enemyFight1 = False
+                    enemyFight2 = False
+                    Console.WriteLine("Enemies stuned.")
+                End If
+                If stun > 0 Then
+                    stun = stun - 1
+                ElseIf stun <= 0 Then
+                    stun = 0
+                End If
                 targetEnemy = ""
                 userInput = ""
                 selectLoop1 = True
                 While selectLoop1 = True
-                    Console.WriteLine("Select target: [1] " & enemy1 & "  [2] " & enemy2)
-                    Console.Write("$ ")
-                    targetEnemy = Console.ReadLine()
-                    If targetEnemy = "1" Or targetEnemy = "2" Then
-                        selectLoop1 = False
+                    If sabreHealth1 = 0 Or sabreHealth1 < 0 Then
+                        enemyFight1 = False
+                        targetEnemy = "2"
+                    ElseIf sabreHealth2 = 0 Or sabreHealth2 < 0 Then
+                        enemyFight2 = False
+                        targetEnemy = "1"
                     Else
-                        Console.WriteLine("Invalid command.")
+                        Console.WriteLine("Select target: [1] " & enemy1 & "  [2] " & enemy2)
+                        Console.Write("$ ")
+                        targetEnemy = Console.ReadLine()
+                        If targetEnemy = "1" Or targetEnemy = "2" Then
+                            selectLoop1 = False
+                        Else
+                            Console.WriteLine("Invalid command.")
+                        End If
                     End If
                 End While
                 Console.WriteLine()
@@ -2339,19 +2379,109 @@
                     sensenDOS = sensenDOS - 2
                     Console.WriteLine("Cooldown.")
 
+                    'Evade Attacks
+                ElseIf enemyFight1 = True And enemyFight2 = True And battleChoice = "4" Then
+
+                    'Get Enemys total damage
+                    totalDamage = 0
+                    playerDamage = 0
+
+                    If targetEnemy = "1" Or targetEnemy = "2" Then
+
+                        Console.WriteLine()
+                        Console.WriteLine("You evaded " & enemy1 & " and " & enemy2 & "'s attack.")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy1 & ": -" & playerDamage)
+
+                    End If
+                ElseIf enemyFight1 = True And enemyFight2 = False And battleChoice = "4" Then
+
+                    'Get Enemys total damage
+                    totalDamage = 0
+                    playerDamage = 0
+
+                    If targetEnemy = "1" Or targetEnemy = "2" Then
+
+                        Console.WriteLine()
+                        Console.WriteLine("You evaded " & enemy1 & "'s attack.")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy1 & ": -" & playerDamage)
+
+                    End If
+
+                ElseIf enemyFight1 = False And enemyFight2 = True And battleChoice = "4" Then
+
+                    'Get Enemys total damage
+                    totalDamage = 0
+                    playerDamage = 0
+
+                    If targetEnemy = "1" Or targetEnemy = "2" Then
+
+                        Console.WriteLine()
+                        Console.WriteLine("You evaded " & enemy2 & "'s attack.")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy1 & ": -" & playerDamage)
+
+                    End If
+
+                ElseIf enemyFight1 = False And enemyFight2 = False And battleChoice = "4" Then
+
+                    'Get Enemys total damage
+                    totalDamage = 0
+                    playerDamage = 0
+
+                    If targetEnemy = "1" Or targetEnemy = "2" Then
+
+                        Console.WriteLine()
+                        Console.WriteLine("You evaded but no one attacked.")
+                        Console.WriteLine(playerName + ":   -" & totalDamage & "       " & enemy1 & ": -" & playerDamage)
+
+                    End If
 
 
 
-                    'Now I need to do calculations on what happens when the user evades and uses the S-Pressens
+
+                    'Now I need to do calculations on what happens when the user uses the S-Pressens
+                ElseIf battleChoice = "5" Then
+                    Console.WriteLine()
+                    Console.Write("S-Pressen: ")
+                    sPressen = Console.ReadLine()
+                    Console.Clear()
+                    'Get Damage Rates
+                    'sabreDamage1 = CInt(Math.Floor((15 - 5 + 1) * Rnd())) + 5
+                    'sabreDamage2 = CInt(Math.Floor((15 - 5 + 1) * Rnd())) + 5
 
 
+                    'Get Enemys total damage
+                    totalDamage = 0
 
+                    If sPressen = "Sensen Fury" And sensenFury = 0 And sensenFuryUnlocked = True Then
+                        'Get damage rate
+                        playerDamage = CInt(Math.Floor((25 - 15 + 1) * Rnd())) + 15
 
+                        Console.WriteLine()
+                        Console.WriteLine("You did massive damage!")
+                        Console.WriteLine(enemy1 & ": -" & playerDamage)
+                        Console.WriteLine(enemy2 & ": -" & playerDamage)
 
+                        sabreHealth1 = sabreHealth1 - playerDamage
+                        sabreHealth2 = sabreHealth2 - playerDamage
 
+                        'Reset Cooldown Clock
+                        sensenFury = 10
 
+                    ElseIf sPressen = "Sensen DOS" And sensenDOS = 0 And sensenDOSUnlocked = True Then
+                        'Get damage rate
+                        playerDamage = CInt(Math.Floor((20 - 15 + 1) * Rnd())) + 15
 
+                        Console.WriteLine()
+                        Console.WriteLine("You did damage and stuned enemies for 5 turns.")
+                        Console.WriteLine(sabreHealth1 & ": -" & playerDamage)
+                        Console.WriteLine(sabreHealth2 & ": -" & playerDamage)
 
+                        sabreHealth1 = sabreHealth1 - playerDamage
+                        sabreHealth2 = sabreHealth2 - playerDamage
+
+                        'Reset Cooldown Clock
+                        sensenDOS = 10
+                    End If
 
 
 
@@ -2359,7 +2489,12 @@
 
                 ElseIf battleChoice = "help" Then
                     Console.WriteLine("S-Pressens are your special Pressens. Use them wisely.")
-                    Console.WriteLine("Availble: ""Sensen Fury"".")
+                    If sensenFuryUnlocked = True Then
+                        Console.WriteLine("Availble: ""Sensen Fury"".")
+                    End If
+                    If sensenDOSUnlocked = True Then
+                        Console.WriteLine("          ""Sensen DOS"".")
+                    End If
                     Console.WriteLine()
                     Console.WriteLine("Press ""Enter"" or ""Return"" to Continue")
                     Console.ReadLine()
@@ -2389,9 +2524,16 @@
                     sensenFury = 0
                 End If
 
+                If sensenDOS > 0 Then
+                    sensenDOS = sensenDOS - 1
+                ElseIf sensenDOS < 0 Then
+                    sensenDOS = 0
+                End If
+
                 If loose = True Or win = True Then
                     inBattle = False
                 End If
+
                 If loose = True And win = False Then
                     Console.WriteLine("")
                     Threading.Thread.Sleep(1000)
@@ -2401,17 +2543,43 @@
                     Threading.Thread.Sleep(1000)
                     inBattle = False
                 End If
+
                 If inBattle = True Then
                     Console.WriteLine()
                     Console.WriteLine()
-                    Console.WriteLine("-----------------------------------------------------------")
+                    Console.WriteLine("----------------------------------------------------------------------------------------------------------------------------")
                     Console.WriteLine()
                     Console.WriteLine()
                     Console.WriteLine("Your health: " & playerHealth & "     " & enemy1 & " Health: " & sabreHealth1 & "     " & enemy2 & " Health: " & sabreHealth2)
                     If sensenFury > 0 Then
-                        Console.WriteLine("S-Presen Cooldown: " & sensenFury & " turns left")
-                    Else
-                        Console.WriteLine("S-Presen is ready.")
+                        Console.WriteLine("S-Presen Cooldown: Sensen Fury " & sensenFury & " turns left")
+                    End If
+                    If sensenDOS > 0 Then
+                        Console.WriteLine("S-Presen Cooldown: Sensen DOS " & sensenDOS & " turns left")
+                    End If
+                    If sensenFury Or sensenDOS Then
+                        Console.WriteLine()
+                        Console.WriteLine("S-Pressen Ready.")
+                    End If
+
+                    If round = 10 And sensenDOSUnlocked = False Then
+                        Threading.Thread.Sleep(500)
+                        Console.Clear()
+                        Console.WriteLine("Memory Surge!")
+                        Threading.Thread.Sleep(300)
+                        'Memory Glitch
+                        Dim counter As Integer = 1
+                        For counter = 1 To 130
+                            Threading.Thread.Sleep(10)
+                            Console.Write("cjtfj6bkuyaw4567t(&^BT&6bvbi7ngO*&9o875n3o8&YNvp$(*YUb(*&ynBVO874WBTV3P&YIp8[y9]0)_(q(*Yup(*!p(~*yP9384957BV9327T65O87YCL78675^%&98UB&tu%^4&$w@463E68% FOyg o^e%43@^$#we^%^tbfuteQQAY466cr$h543jz4H435z54#5n")
+                            counter = counter + 1
+                        Next
+                        counter = 1
+                        Console.Clear()
+                        sensenDOSUnlocked = True
+                        Console.WriteLine("Sensen DOS is now availble!")
+                        Console.Write("*")
+                        Console.ReadLine()
                     End If
                 End If
             End While 'In battle
