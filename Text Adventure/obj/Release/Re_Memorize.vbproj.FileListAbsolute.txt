@@ -7,3 +7,8 @@ C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\obj\Release\Re_Memo
 C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\obj\Release\Re-Memorize.exe
 C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\obj\Release\Re-Memorize.xml
 C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\obj\Release\Re-Memorize.pdb
+C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\bin\Release\Re-Memorize.exe.manifest
+C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\bin\Release\Re-Memorize.application
+C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\obj\Release\Re-Memorize.TrustInfo.xml
+C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\obj\Release\Re-Memorize.exe.manifest
+C:\Users\Brandon\Documents\GitHub\Re-Memorize\Text Adventure\obj\Release\Re-Memorize.application

@@ -16,11 +16,15 @@
     Dim selectLoop2 As Boolean = True
     Dim selectLoop3 As Boolean = True
     Dim sPressen As String
+    Dim doorCodeSolution As String
+    Dim doorCode As String
 
     'Passcode dependant varialbles
     Dim sensenFuryUnlocked As Boolean = False
     Dim sensenDOSUnlocked As Boolean = False
     Dim rememberBailey As Boolean
+    Dim satPatch1 As Boolean = False
+    Dim satPatch2 As Boolean = False
 
     Dim passcode As String = ""
 
@@ -93,7 +97,7 @@
                 Console.WriteLine("--------------------------------------------")
                 Console.Write("Enter passcode: ")
                 passcode = Console.ReadLine()
-                If passcode = "AD4H7R" Or passcode = "F65H7D" Or passcode = "D612HQ" Or passcode = "FQN26B" Then
+                If passcode = "AD4H7R" Or passcode = "F65H7D" Or passcode = "D612HQ" Or passcode = "FQN26B" Or passcode = "GF63K8" Or passcode = "78HKYU" Or passcode = "92BAN2" Or passcode = "KN7T92" Then
                     Console.WriteLine(" > Access Then Granted < ")
                     Threading.Thread.Sleep(1000)
                     GameStart()
@@ -286,6 +290,15 @@
         Console.WriteLine("Press ""Enter"" or ""Return"" to continue.")
         Console.ReadLine()
     End Sub
+    Sub RemembraneInstructions()
+        Console.WriteLine()
+        Console.WriteLine("------------------------------ Remembrane Instructions ---------------------------------")
+        Console.WriteLine()
+        Console.WriteLine("         Remembranes: Activate a remembrane to relive the memories of the person.")
+        Console.WriteLine()
+        Console.WriteLine("Press ""Enter"" or ""Return"" to continue.")
+        Console.ReadLine()
+    End Sub
 
     'Access Chapters and passcode entry
     Sub MainGame()
@@ -293,33 +306,58 @@
             Chapter1()
             Chapter2()
             Chapter3()
+            Chapter4()
         ElseIf passcode = "F65H7D" Then
             sensenFuryUnlocked = True
             Chapter2()
             Chapter3()
+            Chapter4()
         ElseIf passcode = "D612HQ" Then
             sensenFuryUnlocked = True
             rememberBailey = True
             Chapter3()
+            Chapter4()
         ElseIf passcode = "FQN26B" Then
             sensenFuryUnlocked = True
             rememberBailey = False
             Chapter3()
+            Chapter4()
+        ElseIf passcode = "GF63K8" Then
+            sensenFuryUnlocked = True
+            sensenDOSUnlocked = True
+            rememberBailey = True
+            satPatch2 = True
+            maxHealth = maxHealth + 25
+            Chapter4()
+        ElseIf passcode = "78HKYU" Then
+            sensenFuryUnlocked = True
+            sensenDOSUnlocked = True
+            rememberBailey = True
+            satPatch2 = False
+            maxHealth = maxHealth
+            Chapter4()
+        ElseIf passcode = "92BAN2" Then
+            sensenFuryUnlocked = True
+            sensenDOSUnlocked = True
+            rememberBailey = False
+            satPatch2 = True
+            maxHealth = maxHealth + 25
+            Chapter4()
+        ElseIf passcode = "KN7T9Z" Then
+            sensenFuryUnlocked = True
+            sensenDOSUnlocked = True
+            rememberBailey = False
+            satPatch2 = False
+            maxHealth = maxHealth
+            Chapter4()
         ElseIf passcode = "" Then
             Chapter0()
-            If leaper = True Then
-                Console.Clear()
-                Console.WriteLine()
-                Console.WriteLine("You got you're memory fully wiped. Try again...")
-                Console.ReadLine()
-                Exit Sub
-            End If
-            'Start Chapter 1
             Chapter1()
             Chapter2()
             Chapter3()
-            passcode = ""
+            Chapter4()
         End If
+        passcode = ""
         Console.WriteLine()
         Console.WriteLine("Thank you for playing! You have reached the end of the Beta. More is coming soon.")
         Console.Write("*")
@@ -496,7 +534,13 @@
         Console.ReadLine()
         Console.Clear()
         Threading.Thread.Sleep(200)
+        doorCodeSolution = "5086"
         Chapter3_1()
+        Chapter3_2()
+        Chapter3_3()
+    End Sub
+    Sub Chapter4()
+        'Chapter 4 comming soon
     End Sub
 
     'Chapter 0 Helping Chapters
@@ -1425,23 +1469,253 @@
                 Console.ReadLine()
             ElseIf userInput = "2" And unixieKey = True Then
                 'Enter building
+                Exit Sub
+                selectLoop1 = False
             ElseIf userInput = "3" Then
                 Console.WriteLine("You walk down the right side of the building.")
                 Console.Write("*")
                 Console.ReadLine()
-                Console.WriteLine("[There are two S.A.B.R.E. Enforcers]")
-                Console.Write("*")
-                Console.ReadLine()
-                Console.WriteLine("S.A.B.R.E. Enforcer 1: Hey are you lost?")
-                Console.Write("*")
-                Console.ReadLine()
-                Console.WriteLine("S.A.B.R.E. Enforcer 2: That's the escaped prisoner! Get " & genRef & "!")
-                Console.Write("*")
-                Console.ReadLine()
-                SabreBattle1x2()
+                If unixieKey = False Then
+                    Console.WriteLine("[There are two S.A.B.R.E. Enforcers]")
+                    Console.Write("*")
+                    Console.ReadLine()
+                    Console.WriteLine("S.A.B.R.E. Enforcer 1: Hey are you lost?")
+                    Console.Write("*")
+                    Console.ReadLine()
+                    Console.WriteLine("S.A.B.R.E. Enforcer 2: That's the escaped prisoner! Get " & genRef & "!")
+                    Console.Write("*")
+                    Console.ReadLine()
+                    SabreBattle1x2()
+                    'On battle complete
+
+                    Console.WriteLine("You walk over to the S.A.B.R.E. Enforcer that reconized you.")
+                    Console.Write("*")
+                    Console.ReadLine()
+                    userInput = ""
+                    selectLoop2 = True
+                    While selectLoop2 = True
+                        Console.WriteLine("[S] Steal Memory")
+                        Console.Write("$ ")
+                        userInput = Console.ReadLine()
+                        If userInput = "S" Then
+                            Console.WriteLine("You reach your arm out towards his Sensen.")
+                            Console.Write("*")
+                            Console.ReadLine()
+                            Threading.Thread.Sleep(300)
+                            'Memory stolen
+                            Dim counter As Integer = 1
+                            For counter = 1 To 90
+                                Threading.Thread.Sleep(10)
+                                Console.Write("ccjytfi6ti7tbu57ec754ev856vbd@#@^47#J%#^&J$K764m6$%#G$WE$%YUNXIE_KEY_MEMORY^T&(*zjtfj6bkuyaw4567t(&^BT&6bTHE_KEY_OF_INTREST_IS_IN_RIDDLESvbi7ngO*&9o875n3o8&YNvp$(*YUb(*&ynBVO874WBTV3P&YIp8[y9SPIDERS_HAVE_EIGHT_LEGS]0)_(q(*Yup(*!p(~*yP9384957BV9327T65O87YCL78675^%&98UB&tu%^4SERIAL&$w@463E68EXPERIMENTS%FOygLAINo^e%43@^$#we^%^tbfuteQQAY466cr$h543jz4H435z54#5n")
+                                counter = counter + 1
+                            Next
+                            counter = 1
+                            Console.Clear()
+                            Console.WriteLine("Retreaved: Unixie Key Memory")
+                            Console.Write("*")
+                            Console.ReadLine()
+                            unixieKey = True
+                            selectLoop2 = False
+                        Else
+                            Console.WriteLine("Invalid command")
+                        End If
+                    End While
+                    Console.WriteLine(playerName & ": Nilin, I think I know the passcode.")
+                    Console.Write("*")
+                    Console.ReadLine()
+                    Console.WriteLine("Nilin: Alright well try it out!")
+                    Console.Write("*")
+                    Console.ReadLine()
+                End If
+                userInput = ""
+                selectLoop2 = True
+                While selectLoop2 = True
+                    Console.WriteLine("[1] Look Forward  [2] Look Left  [3] Look Right")
+                    Console.WriteLine("[4] Go back to the front of the building")
+                    Console.WriteLine("[5] Look Up  [6] Look down")
+                    Console.Write("$ ")
+                    userInput = Console.ReadLine()
+                    If userInput = "1" Then
+                        Console.WriteLine("You see a stone wall ahead. Nothing interesting here.")
+                        Console.Write("*")
+                        Console.ReadLine()
+                    ElseIf userInput = "2" Then
+                        Console.WriteLine("To your left you see some graffiti on the side of the stone building.")
+                        Console.Write("*")
+                        Console.ReadLine()
+                        Console.WriteLine("{ To ErrOr iS hUmAN }")
+                        Console.Write("*")
+                        Console.ReadLine()
+                    ElseIf userInput = "3" Then
+                        Console.WriteLine("There is a flower garden.")
+                        Console.Write("*")
+                        Console.ReadLine()
+                        Console.WriteLine("Hmm What's this?")
+                        Console.Write("*")
+                        Console.ReadLine()
+                        Console.WriteLine("You found a SAT Patch!")
+                        satPatch2 = True
+                        Console.Write("*")
+                        Console.ReadLine()
+                        maxHealth = maxHealth + 25
+                        playerHealth = maxHealth
+
+                        Console.WriteLine("Max Health: +25")
+                        Console.Write("*")
+                        Console.ReadLine()
+                        Console.WriteLine("Your health: " & playerHealth)
+                        Console.Write("*")
+                        Console.ReadLine()
+                    ElseIf userInput = "4" Then
+                        Console.WriteLine("You walk bact to the fron of the building.")
+                        Console.Write("*")
+                        Console.ReadLine()
+                        selectLoop2 = False
+                    ElseIf userInput = "5" Then
+                        Console.WriteLine("You look up and see a blue sky. Nice day.")
+                        Console.Write("*")
+                        Console.ReadLine()
+                    ElseIf userInput = "6" Then
+                        Console.WriteLine("You see the S.A.B.R.E. Enforcers laying on the ground.")
+                        Console.Write("*")
+                        Console.ReadLine()
+                    End If
+                End While
+            Else
+                Console.WriteLine("Invalid command")
             End If
         End While
 
+    End Sub
+    Sub Chapter3_2()
+        Console.WriteLine("You walk down the left side of the building.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.WriteLine("You reach a door. It seems to need some sort of passcode.")
+        Console.Write("*")
+        Console.ReadLine()
+        Console.Clear()
+        RemembraneInstructions()
+        Console.Clear()
+        userInput = ""
+        selectLoop1 = True
+        While selectLoop1 = True
+            Console.WriteLine()
+            Console.WriteLine("[1] Input passcode  [R] Play Remembrane")
+            Console.Write("$ ")
+            userInput = Console.ReadLine()
+            If userInput = "1" Then
+                'Input Passcode
+                Console.WriteLine()
+                Console.WriteLine("          -------------------------")
+                Console.WriteLine("          |  *     *     *     *  |")
+                Console.WriteLine("          -------------------------")
+                Console.WriteLine("          -------------------------")
+                Console.WriteLine("          |       |       |       |")
+                Console.WriteLine("          |   1   |   2   |   3   |")
+                Console.WriteLine("          |       |       |       |")
+                Console.WriteLine("          -------------------------")
+                Console.WriteLine("          |       |       |       |")
+                Console.WriteLine("          |   4   |   5   |   6   |")
+                Console.WriteLine("          |       |       |       |")
+                Console.WriteLine("          -------------------------")
+                Console.WriteLine("          |       |       |       |")
+                Console.WriteLine("          |   7   |   8   |   9   |")
+                Console.WriteLine("          |       |       |       |")
+                Console.WriteLine("          -------------------------")
+                Console.WriteLine("          |       |       |       |")
+                Console.WriteLine("          |       |   0   |       |")
+                Console.WriteLine("          |       |       |       |")
+                Console.WriteLine("          -------------------------")
+                Console.WriteLine()
+                Console.Write(">> ")
+                doorCode = Console.ReadLine()
+                If doorCode = doorCodeSolution Then
+                    selectLoop1 = False
+                    'Enter Door
+                    Exit Sub
+                Else
+                    Console.WriteLine(" --Access Denied--")
+                End If
+            ElseIf userInput = "R" Then
+                'Play Remembraine
+                Dim counter As Integer = 1
+                For counter = 1 To 60
+                    Threading.Thread.Sleep(10)
+                    Console.Write("cjtfj6bkuyaw4567t(&^BT&6bvbi7ngO*&9o875n3o8&YNvp$(*YUb(*&ynBVO874WBTV3P&YIp8[y9]0)_(q(*Yup(*!p(~*yP9384957BV9327T65O87YCL78675^%&98UB&tu%^4&$w@463E68% FOyg o^e%43@^$#we^%^tbfuteQQAY466cr$h543jz4H435z54#5n")
+                    counter = counter + 1
+                Next
+                counter = 1
+                For counter = 1 To 60
+                    Threading.Thread.Sleep(10)
+                    Console.WriteLine()
+                    counter = counter + 1
+                Next
+                Console.Clear()
+                counter = 1
+                Console.WriteLine("You see a holographic reprenstation of the S.A.B.R.E. Enforcers memory.")
+                Console.Write("*")
+                Console.ReadLine()
+                Console.WriteLine("My first is fifth when counting them all.")
+                Threading.Thread.Sleep(500)
+                Console.WriteLine()
+                Console.WriteLine("My second breaks a divide.")
+                Threading.Thread.Sleep(500)
+                Console.WriteLine()
+                Console.WriteLine("My third climbs like a spider.")
+                Threading.Thread.Sleep(500)
+                Console.WriteLine()
+                Console.WriteLine("My fourth has one more digit than a limb.")
+                Threading.Thread.Sleep(500)
+                Console.WriteLine()
+                Console.WriteLine("... and all put together I can open the door.")
+                Console.WriteLine()
+                Console.Write("*")
+                Console.ReadLine()
+                'End Remembrane
+                counter = 1
+                For counter = 1 To 60
+                    Threading.Thread.Sleep(10)
+                    Console.Write("cjtfj6bkuyaw4567t(&^BT&6bvbi7ngO*&9o875n3o8&YNvp$(*YUb(*&ynBVO874WBTV3P&YIp8[y9]0)_(q(*Yup(*!p(~*yP9384957BV9327T65O87YCL78675^%&98UB&tu%^4&$w@463E68% FOyg o^e%43@^$#we^%^tbfuteQQAY466cr$h543jz4H435z54#5n")
+                    counter = counter + 1
+                Next
+                counter = 1
+                For counter = 1 To 60
+                    Threading.Thread.Sleep(10)
+                    Console.WriteLine()
+                    counter = counter + 1
+                Next
+                Console.Clear()
+            Else
+                Console.WriteLine("Invalid command")
+            End If
+        End While
+    End Sub
+    Sub Chapter3_3()
+        Console.WriteLine(playerName & ": I'm in.")
+        Console.Write("*")
+        Console.ReadLine()
+        Threading.Thread.Sleep(500)
+        Console.Clear()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine()
+        Console.WriteLine("          -----------------------------------------------")
+        If satPatch2 = True And rememberBailey = True Then
+            Console.WriteLine("          -------------- Password: GF63K8 ---------------")
+        ElseIf satPatch2 = False And rememberBailey = True Then
+            Console.WriteLine("          -------------- Password: 78HKYU ---------------")
+        ElseIf satPatch2 = True And rememberBailey = False Then
+            Console.WriteLine("          -------------- Password: 92BAN2 ---------------")
+        ElseIf satPatch2 = False And rememberBailey = False Then
+            Console.WriteLine("          -------------- Password: KN7T9Z ---------------")
+        Else
+            Console.WriteLine("Congradulations! You found a way to break the game please send a report by commenting on the games page at http://www.BrandonLaDuke.com/games/rememorize")
+        End If
+        Console.WriteLine("          -----------------------------------------------")
+        Console.ReadLine()
+        Console.Clear()
     End Sub
 
     'Battles
